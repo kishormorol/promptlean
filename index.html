@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PromptLean — Lean Prompts for Developers</title>
+  <meta name="description" content="A curated library of token-efficient prompts for LLMs. Each prompt has Lean, Balanced, and Max Quality variants.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">⚡</div>
+      PromptLean
+    </a>
+    <div class="nav-links">
+      <a href="browse.html" class="nav-link">Browse</a>
+      <a href="compare.html" class="nav-link">Compare</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="contribute.html" class="nav-link">Contribute</a>
+    </div>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="theme-toggle" title="Toggle theme">☀</button>
+      <a href="browse.html" class="nav-cta">Browse Prompts</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <!-- Hero -->
+  <div class="container">
+    <div class="hero">
+      <div class="hero-eyebrow">⚡ Token-efficient by design</div>
+      <h1>Prompts that work.<br><em>Without the fluff.</em></h1>
+      <p class="hero-sub">
+        A curated library of lean, balanced, and max-quality prompt variants for common developer tasks — code review, research, data analysis, and more.
+      </p>
+      <div class="hero-actions">
+        <a href="browse.html" class="btn btn-primary btn-lg">Browse Prompts</a>
+        <a href="compare.html" class="btn btn-ghost btn-lg">Compare Variants</a>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stat-grid mb-8">
+      <div class="stat-card">
+        <div class="stat-value" id="stat-total">—</div>
+        <div class="stat-label">Prompts</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="stat-cats">—</div>
+        <div class="stat-label">Categories</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="stat-savings">—</div>
+        <div class="stat-label">Avg token savings (lean vs quality)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">3</div>
+        <div class="stat-label">Variants per prompt</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Featured prompts -->
+    <div class="section-header mb-6">
+      <h2 class="section-title">Featured Prompts</h2>
+      <a href="browse.html" class="btn btn-ghost btn-sm">View all →</a>
+    </div>
+
+    <div class="grid-3" id="featured-grid">
+      <div class="text-3 text-sm">Loading...</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- How it works -->
+    <div class="mb-8">
+      <h2 class="section-title mb-6">Three variants. One job.</h2>
+      <div class="compare-grid" style="grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
+
+        <div class="card">
+          <div class="flex-center gap-2 mb-4">
+            <span class="badge badge-lean">⚡ Lean</span>
+          </div>
+          <h4 class="mb-2">Minimum tokens, maximum leverage</h4>
+          <p style="font-size: 0.875rem;">For tight context windows, fast iteration, or when the model clearly understands the task. Gets you 80% of the result for 20% of the tokens.</p>
+        </div>
+
+        <div class="card">
+          <div class="flex-center gap-2 mb-4">
+            <span class="badge badge-balanced">⚖ Balanced</span>
+          </div>
+          <h4 class="mb-2">Structure without ceremony</h4>
+          <p style="font-size: 0.875rem;">The default choice. Enough context to guide output structure, not enough to waste your budget. Works across all major models.</p>
+        </div>
+
+        <div class="card">
+          <div class="flex-center gap-2 mb-4">
+            <span class="badge badge-quality">★ Max Quality</span>
+          </div>
+          <h4 class="mb-2">Full instruction for the highest bar</h4>
+          <p style="font-size: 0.875rem;">When you need a research-grade summary, a thorough code review, or a rubric that holds up to expert scrutiny. Worth every token.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- CTA -->
+    <div style="text-align: center; padding: 40px 0 20px;">
+      <h2 style="margin-bottom: 12px;">Missing a prompt?</h2>
+      <p style="max-width: 420px; margin: 0 auto 24px;">Every prompt in the library was submitted by a developer who needed it. Open a PR with your use case.</p>
+      <a href="contribute.html" class="btn btn-primary">Contribute a Prompt</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-left">
+      <span>⚡ PromptLean</span>
+      <span>·</span>
+      <span>Open source, MIT license</span>
+    </div>
+    <div class="footer-links">
+      <a href="about.html" class="footer-link">About</a>
+      <a href="contribute.html" class="footer-link">Contribute</a>
+      <a href="https://github.com/kishormorol/promptlean" class="footer-link" target="_blank">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<div id="toast"></div>
+<script src="assets/js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  const data = await PL.loadPrompts();
+  const prompts = data.prompts;
+
+  // Stats
+  document.getElementById('stat-total').textContent = prompts.length;
+  document.getElementById('stat-cats').textContent = data.categories.length;
+
+  const savings = prompts.map(p => {
+    const l = p.variants.lean?.token_estimate;
+    const q = p.variants.max_quality?.token_estimate;
+    return l && q ? Math.round((1 - l/q) * 100) : 0;
+  });
+  const avg = Math.round(savings.reduce((a,b)=>a+b,0)/savings.length);
+  document.getElementById('stat-savings').textContent = avg + '%';
+
+  // Featured grid
+  const featured = prompts.filter(p => p.featured).slice(0, 3);
+  document.getElementById('featured-grid').innerHTML = featured.map(PL.renderCard).join('');
+});
+</script>
+</body>
+</html>

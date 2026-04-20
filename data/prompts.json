@@ -1,0 +1,288 @@
+{
+  "prompts": [
+    {
+      "id": "summarize-research-paper",
+      "title": "Summarize a Research Paper",
+      "category": "Research",
+      "tags": ["summarization", "academic", "NLP", "extraction"],
+      "featured": true,
+      "description": "Extract key contributions, methodology, and results from an academic paper. Evidence-grounded with lean/balanced/quality tradeoff.",
+      "model_notes": {
+        "gpt-4o": "Works best with max_quality for nuanced methodology extraction.",
+        "claude-3-5-sonnet": "Lean variant is highly effective due to strong instruction-following.",
+        "gemini-1.5-pro": "Balanced works well for long papers via large context window."
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Summarize this paper in 5 bullet points: contributions, method, dataset, results, limitations.\n\n[PAPER]",
+          "token_estimate": 28
+        },
+        "balanced": {
+          "prompt": "Summarize this research paper with the following structure:\n- **Problem**: What problem does it solve?\n- **Method**: Core technical approach (2-3 sentences)\n- **Data**: Datasets used\n- **Results**: Key numbers / improvements over baselines\n- **Limitations**: What doesn't it handle?\n\nKeep each section to 1-2 sentences.\n\n[PAPER]",
+          "token_estimate": 72
+        },
+        "max_quality": {
+          "prompt": "You are a research assistant helping an expert reader quickly assess a paper. Provide a structured summary:\n\n## TL;DR (1 sentence)\n\n## Problem & Motivation\nWhat gap does this paper address? Why does it matter?\n\n## Technical Approach\nDescribe the core method with enough precision that a practitioner could understand what makes it novel.\n\n## Experimental Setup\n- Datasets:\n- Baselines compared against:\n- Evaluation metrics:\n\n## Key Results\nList the 3 most important quantitative findings.\n\n## Limitations & Open Questions\nWhat does the paper not handle? What would a follow-up need to address?\n\n## Relevance Score (1-10)\nHow impactful is this for someone working on [FIELD]?\n\n[PAPER]",
+          "token_estimate": 165
+        }
+      }
+    },
+    {
+      "id": "code-review",
+      "title": "Code Review",
+      "category": "Code",
+      "tags": ["code", "review", "quality", "bugs"],
+      "featured": true,
+      "description": "Review code for bugs, performance issues, and style. Lean gives a quick scan; quality gives a structured report.",
+      "model_notes": {
+        "gpt-4o": "Max quality with o1 for algorithmic complexity analysis.",
+        "claude-3-5-sonnet": "All three variants perform well. Lean is surprisingly thorough.",
+        "gemini-1.5-pro": "Good for large codebases needing full-file context."
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Review this code. Flag bugs, performance issues, and style problems. Be direct.\n\n```\n[CODE]\n```",
+          "token_estimate": 26
+        },
+        "balanced": {
+          "prompt": "Review the following code and provide feedback in three sections:\n\n**Bugs / Correctness**: Any logic errors or edge cases that break the code.\n**Performance**: Inefficiencies or unnecessary complexity.\n**Style / Maintainability**: Readability, naming, structure.\n\nFor each issue, quote the relevant line and suggest a fix.\n\n```\n[CODE]\n```",
+          "token_estimate": 78
+        },
+        "max_quality": {
+          "prompt": "You are a senior software engineer doing a thorough code review. Analyze the following code and produce a structured report:\n\n## Summary\nOne paragraph describing what the code does and your overall assessment.\n\n## Critical Issues\nBugs or security vulnerabilities that must be fixed before merging. Include line references and exact fixes.\n\n## Performance\nAny O(n²) or worse algorithms, unnecessary re-renders, memory leaks, or blocking operations. Suggest alternatives.\n\n## Code Quality\n- Naming clarity\n- Function/class cohesion (single responsibility)\n- Error handling completeness\n- Test coverage gaps\n\n## Positive Patterns\nThings done well — this helps the author learn what to repeat.\n\n## Priority Fix List\nOrdered list of the top 5 things to fix, from most to least critical.\n\n```\n[CODE]\n```",
+          "token_estimate": 178
+        }
+      }
+    },
+    {
+      "id": "explain-code",
+      "title": "Explain Code to a Junior Dev",
+      "category": "Code",
+      "tags": ["code", "explanation", "teaching", "onboarding"],
+      "featured": false,
+      "description": "Explain what a piece of code does at a level appropriate for someone new to the codebase.",
+      "model_notes": {
+        "gpt-4o": "Lean is sufficient for most snippets.",
+        "claude-3-5-sonnet": "Excels at the analogies in max_quality variant.",
+        "gemini-1.5-pro": "Balanced recommended."
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Explain what this code does in plain English. Assume the reader knows programming basics but not this codebase.\n\n```\n[CODE]\n```",
+          "token_estimate": 32
+        },
+        "balanced": {
+          "prompt": "Explain the following code to a developer who is new to this codebase:\n\n1. **What it does** — the high-level purpose\n2. **How it works** — step by step through the logic\n3. **Key terms** — define any domain-specific variables or patterns\n4. **Gotchas** — anything that might trip up a newcomer\n\n```\n[CODE]\n```",
+          "token_estimate": 67
+        },
+        "max_quality": {
+          "prompt": "You are a senior engineer onboarding a junior developer. Explain the following code clearly and pedagogically.\n\n## What does this do?\nA one-sentence summary anyone could understand.\n\n## Mental Model\nGive a real-world analogy that maps to how this code works.\n\n## Line-by-Line Walkthrough\nWalk through the important parts, explaining why decisions were made, not just what they do.\n\n## Data Flow\nDescribe what goes in, what happens to it, and what comes out.\n\n## Common Mistakes\nWhat bugs do developers typically introduce when modifying code like this?\n\n## How to Test It\nSuggest 2-3 test cases that would give confidence in this code.\n\n```\n[CODE]\n```",
+          "token_estimate": 152
+        }
+      }
+    },
+    {
+      "id": "write-unit-tests",
+      "title": "Write Unit Tests",
+      "category": "Code",
+      "tags": ["code", "testing", "pytest", "jest", "TDD"],
+      "featured": false,
+      "description": "Generate comprehensive unit tests for a function or class. Lean gives basics, quality gives edge cases + mocks.",
+      "model_notes": {
+        "gpt-4o": "Balanced is ideal. Specify your test framework.",
+        "claude-3-5-sonnet": "Excellent at inferring edge cases from function signatures.",
+        "gemini-1.5-pro": "Good for large files where full context helps."
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Write unit tests for this function in [FRAMEWORK]. Cover happy path and 2 edge cases.\n\n```\n[CODE]\n```",
+          "token_estimate": 24
+        },
+        "balanced": {
+          "prompt": "Write unit tests for the following function using [FRAMEWORK].\n\nCover:\n- Happy path (expected inputs)\n- Boundary conditions (empty, zero, max values)\n- Error cases (invalid input, exceptions)\n- Any obvious edge cases from the logic\n\nAdd a brief comment on what each test verifies.\n\n```\n[CODE]\n```",
+          "token_estimate": 63
+        },
+        "max_quality": {
+          "prompt": "You are writing production-quality tests. Generate a complete test file for the following code using [FRAMEWORK].\n\nRequirements:\n- Group tests logically using describe blocks (or equivalent)\n- Mock all external dependencies (DB, network, filesystem)\n- Cover: happy path, boundary conditions, error handling, concurrent/async edge cases\n- Each test should have a descriptive name that explains the scenario\n- Add a fixture or factory for any complex setup\n- Include at least one parametrized/table-driven test if appropriate\n- Add a comment block at the top listing what is NOT tested and why\n\n```\n[CODE]\n```",
+          "token_estimate": 142
+        }
+      }
+    },
+    {
+      "id": "sql-query-optimize",
+      "title": "Optimize a SQL Query",
+      "category": "Data",
+      "tags": ["SQL", "optimization", "database", "performance"],
+      "featured": true,
+      "description": "Analyze and rewrite a slow SQL query. Lean flags the issue; quality gives a full query plan analysis.",
+      "model_notes": {
+        "gpt-4o": "Max quality with schema context is excellent.",
+        "claude-3-5-sonnet": "Balanced is very effective when schema is provided.",
+        "gemini-1.5-pro": "Lean works well for simple queries."
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Optimize this SQL query. Explain the bottleneck and rewrite it.\n\n```sql\n[QUERY]\n```\n\nSchema: [SCHEMA]",
+          "token_estimate": 22
+        },
+        "balanced": {
+          "prompt": "Analyze and optimize the following SQL query:\n\n```sql\n[QUERY]\n```\n\nSchema context: [SCHEMA]\n\nProvide:\n1. **Bottleneck**: Why is this query slow?\n2. **Optimized query**: Rewritten version\n3. **Explanation**: What changed and why\n4. **Indexes**: Any indexes that would help",
+          "token_estimate": 68
+        },
+        "max_quality": {
+          "prompt": "You are a database performance expert. Analyze and fully optimize the following SQL query.\n\n```sql\n[QUERY]\n```\n\nSchema: [SCHEMA]\nApprox table sizes: [SIZES]\nDatabase: [POSTGRES/MYSQL/SQLITE]\n\n## Query Plan Analysis\nWhat would the query planner likely do with the current query? Where are the full scans or expensive joins?\n\n## Root Cause\nIdentify every performance issue: missing indexes, N+1 patterns, unnecessary subqueries, type mismatches, etc.\n\n## Optimized Query\n```sql\n-- rewritten query here\n```\n\n## Index Recommendations\nExact CREATE INDEX statements that would help.\n\n## Tradeoffs\nAny downsides to the optimization (write overhead, storage, lock contention)?\n\n## Alternative Approaches\nIf the query pattern itself is problematic, suggest a redesign.",
+          "token_estimate": 185
+        }
+      }
+    },
+    {
+      "id": "data-cleaning-plan",
+      "title": "Data Cleaning Plan",
+      "category": "Data",
+      "tags": ["data science", "pandas", "EDA", "cleaning", "preprocessing"],
+      "featured": false,
+      "description": "Generate a systematic data cleaning plan for a dataset. Includes missing values, outliers, type issues, and duplicates.",
+      "model_notes": {
+        "gpt-4o": "Balanced with column list context works great.",
+        "claude-3-5-sonnet": "Lean variant gives rapid audit checklist.",
+        "gemini-1.5-pro": "Paste df.info() output for best results."
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Create a data cleaning checklist for this dataset. Cover missing values, outliers, duplicates, and type issues.\n\nDataset info:\n[DATASET_INFO]",
+          "token_estimate": 30
+        },
+        "balanced": {
+          "prompt": "Given the following dataset description, create a data cleaning plan:\n\n[DATASET_INFO]\n\nFor each issue type, provide:\n- How to detect it\n- How to handle it (with pandas code)\n- What to watch out for\n\nCover: missing values, outliers, duplicate rows, inconsistent categories, and data type mismatches.",
+          "token_estimate": 66
+        },
+        "max_quality": {
+          "prompt": "You are a data scientist performing a thorough data audit. Given the dataset information below, produce a complete data cleaning plan.\n\n[DATASET_INFO]\n\n## Phase 1 — Audit\nPython code to produce a full quality report: missing rates, dtype issues, cardinality, value distributions, duplicate counts.\n\n## Phase 2 — Missing Values\nFor each column with >0 missing: classify as MCAR/MAR/MNAR, recommend handling strategy (drop, impute, flag), provide pandas code.\n\n## Phase 3 — Outliers\nDetection method (IQR / Z-score / domain rules), visualization, treatment decision (cap, remove, keep with flag).\n\n## Phase 4 — Consistency\nCategory standardization, date format unification, string normalization.\n\n## Phase 5 — Validation\nPost-cleaning assertions to verify the dataset meets expectations.\n\n## Cleaned Dataset Summary\nExpected shape, dtypes, and quality metrics after cleaning.",
+          "token_estimate": 188
+        }
+      }
+    },
+    {
+      "id": "write-blog-post",
+      "title": "Write a Technical Blog Post",
+      "category": "Writing",
+      "tags": ["writing", "blog", "technical", "developer-content"],
+      "featured": false,
+      "description": "Write a developer-focused blog post on a technical topic. Lean gives an outline; quality gives a full draft.",
+      "model_notes": {
+        "gpt-4o": "Max quality gives polished prose. Add brand voice notes.",
+        "claude-3-5-sonnet": "Best for balanced — engages without being verbose.",
+        "gemini-1.5-pro": "Good for long posts with many sections."
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Write a 500-word technical blog post about [TOPIC] for [AUDIENCE]. Include: hook, core concept, code example, takeaway.",
+          "token_estimate": 26
+        },
+        "balanced": {
+          "prompt": "Write a technical blog post for [AUDIENCE] about [TOPIC].\n\nStructure:\n1. **Hook** — start with a problem or surprising fact\n2. **The Concept** — explain clearly with an analogy\n3. **Code Example** — 1-2 practical snippets\n4. **When to Use / Avoid** — trade-offs\n5. **Takeaway** — one actionable sentence\n\nTone: conversational but technically precise. Length: ~600 words.",
+          "token_estimate": 82
+        },
+        "max_quality": {
+          "prompt": "You are a developer-educator writing for [AUDIENCE] on [PLATFORM] (e.g., dev.to, company blog, Substack).\n\nWrite a technical blog post about: [TOPIC]\n\nRequirements:\n- **Title**: SEO-friendly, specific, avoids clickbait\n- **Hook** (first 2 sentences): Create urgency or curiosity — no \"In this post I will...\"\n- **Problem Statement**: What pain does this solve? Be concrete.\n- **Core Concept**: Explain with precision. Use an analogy, then get technical.\n- **Implementation**: Complete, runnable code with inline comments. Explain non-obvious choices.\n- **Common Pitfalls**: 3 mistakes developers make here.\n- **Further Reading**: 2-3 links or concepts to explore next.\n- **CTA**: End with an open question or community invitation.\n\nTone: [TONE e.g. pragmatic/enthusiastic/skeptical]\nLength: ~900 words\nCode language: [LANGUAGE]",
+          "token_estimate": 192
+        }
+      }
+    },
+    {
+      "id": "llm-eval-rubric",
+      "title": "LLM Evaluation Rubric",
+      "category": "AI / ML",
+      "tags": ["LLM", "evaluation", "rubric", "research", "benchmarking"],
+      "featured": true,
+      "description": "Create a structured evaluation rubric for assessing LLM outputs. Useful for research, product QA, and A/B testing.",
+      "model_notes": {
+        "gpt-4o": "Max quality excellent for nuanced multi-dimensional rubrics.",
+        "claude-3-5-sonnet": "Best model for this — strong meta-reasoning about LLM outputs.",
+        "gemini-1.5-pro": "Balanced is sufficient for most use cases."
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Create a 5-criterion evaluation rubric (1-5 scale) for judging LLM outputs on [TASK]. Include what each score means.",
+          "token_estimate": 28
+        },
+        "balanced": {
+          "prompt": "Design an evaluation rubric for LLM outputs on the following task:\n\nTask: [TASK]\nOutput type: [e.g., summaries, code, answers, essays]\n\nFor each criterion:\n- Name and weight (must sum to 100%)\n- 1-5 scale with clear anchors\n- Example of a score-5 output\n\nInclude 4-6 criteria covering quality dimensions relevant to this task.",
+          "token_estimate": 73
+        },
+        "max_quality": {
+          "prompt": "You are a research scientist designing a rigorous LLM evaluation protocol.\n\nTask being evaluated: [TASK]\nOutput type: [OUTPUT_TYPE]\nEvaluation context: [human judge / LLM-as-judge / automatic]\n\n## Rubric Design\n\nFor each criterion below, provide:\n- **Name** and **Weight** (weights must sum to 100%)\n- **Definition**: What this criterion measures\n- **Scoring guide** (1–5):\n  - 5: Exemplary — define with concrete example\n  - 3: Acceptable — define boundary conditions\n  - 1: Failing — define what disqualifies\n- **Red flags**: Automatic deduction triggers\n\n## Criteria (suggest 5-7 based on the task)\n[Generate appropriate criteria for the task type]\n\n## Inter-Annotator Agreement\nHow to handle disagreements between judges. Threshold for acceptable kappa.\n\n## Calibration Examples\nProvide 2 example outputs with scores and justifications for each criterion.\n\n## Anti-Patterns to Avoid in Judging\nBiases and heuristics that corrupt rubric application.",
+          "token_estimate": 210
+        }
+      }
+    },
+    {
+      "id": "meeting-notes-action-items",
+      "title": "Meeting Notes → Action Items",
+      "category": "Productivity",
+      "tags": ["productivity", "meetings", "summarization", "action-items"],
+      "featured": false,
+      "description": "Convert raw meeting notes or transcript into structured action items with owners and deadlines.",
+      "model_notes": {
+        "gpt-4o": "Lean is fully sufficient for most meetings.",
+        "claude-3-5-sonnet": "Lean variant gives fast, accurate extraction.",
+        "gemini-1.5-pro": "Good for long transcripts via large context."
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Extract all action items from these meeting notes. Format: [Owner] — [Task] — [Deadline if mentioned].\n\n[NOTES]",
+          "token_estimate": 22
+        },
+        "balanced": {
+          "prompt": "From the following meeting notes, extract and structure:\n\n**Decisions Made**: What was agreed upon.\n**Action Items**: Each item with owner, task, and deadline (use TBD if not mentioned).\n**Open Questions**: Unresolved issues that need follow-up.\n**Next Meeting**: Date/agenda if discussed.\n\n[NOTES]",
+          "token_estimate": 57
+        },
+        "max_quality": {
+          "prompt": "You are a chief of staff processing meeting notes into a structured follow-up document.\n\n[NOTES]\n\n## Meeting Summary\n2-3 sentence overview of what was discussed and the overall outcome.\n\n## Decisions\nFinal decisions made, with context on why (if captured in notes).\n\n## Action Items\n| # | Owner | Task | Deadline | Priority |\n|---|-------|------|----------|----------|\n[Extract all action items into table]\n\n## Risks & Blockers\nAnything flagged as at-risk or blocked.\n\n## Open Questions\nQuestions raised that weren't resolved — include who raised them.\n\n## Follow-up Agenda Items\nTopics deferred to the next meeting.\n\n## Executive Summary (email-ready)\nA 3-bullet paragraph suitable for sending to stakeholders who didn't attend.",
+          "token_estimate": 155
+        }
+      }
+    },
+    {
+      "id": "system-design-review",
+      "title": "System Design Review",
+      "category": "Engineering",
+      "tags": ["system design", "architecture", "scalability", "engineering"],
+      "featured": false,
+      "description": "Review a system design proposal. Lean flags risks; quality gives a full architectural assessment.",
+      "model_notes": {
+        "gpt-4o": "Max quality with full design document is exceptional.",
+        "claude-3-5-sonnet": "Excellent at identifying non-obvious failure modes.",
+        "gemini-1.5-pro": "Good for reviewing long design documents."
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Review this system design. Flag the top 3 risks and suggest how to address each.\n\n[DESIGN]",
+          "token_estimate": 20
+        },
+        "balanced": {
+          "prompt": "Review the following system design proposal:\n\n[DESIGN]\n\nEvaluate:\n- **Scalability**: Will it handle 10x load?\n- **Reliability**: Single points of failure?\n- **Data consistency**: Race conditions, eventual consistency issues?\n- **Security**: Attack surface, auth gaps?\n- **Operational complexity**: How hard to run in production?\n\nFor each area, rate (Good/Concern/Risk) and give 1-2 sentences.",
+          "token_estimate": 84
+        },
+        "max_quality": {
+          "prompt": "You are a staff engineer reviewing a system design for production readiness.\n\n[DESIGN]\n\n## Functional Completeness\nDoes the design cover all stated requirements? List any gaps.\n\n## Scalability Analysis\n- What are the bottlenecks at 10x and 100x current scale?\n- Data hotspots, queue saturation, DB connection limits?\n- Stateless vs. stateful components — can each be horizontally scaled?\n\n## Reliability & Fault Tolerance\n- Single points of failure\n- What happens when [component X] goes down?\n- Recovery time objective — does the design meet it?\n\n## Data Model & Consistency\n- Consistency model (strong/eventual) — is it appropriate?\n- Race conditions or double-write scenarios?\n- Schema migration strategy\n\n## Security\n- AuthN/AuthZ model\n- Sensitive data at rest and in transit\n- Attack surface and trust boundaries\n\n## Operational Complexity\n- How difficult to deploy, monitor, and debug?\n- What observability (metrics/logs/traces) is needed?\n\n## Recommendations\nPrioritized list of changes, from critical to nice-to-have.",
+          "token_estimate": 222
+        }
+      }
+    }
+  ],
+  "categories": [
+    "Research",
+    "Code",
+    "Data",
+    "Writing",
+    "AI / ML",
+    "Productivity",
+    "Engineering"
+  ],
+  "models": [
+    "gpt-4o",
+    "claude-3-5-sonnet",
+    "gemini-1.5-pro"
+  ]
+}

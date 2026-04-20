@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — PromptLean</title>
+  <meta name="description" content="Why PromptLean exists and how it works.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">⚡</div>
+      PromptLean
+    </a>
+    <div class="nav-links">
+      <a href="browse.html" class="nav-link">Browse</a>
+      <a href="compare.html" class="nav-link">Compare</a>
+      <a href="about.html" class="nav-link active">About</a>
+      <a href="contribute.html" class="nav-link">Contribute</a>
+    </div>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="theme-toggle" title="Toggle theme">☀</button>
+    </div>
+  </div>
+</nav>
+
+<main class="page-content">
+  <div class="container" style="max-width: 720px;">
+
+    <div class="mb-8">
+      <h1 style="font-size: 2rem; margin-bottom: 10px;">About PromptLean</h1>
+      <p style="font-size: 1.0625rem;">A library of token-efficient prompts, built by developers who care about both quality and cost.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="mb-8">
+      <h2 style="font-size: 1.25rem; margin-bottom: 12px;">Why this exists</h2>
+      <p style="margin-bottom: 12px;">Most prompt libraries optimize for one thing: quality. The result is verbose, ceremony-heavy prompts that would embarrass any engineer who wrote them in code. They're 200 tokens of preamble telling a capable model to "think step by step."</p>
+      <p style="margin-bottom: 12px;">Token cost compounds fast. At 10,000 calls per day, a 150-token prompt difference costs real money — and the response latency difference is real too.</p>
+      <p>PromptLean organizes prompts into three tiers, so you can pick the right token budget for your situation.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="mb-8">
+      <h2 style="font-size: 1.25rem; margin-bottom: 16px;">The three tiers</h2>
+
+      <div class="card mb-3">
+        <div class="flex-center gap-2 mb-3">
+          <span class="badge badge-lean">⚡ Lean</span>
+          <span class="text-xs text-3">~20–40 tokens</span>
+        </div>
+        <p style="font-size: 0.9rem; margin-bottom: 8px;">Minimal instruction. Works because modern frontier models have strong priors about common tasks. Use when:</p>
+        <ul style="font-size: 0.875rem; color: var(--text-2); padding-left: 20px; line-height: 2;">
+          <li>You're iterating rapidly and output quality doesn't need to be final</li>
+          <li>Context window is tight (many docs in the prompt already)</li>
+          <li>High-volume calls where cost matters</li>
+          <li>The model clearly understands the task from domain context</li>
+        </ul>
+      </div>
+
+      <div class="card mb-3">
+        <div class="flex-center gap-2 mb-3">
+          <span class="badge badge-balanced">⚖ Balanced</span>
+          <span class="text-xs text-3">~60–90 tokens</span>
+        </div>
+        <p style="font-size: 0.9rem; margin-bottom: 8px;">Structured output spec without ceremony. Tells the model what sections to produce. Use when:</p>
+        <ul style="font-size: 0.875rem; color: var(--text-2); padding-left: 20px; line-height: 2;">
+          <li>You need consistent output structure across runs</li>
+          <li>The task has multiple sub-questions that need separate answers</li>
+          <li>You're feeding output downstream and need predictable format</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="flex-center gap-2 mb-3">
+          <span class="badge badge-quality">★ Max Quality</span>
+          <span class="text-xs text-3">~150–220 tokens</span>
+        </div>
+        <p style="font-size: 0.9rem; margin-bottom-8px;">Role assignment, full rubric, output spec, calibration examples. Use when:</p>
+        <ul style="font-size: 0.875rem; color: var(--text-2); padding-left: 20px; line-height: 2;">
+          <li>Output will be shared externally (report, blog post, code review)</li>
+          <li>The task requires expert-level nuance (system design, eval rubric)</li>
+          <li>You're running once and need the best possible output</li>
+          <li>You're using an API directly where you control cost explicitly</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="mb-8">
+      <h2 style="font-size: 1.25rem; margin-bottom: 12px;">How token estimates work</h2>
+      <p style="margin-bottom: 10px;">Token counts use the GPT-3 tokenizer (cl100k_base) as a rough baseline. Claude and Gemini use similar tokenization but may differ by ±10%. Estimates are for the prompt template only — they don't include your content (the <code style="font-family: var(--font-mono); font-size: 0.85em;">[PLACEHOLDER]</code> values).</p>
+      <p>The savings percentages compare Lean and Balanced against Max Quality for the same prompt.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="mb-8">
+      <h2 style="font-size: 1.25rem; margin-bottom: 12px;">Model compatibility</h2>
+      <p style="margin-bottom: 10px;">Every prompt page includes model-specific notes for GPT-4o, Claude 3.5 Sonnet, and Gemini 1.5 Pro. These are the three most widely used frontier models as of 2025.</p>
+      <p>Lean variants generally work better on models with strong instruction-following (Claude 3.5, GPT-4o). Max Quality variants add value most on complex, multi-part tasks where even capable models benefit from a clear rubric.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div style="text-align: center; padding: 20px 0;">
+      <h2 style="margin-bottom: 10px;">Open source, MIT license</h2>
+      <p style="margin-bottom: 20px; max-width: 480px; margin-left: auto; margin-right: auto;">PromptLean is fully open. Every prompt is in <code style="font-family: var(--font-mono); font-size: 0.85em;">data/prompts.json</code>. Fork it, use it, add to it.</p>
+      <div class="flex-center gap-3" style="justify-content: center; flex-wrap: wrap;">
+        <a href="https://github.com/kishormorol/promptlean" class="btn btn-primary" target="_blank">View on GitHub</a>
+        <a href="contribute.html" class="btn btn-ghost">Contribute a Prompt</a>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-left">
+      <span>⚡ PromptLean</span>
+      <span>·</span>
+      <span>Open source, MIT license</span>
+    </div>
+    <div class="footer-links">
+      <a href="about.html" class="footer-link">About</a>
+      <a href="contribute.html" class="footer-link">Contribute</a>
+      <a href="https://github.com/kishormorol/promptlean" class="footer-link" target="_blank">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<div id="toast"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

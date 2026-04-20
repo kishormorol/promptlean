@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Compare Variants — PromptLean</title>
+  <meta name="description" content="Compare Lean, Balanced, and Max Quality prompt variants side by side.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">⚡</div>
+      PromptLean
+    </a>
+    <div class="nav-links">
+      <a href="browse.html" class="nav-link">Browse</a>
+      <a href="compare.html" class="nav-link active">Compare</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="contribute.html" class="nav-link">Contribute</a>
+    </div>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="theme-toggle" title="Toggle theme">☀</button>
+    </div>
+  </div>
+</nav>
+
+<main class="page-content">
+  <div class="container">
+
+    <div class="mb-6">
+      <h1 style="font-size: 1.75rem; margin-bottom: 6px;">Compare Variants</h1>
+      <p>See Lean, Balanced, and Max Quality side by side. Choose when each makes sense.</p>
+    </div>
+
+    <!-- Selector -->
+    <div class="mb-6" style="max-width: 480px;">
+      <select id="prompt-selector" class="search-input" style="padding: 10px 14px; cursor: pointer;">
+        <option value="">— Loading prompts... —</option>
+      </select>
+    </div>
+
+    <!-- Placeholder -->
+    <div id="compare-placeholder" class="empty-state" style="padding: 80px 20px;">
+      <div class="empty-state-icon">⇄</div>
+      <h3>Pick a prompt to compare</h3>
+      <p>Select any prompt above to see all three variants side by side.</p>
+    </div>
+
+    <!-- Compare area -->
+    <div id="compare-area" class="hidden">
+
+      <div id="compare-title" class="mb-4"></div>
+      <div id="savings-summary" class="mb-4"></div>
+
+      <div class="compare-grid" id="compare-cols" style="grid-template-columns: 1fr 1fr 1fr; gap: 12px;"></div>
+
+      <div style="margin-top: 16px; font-size: 0.8125rem; color: var(--text-3); text-align: center;">
+        Click ⧉ to copy a variant. Tokens shown are approximate (GPT-3 tokenizer).
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-left">
+      <span>⚡ PromptLean</span>
+      <span>·</span>
+      <span>Open source, MIT license</span>
+    </div>
+    <div class="footer-links">
+      <a href="about.html" class="footer-link">About</a>
+      <a href="contribute.html" class="footer-link">Contribute</a>
+      <a href="https://github.com/kishormorol/promptlean" class="footer-link" target="_blank">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<div id="toast"></div>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/compare.js"></script>
+
+<style>
+@media (max-width: 900px) {
+  #compare-cols { grid-template-columns: 1fr !important; }
+}
+</style>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Browse Prompts — PromptLean</title>
+  <meta name="description" content="Browse all token-efficient prompts by category, tag, or search.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">⚡</div>
+      PromptLean
+    </a>
+    <div class="nav-links">
+      <a href="browse.html" class="nav-link active">Browse</a>
+      <a href="compare.html" class="nav-link">Compare</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="contribute.html" class="nav-link">Contribute</a>
+    </div>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="theme-toggle" title="Toggle theme">☀</button>
+    </div>
+  </div>
+</nav>
+
+<main class="page-content">
+  <div class="container">
+
+    <!-- Header -->
+    <div class="mb-6">
+      <h1 style="font-size: 1.75rem; margin-bottom: 6px;">Browse Prompts</h1>
+      <p>Find the right prompt for your task. Each prompt includes Lean, Balanced, and Max Quality variants.</p>
+    </div>
+
+    <div class="layout-sidebar">
+
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-section">
+          <div class="sidebar-label">Categories</div>
+          <div id="cat-filters" style="display: flex; flex-direction: column; gap: 2px;"></div>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="sidebar-label">Tags</div>
+          <div id="tag-cloud" class="tag-wrap"></div>
+        </div>
+      </aside>
+
+      <!-- Main -->
+      <div>
+        <!-- Search -->
+        <div class="search-bar mb-6">
+          <span class="search-icon">🔍</span>
+          <input type="search" class="search-input" id="search" placeholder="Search prompts..." autocomplete="off">
+        </div>
+
+        <div class="results-meta" id="results-meta"></div>
+        <div class="grid-3" id="prompt-grid">
+          <div class="text-3 text-sm">Loading...</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-left">
+      <span>⚡ PromptLean</span>
+      <span>·</span>
+      <span>Open source, MIT license</span>
+    </div>
+    <div class="footer-links">
+      <a href="about.html" class="footer-link">About</a>
+      <a href="contribute.html" class="footer-link">Contribute</a>
+      <a href="https://github.com/kishormorol/promptlean" class="footer-link" target="_blank">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<div id="toast"></div>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/browse.js"></script>
+</body>
+</html>

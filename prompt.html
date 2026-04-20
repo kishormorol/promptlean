@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prompt — PromptLean</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">⚡</div>
+      PromptLean
+    </a>
+    <div class="nav-links">
+      <a href="browse.html" class="nav-link">Browse</a>
+      <a href="compare.html" class="nav-link">Compare</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="contribute.html" class="nav-link">Contribute</a>
+    </div>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="theme-toggle" title="Toggle theme">☀</button>
+    </div>
+  </div>
+</nav>
+
+<main class="page-content">
+  <div class="container" id="main-content">
+
+    <div class="breadcrumb" id="breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-sep">/</span>
+      <a href="browse.html">Browse</a>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 300px; gap: 40px; align-items: start;">
+
+      <!-- Left: main content -->
+      <div>
+        <div id="prompt-header"></div>
+
+        <div class="divider" style="margin: 24px 0;"></div>
+
+        <!-- Variant tabs -->
+        <div class="flex-center gap-3 mb-4" style="flex-wrap: wrap; justify-content: space-between;">
+          <div class="variant-tabs" id="variant-tabs"></div>
+        </div>
+
+        <!-- Prompt display -->
+        <div id="variant-display"></div>
+
+        <!-- Usage tip -->
+        <div style="margin-top: 12px; padding: 10px 14px; background: var(--accent-bg); border: 1px solid var(--accent-border); border-radius: var(--radius-sm);">
+          <p style="font-size: 0.8125rem; color: var(--accent-light);">
+            <strong>Tip:</strong> Replace <code style="font-family: var(--font-mono);">[PLACEHOLDER]</code> values before sending. Use Lean for fast iterations, Max Quality when output will be shared externally.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right: sidebar -->
+      <aside class="sidebar">
+
+        <!-- Token breakdown -->
+        <div class="card mb-4">
+          <div class="sidebar-label" style="margin-bottom: 12px;">Token Comparison</div>
+          <div id="savings-bars"></div>
+          <div class="divider" style="margin: 12px 0;"></div>
+          <div id="token-table"></div>
+        </div>
+
+        <!-- Model notes -->
+        <div class="card mb-4">
+          <div class="sidebar-label" style="margin-bottom: 12px;">Model Notes</div>
+          <div id="model-notes"></div>
+        </div>
+
+        <!-- Compare CTA -->
+        <div style="text-align: center; padding: 16px; background: var(--bg-3); border: 1px solid var(--border); border-radius: var(--radius);">
+          <div style="font-size: 0.875rem; font-weight: 600; margin-bottom: 6px;">See all variants side by side</div>
+          <p style="font-size: 0.8rem; margin-bottom: 12px;">Compare Lean, Balanced, and Max Quality in one view.</p>
+          <a id="compare-link" href="compare.html" class="btn btn-ghost btn-sm w-full" style="justify-content: center;">⇄ Open in Compare</a>
+        </div>
+
+      </aside>
+    </div>
+
+    <!-- Related -->
+    <div id="related-section">
+      <div class="divider" style="margin: 40px 0;"></div>
+      <div class="section-header mb-4">
+        <h2 class="section-title">Related Prompts</h2>
+        <a href="browse.html" class="btn btn-ghost btn-sm">View all →</a>
+      </div>
+      <div class="grid-3" id="related-grid"></div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-left">
+      <span>⚡ PromptLean</span>
+      <span>·</span>
+      <span>Open source, MIT license</span>
+    </div>
+    <div class="footer-links">
+      <a href="about.html" class="footer-link">About</a>
+      <a href="contribute.html" class="footer-link">Contribute</a>
+      <a href="https://github.com/kishormorol/promptlean" class="footer-link" target="_blank">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<div id="toast"></div>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/prompt.js"></script>
+<script>
+  // fix compare link
+  document.addEventListener('DOMContentLoaded', () => {
+    const id = PL.param('id');
+    const cl = document.getElementById('compare-link');
+    if (id && cl) cl.href = `compare.html?id=${id}`;
+  });
+</script>
+
+<style>
+@media (max-width: 860px) {
+  main .container > div[style*="grid-template-columns"] {
+    display: block !important;
+  }
+  aside.sidebar { position: static !important; margin-top: 32px; }
+}
+</style>
+</body>
+</html>

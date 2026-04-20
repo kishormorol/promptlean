@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contribute — PromptLean</title>
+  <meta name="description" content="Add your prompts to PromptLean. Guidelines, schema, and review process.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">⚡</div>
+      PromptLean
+    </a>
+    <div class="nav-links">
+      <a href="browse.html" class="nav-link">Browse</a>
+      <a href="compare.html" class="nav-link">Compare</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="contribute.html" class="nav-link active">Contribute</a>
+    </div>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="theme-toggle" title="Toggle theme">☀</button>
+    </div>
+  </div>
+</nav>
+
+<main class="page-content">
+  <div class="container" style="max-width: 760px;">
+
+    <div class="mb-8">
+      <h1 style="font-size: 2rem; margin-bottom: 10px;">Contribute a Prompt</h1>
+      <p style="font-size: 1.0625rem;">Every prompt in the library came from someone who needed it. Open a PR with yours.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Steps -->
+    <div class="mb-8">
+      <h2 style="font-size: 1.25rem; margin-bottom: 16px;">How to contribute</h2>
+
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div class="card" style="display: flex; gap: 16px; align-items: flex-start;">
+          <div style="min-width: 32px; height: 32px; background: var(--accent-bg); border: 1px solid var(--accent-border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--accent-light); font-size: 0.875rem;">1</div>
+          <div>
+            <div style="font-weight: 600; margin-bottom: 4px;">Fork the repo</div>
+            <p style="font-size: 0.875rem;"><a href="https://github.com/kishormorol/promptlean" target="_blank">github.com/kishormorol/promptlean</a> — fork, then clone to your machine.</p>
+          </div>
+        </div>
+
+        <div class="card" style="display: flex; gap: 16px; align-items: flex-start;">
+          <div style="min-width: 32px; height: 32px; background: var(--accent-bg); border: 1px solid var(--accent-border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--accent-light); font-size: 0.875rem;">2</div>
+          <div>
+            <div style="font-weight: 600; margin-bottom: 4px;">Add your prompt to <code class="mono">data/prompts.json</code></div>
+            <p style="font-size: 0.875rem;">Follow the schema below. All three variants are required. Use <code class="mono">[PLACEHOLDER]</code> syntax for user-filled values.</p>
+          </div>
+        </div>
+
+        <div class="card" style="display: flex; gap: 16px; align-items: flex-start;">
+          <div style="min-width: 32px; height: 32px; background: var(--accent-bg); border: 1px solid var(--accent-border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--accent-light); font-size: 0.875rem;">3</div>
+          <div>
+            <div style="font-weight: 600; margin-bottom: 4px;">Open a pull request</div>
+            <p style="font-size: 0.875rem;">Title: <code class="mono">feat: add "[Your Prompt Title]" to [Category]</code>. Include the output from at least one model in the PR description.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Schema -->
+    <div class="mb-8">
+      <h2 style="font-size: 1.25rem; margin-bottom: 16px;">JSON Schema</h2>
+      <div class="prompt-block">
+        <div class="prompt-block-header">
+          <div class="prompt-block-meta">
+            <span class="badge badge-cat">data/prompts.json</span>
+          </div>
+          <button class="copy-btn" onclick="copySchema()">⧉ Copy</button>
+        </div>
+        <pre class="prompt-text" id="schema-block">{
+  "id": "your-prompt-id",           // kebab-case, unique
+  "title": "Your Prompt Title",
+  "category": "Code",               // Code | Data | Research | Writing | AI/ML | Productivity | Engineering
+  "tags": ["tag1", "tag2"],         // 3–6 lowercase tags
+  "featured": false,                // leave false; maintainers set this
+  "description": "One sentence describing what this prompt does and when to use it.",
+  "model_notes": {
+    "gpt-4o": "...",
+    "claude-3-5-sonnet": "...",
+    "gemini-1.5-pro": "..."
+  },
+  "variants": {
+    "lean": {
+      "prompt": "Your lean prompt here. Use [PLACEHOLDER] for user content.",
+      "token_estimate": 28          // count with tiktoken or similar
+    },
+    "balanced": {
+      "prompt": "Your balanced prompt here.",
+      "token_estimate": 72
+    },
+    "max_quality": {
+      "prompt": "Your max quality prompt here.",
+      "token_estimate": 165
+    }
+  }
+}</pre>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Guidelines -->
+    <div class="mb-8">
+      <h2 style="font-size: 1.25rem; margin-bottom: 16px;">Contribution guidelines</h2>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+        <div>
+          <div style="color: var(--lean); font-weight: 600; margin-bottom: 10px; font-size: 0.875rem;">✓ We accept</div>
+          <ul style="font-size: 0.875rem; color: var(--text-2); line-height: 2.1; padding-left: 18px;">
+            <li>Task-focused prompts with real-world use cases</li>
+            <li>Prompts you've actually used in production or research</li>
+            <li>Variants that meaningfully differ in token cost and quality</li>
+            <li>New categories not yet represented</li>
+            <li>Improvements to existing prompts (open an issue first)</li>
+          </ul>
+        </div>
+        <div>
+          <div style="color: var(--quality); font-weight: 600; margin-bottom: 10px; font-size: 0.875rem;">✗ We decline</div>
+          <ul style="font-size: 0.875rem; color: var(--text-2); line-height: 2.1; padding-left: 18px;">
+            <li>Prompts that generate harmful or deceptive content</li>
+            <li>Jailbreaks or prompt injection exploits</li>
+            <li>Vanity prompts with no clear use case</li>
+            <li>Duplicates of existing prompts</li>
+            <li>Lean variants that are just truncated max-quality prompts</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Quality bar -->
+    <div class="mb-8">
+      <h2 style="font-size: 1.25rem; margin-bottom: 12px;">Quality bar for variants</h2>
+      <p style="margin-bottom: 12px;">The three variants should feel genuinely different — not just shorter versions of the same prompt. The quality difference should be real and measurable.</p>
+
+      <div class="card">
+        <div class="flex-center gap-2 mb-3">
+          <span class="badge badge-lean">⚡ Lean</span>
+        </div>
+        <p style="font-size: 0.875rem;">Should produce a usable output with no wasted tokens. If the lean prompt gets 80%+ of the max-quality output, that's a good lean variant.</p>
+      </div>
+
+      <div class="card" style="margin-top: 12px;">
+        <div class="flex-center gap-2 mb-3">
+          <span class="badge badge-quality">★ Max Quality</span>
+        </div>
+        <p style="font-size: 0.875rem;">Should produce output that a human expert would rate noticeably higher than the lean variant. If the output is indistinguishable, the max-quality variant is not doing its job.</p>
+      </div>
+    </div>
+
+    <div style="text-align: center; padding: 20px 0;">
+      <a href="https://github.com/kishormorol/promptlean" class="btn btn-primary btn-lg" target="_blank">Open GitHub →</a>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-left">
+      <span>⚡ PromptLean</span>
+      <span>·</span>
+      <span>Open source, MIT license</span>
+    </div>
+    <div class="footer-links">
+      <a href="about.html" class="footer-link">About</a>
+      <a href="contribute.html" class="footer-link">Contribute</a>
+      <a href="https://github.com/kishormorol/promptlean" class="footer-link" target="_blank">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<div id="toast"></div>
+<script src="assets/js/main.js"></script>
+<script>
+window.copySchema = () => {
+  const text = document.getElementById('schema-block').textContent;
+  PL.copy(text);
+};
+</script>
+</body>
+</html>
