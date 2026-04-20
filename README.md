@@ -172,6 +172,26 @@ python -m http.server 8000
 
 ---
 
+## TODO
+
+### Easy (pure HTML/JS/data)
+- [ ] **Prompt Playground** — inline textarea with auto-highlighted `[PLACEHOLDER]` slots and one-click copy of the filled version
+- [ ] **Favorites / Bookmarks** — `localStorage`-backed star on each prompt card with a "Saved" filter on browse
+- [ ] **Usage counter badge** — track copy-clicks in `localStorage`, show "Popular" badge on cards with 10+ copies
+- [ ] **Prompt diff view** — side-by-side token diff between Max Quality → Lean, color-highlighted like a GitHub diff
+- [ ] **Token cost estimator** — pick a model + pricing tier, show estimated cost per 1000 API calls for each variant
+
+### Medium
+- [ ] **Submit a prompt UI** — form on `contribute.html` that generates the correct JSON schema for copy-paste into a PR
+- [ ] **Prompt chaining view** — "Next prompt" suggestions based on workflow tags (e.g. Summarize → Evaluate → Design)
+- [ ] **Search with token budget filters** — filter chips for < 30 / 30–100 / 100+ tokens and best-model picks
+
+### Bigger
+- [ ] **User-contributed variants** — `community/` folder for extra variants beyond lean/balanced/max_quality, rendered as extra tabs
+- [ ] **API endpoint** — document the `prompts.json` GitHub raw URL so developers can `fetch()` it directly in their apps
+
+---
+
 ## License
 
 MIT — use freely, contribute back.
