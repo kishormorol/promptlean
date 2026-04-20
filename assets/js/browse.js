@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const catWrap = document.getElementById('cat-filters');
   const cats = ['All', ...data.categories];
   catWrap.innerHTML = cats.map(c =>
-    `<button class="filter-btn ${c === activeCategory ? 'active' : ''}" data-cat="${c}">${c}</button>`
+    `<button class="sidebar-item ${c === activeCategory ? 'active' : ''}" data-cat="${c}">${c}</button>`
   ).join('');
 
   catWrap.addEventListener('click', e => {
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (!btn) return;
     activeCategory = btn.dataset.cat;
     activeTag = '';
-    catWrap.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.dataset.cat === activeCategory));
+    catWrap.querySelectorAll('.sidebar-item').forEach(b => b.classList.toggle('active', b.dataset.cat === activeCategory));
     render();
   });
 

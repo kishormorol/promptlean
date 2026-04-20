@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             <a href="compare.html?id=${prompt.id}" class="copy-btn">⇄ Compare</a>
           </div>
         </div>
-        <pre class="prompt-text" id="prompt-text">${escapeHtml(v.prompt)}</pre>
+        <pre class="prompt-text" id="prompt-text">${highlightPrompt(v.prompt)}</pre>
       </div>`;
   };
 
@@ -175,4 +175,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 function escapeHtml(str) {
   return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function highlightPrompt(str) {
+  // Escape HTML first, then wrap [PLACEHOLDER] tokens in styled spans
+  return escapeHtml(str).replace(/\[([A-Z_/ ]+)\]/g, '<span class="ph">[$1]</span>');
 }

@@ -831,6 +831,7 @@ footer {
 .mb-6 { margin-bottom: 24px; }
 .mb-8 { margin-bottom: 32px; }
 .mt-auto { margin-top: auto; }
+.ml-auto { margin-left: auto; }
 .text-2 { color: var(--text-2); }
 .text-3 { color: var(--text-3); }
 .text-sm { font-size: 0.875rem; }
@@ -838,3 +839,29 @@ footer {
 .font-mono { font-family: var(--font-mono); }
 .w-full { width: 100%; }
 .hidden { display: none !important; }
+
+/* ── Prompt detail layout ────────────────────── */
+.prompt-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 40px;
+  align-items: start;
+}
+
+/* ── Placeholder highlighting ────────────────── */
+.prompt-text .ph {
+  color: var(--accent-light);
+  background: var(--accent-bg);
+  border-radius: 3px;
+  padding: 0 2px;
+  font-style: italic;
+}
+
+@media (max-width: 860px) {
+  .prompt-detail-grid {
+    grid-template-columns: 1fr;
+  }
+  .prompt-detail-grid aside.sidebar {
+    position: static;
+  }
+}

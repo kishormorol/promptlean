@@ -37,7 +37,7 @@
       <a href="browse.html">Browse</a>
     </div>
 
-    <div style="display: grid; grid-template-columns: 1fr 300px; gap: 40px; align-items: start;">
+    <div class="prompt-detail-grid">
 
       <!-- Left: main content -->
       <div>
@@ -128,13 +128,5 @@
   });
 </script>
 
-<style>
-@media (max-width: 860px) {
-  main .container > div[style*="grid-template-columns"] {
-    display: block !important;
-  }
-  aside.sidebar { position: static !important; margin-top: 32px; }
-}
-</style>
 </body>
 </html>

@@ -34,10 +34,8 @@ PL.setActiveNav = () => {
 PL._cache = null;
 PL.loadPrompts = async () => {
   if (PL._cache) return PL._cache;
-  // find correct path depth
-  const depth = location.pathname.split('/').length - 2;
-  const prefix = '../'.repeat(depth);
-  const res = await fetch(`${prefix}data/prompts.json`);
+  // All HTML pages are in the repo root, so data/ is always a sibling directory.
+  const res = await fetch('data/prompts.json');
   PL._cache = await res.json();
   return PL._cache;
 };

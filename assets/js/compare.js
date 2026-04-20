@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           </div>
         </div>
         <div class="compare-col-body">
-          <pre class="prompt-text" id="text-${v}" style="font-size: 0.75rem; max-height: 480px; overflow-y: auto;">${escapeHtml(vdata.prompt)}</pre>
+          <pre class="prompt-text" id="text-${v}" style="font-size: 0.75rem; max-height: 480px; overflow-y: auto;">${highlightPrompt(vdata.prompt)}</pre>
         </div>
       </div>`;
     }).join('');
@@ -96,4 +96,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 function escapeHtml(str) {
   return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function highlightPrompt(str) {
+  return escapeHtml(str).replace(/\[([A-Z_/ ]+)\]/g, '<span class="ph">[$1]</span>');
 }
