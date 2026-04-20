@@ -121,6 +121,8 @@ python -m http.server 8000
 ## TODO
 
 - [ ] Check token consumption system for all frontier LLMs (GPT-4o, Claude 3.5/3.7, Gemini 1.5/2.0, Llama 3, Mistral, etc.) and update Lean variant token estimates accordingly
+- [ ] Add cross-model comparison feature: which prompt variants are most efficient for which frontier models — benchmark Lean/Balanced/Max Quality output quality per model and surface recommendations on each prompt page
+- [ ] Research and expand category coverage beyond developer tasks — candidate categories include: General Purpose, Well-being & Mental Health, Safety & Crisis Support, Supportive Conversation, Entertainment & Creative, Education & Tutoring, Career & Professional Growth — needs research on prompt patterns and best practices for each
 
 ## License
 
