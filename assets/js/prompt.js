@@ -1,9 +1,15 @@
 /* PromptLean — single prompt detail page */
 document.addEventListener('DOMContentLoaded', async () => {
   const id = PL.param('id');
-  if (!id) { location.href = 'browse.html'; return; }
+  if (!id) { location.href = PL.BASE + 'browse.html'; return; }
 
-  const data = await PL.loadPrompts();
+  let data;
+  try {
+    data = await PL.loadPrompts();
+  } catch (err) {
+    PL.showError('main-content', err.message);
+    return;
+  }
   const prompt = data.prompts.find(p => p.id === id);
   if (!prompt) {
     document.getElementById('main-content').innerHTML = `

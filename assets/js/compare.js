@@ -1,6 +1,13 @@
 /* PromptLean — compare page */
 document.addEventListener('DOMContentLoaded', async () => {
-  const data = await PL.loadPrompts();
+  let data;
+  try {
+    data = await PL.loadPrompts();
+  } catch (err) {
+    document.getElementById('compare-placeholder').innerHTML =
+      `<div class="empty-state"><div class="empty-state-icon">⚠</div><h3>Could not load prompts</h3><p>${err.message}</p></div>`;
+    return;
+  }
   const all = data.prompts;
 
   let selectedId = PL.param('id') || null;

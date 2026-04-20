@@ -1,6 +1,12 @@
 /* PromptLean — browse page */
 document.addEventListener('DOMContentLoaded', async () => {
-  const data = await PL.loadPrompts();
+  let data;
+  try {
+    data = await PL.loadPrompts();
+  } catch (err) {
+    PL.showError('prompt-grid', err.message);
+    return;
+  }
   const all = data.prompts;
 
   let activeCategory = PL.param('cat') || 'All';

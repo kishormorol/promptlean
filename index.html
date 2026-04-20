@@ -141,24 +141,28 @@
 <script src="assets/js/main.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', async () => {
-  const data = await PL.loadPrompts();
-  const prompts = data.prompts;
+  try {
+    const data = await PL.loadPrompts();
+    const prompts = data.prompts;
 
-  // Stats
-  document.getElementById('stat-total').textContent = prompts.length;
-  document.getElementById('stat-cats').textContent = data.categories.length;
+    // Stats
+    document.getElementById('stat-total').textContent = prompts.length;
+    document.getElementById('stat-cats').textContent = data.categories.length;
 
-  const savings = prompts.map(p => {
-    const l = p.variants.lean?.token_estimate;
-    const q = p.variants.max_quality?.token_estimate;
-    return l && q ? Math.round((1 - l/q) * 100) : 0;
-  });
-  const avg = Math.round(savings.reduce((a,b)=>a+b,0)/savings.length);
-  document.getElementById('stat-savings').textContent = avg + '%';
+    const savings = prompts.map(p => {
+      const l = p.variants.lean?.token_estimate;
+      const q = p.variants.max_quality?.token_estimate;
+      return l && q ? Math.round((1 - l/q) * 100) : 0;
+    });
+    const avg = Math.round(savings.reduce((a,b)=>a+b,0)/savings.length);
+    document.getElementById('stat-savings').textContent = avg + '%';
 
-  // Featured grid
-  const featured = prompts.filter(p => p.featured).slice(0, 3);
-  document.getElementById('featured-grid').innerHTML = featured.map(PL.renderCard).join('');
+    // Featured grid
+    const featured = prompts.filter(p => p.featured).slice(0, 3);
+    document.getElementById('featured-grid').innerHTML = featured.map(PL.renderCard).join('');
+  } catch (err) {
+    PL.showError('featured-grid', err.message);
+  }
 });
 </script>
 </body>

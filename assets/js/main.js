@@ -1,6 +1,15 @@
 /* PromptLean — shared utilities */
 const PL = window.PL = {};
 
+// Derive the site root from this script's own URL so the data path is always
+// correct regardless of subdirectory depth (GitHub Pages, local file, etc.)
+// e.g. "https://kishormorol.github.io/promptlean/assets/js/main.js"
+//  → "https://kishormorol.github.io/promptlean/"
+const _scriptEl = document.currentScript;
+PL.BASE = _scriptEl
+  ? new URL('../..', _scriptEl.src).href          // up from assets/js/ → root
+  : location.href.replace(/\/[^/]*$/, '/');       // fallback: strip filename
+
 /* ── Theme ──────────────────────────────────── */
 PL.initTheme = () => {
   const saved = localStorage.getItem('pl-theme') || 'dark';
@@ -34,10 +43,30 @@ PL.setActiveNav = () => {
 PL._cache = null;
 PL.loadPrompts = async () => {
   if (PL._cache) return PL._cache;
-  // All HTML pages are in the repo root, so data/ is always a sibling directory.
-  const res = await fetch('data/prompts.json');
+  const url = PL.BASE + 'data/prompts.json';
+  let res;
+  try {
+    res = await fetch(url);
+  } catch (err) {
+    throw new Error(`Network error fetching ${url}: ${err.message}`);
+  }
+  if (!res.ok) throw new Error(`Failed to load prompts (${res.status}) at ${url}`);
   PL._cache = await res.json();
   return PL._cache;
+};
+
+/* ── Error display ───────────────────────────── */
+PL.showError = (container, msg) => {
+  const el = typeof container === 'string'
+    ? document.getElementById(container)
+    : container;
+  if (!el) return;
+  el.innerHTML = `
+    <div class="empty-state" style="color: var(--text-2);">
+      <div class="empty-state-icon">⚠</div>
+      <h3>Could not load prompts</h3>
+      <p style="font-size: 0.8rem; max-width: 360px; margin: 0 auto;">${msg}</p>
+    </div>`;
 };
 
 /* ── Toast ───────────────────────────────────── */
@@ -96,7 +125,7 @@ PL.renderCard = (p) => {
   const featuredBadge = p.featured ? '<span class="badge badge-featured">Featured</span>' : '';
 
   return `
-<a class="card-link" href="prompt.html?id=${p.id}">
+<a class="card-link" href="${PL.BASE}prompt.html?id=${p.id}">
   <div class="card">
     <div class="card-header">
       <div class="card-title">${p.title}</div>
