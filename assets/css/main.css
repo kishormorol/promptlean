@@ -208,6 +208,7 @@ nav {
   border-radius: var(--radius-sm);
   font-size: 0.8125rem;
   font-weight: 500;
+  line-height: 1;
   color: var(--text-2);
   background: var(--bg-3);
   transition: border-color var(--transition), color var(--transition), background var(--transition);
@@ -218,7 +219,7 @@ nav {
   color: #f59e0b;
   background: rgba(245,158,11,0.08);
 }
-.github-star-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+.github-star-btn svg { width: 14px; height: 14px; flex-shrink: 0; display: block; }
 
 /* ── Buttons ─────────────────────────────────── */
 .btn {
