@@ -118,6 +118,10 @@ python -m http.server 8000
 
 ---
 
+## TODO
+
+- [ ] Check token consumption system for all frontier LLMs (GPT-4o, Claude 3.5/3.7, Gemini 1.5/2.0, Llama 3, Mistral, etc.) and update Lean variant token estimates accordingly
+
 ## License
 
 MIT — use freely, contribute back.
