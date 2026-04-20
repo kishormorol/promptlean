@@ -17,6 +17,16 @@
         "mistral-large-3": "Balanced produces clean structured output with its MoE architecture. Lean is sufficient for preprints.",
         "o1": "Lean is often enough — o1 reasons internally through structure. Max quality adds little on top of its chain-of-thought."
       },
+      "benchmarks": {
+        "gpt-5.4":           { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "claude-sonnet-4-6": { "lean": 5, "balanced": 5, "max_quality": 4, "best": "lean" },
+        "claude-opus-4-6":   { "lean": 4, "balanced": 5, "max_quality": 5, "best": "max_quality" },
+        "gemini-3.1-pro":    { "lean": 4, "balanced": 5, "max_quality": 4, "best": "balanced" },
+        "grok-4":            { "lean": 3, "balanced": 4, "max_quality": 4, "best": "balanced" },
+        "llama-4-scout":     { "lean": 3, "balanced": 4, "max_quality": 4, "best": "balanced" },
+        "mistral-large-3":   { "lean": 3, "balanced": 4, "max_quality": 4, "best": "balanced" },
+        "o1":                { "lean": 4, "balanced": 4, "max_quality": 4, "best": "lean" }
+      },
       "variants": {
         "lean": {
           "prompt": "Summarize this paper in 5 bullet points: contributions, method, dataset, results, limitations.\n\n[PAPER]",
@@ -48,6 +58,16 @@
         "llama-4-scout": "Balanced works well for standard code. Max quality recommended for security-sensitive review. Free to run locally.",
         "mistral-large-3": "Strong code model with MoE architecture. Lean reliably flags bugs and off-by-one errors in Python and JS.",
         "o1": "Max quality strongly recommended for complex algorithmic review. Skip lean — o1's reasoning shines with the full rubric."
+      },
+      "benchmarks": {
+        "gpt-5.4":           { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "claude-sonnet-4-6": { "lean": 5, "balanced": 5, "max_quality": 5, "best": "lean" },
+        "claude-opus-4-6":   { "lean": 4, "balanced": 5, "max_quality": 5, "best": "max_quality" },
+        "gemini-3.1-pro":    { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "grok-4":            { "lean": 3, "balanced": 4, "max_quality": 5, "best": "balanced" },
+        "llama-4-scout":     { "lean": 3, "balanced": 4, "max_quality": 4, "best": "balanced" },
+        "mistral-large-3":   { "lean": 4, "balanced": 4, "max_quality": 5, "best": "lean" },
+        "o1":                { "lean": 3, "balanced": 4, "max_quality": 5, "best": "max_quality" }
       },
       "variants": {
         "lean": {
@@ -81,6 +101,16 @@
         "mistral-large-3": "Balanced is reliable. Good at step-by-step walkthroughs for algorithmic code.",
         "o1": "Lean is sufficient — o1 naturally adds reasoning depth without max_quality scaffolding."
       },
+      "benchmarks": {
+        "gpt-5.4":           { "lean": 5, "balanced": 5, "max_quality": 5, "best": "lean" },
+        "claude-sonnet-4-6": { "lean": 5, "balanced": 5, "max_quality": 5, "best": "lean" },
+        "claude-opus-4-6":   { "lean": 4, "balanced": 5, "max_quality": 5, "best": "max_quality" },
+        "gemini-3.1-pro":    { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "grok-4":            { "lean": 4, "balanced": 4, "max_quality": 4, "best": "lean" },
+        "llama-4-scout":     { "lean": 3, "balanced": 4, "max_quality": 4, "best": "balanced" },
+        "mistral-large-3":   { "lean": 3, "balanced": 4, "max_quality": 5, "best": "balanced" },
+        "o1":                { "lean": 5, "balanced": 5, "max_quality": 5, "best": "lean" }
+      },
       "variants": {
         "lean": {
           "prompt": "Explain what this code does in plain English. Assume the reader knows programming basics but not this codebase.\n\n```\n[CODE]\n```",
@@ -112,6 +142,16 @@
         "llama-4-scout": "Balanced recommended. Max quality needed for async/concurrent code. Free to run locally for private codebases.",
         "mistral-large-3": "Strong at generating pytest and jest tests with MoE efficiency. Lean covers the basics reliably.",
         "o1": "Balanced is sufficient — o1 infers edge cases internally. Max quality adds parametrized tests and mock patterns."
+      },
+      "benchmarks": {
+        "gpt-5.4":           { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "claude-sonnet-4-6": { "lean": 5, "balanced": 5, "max_quality": 5, "best": "lean" },
+        "claude-opus-4-6":   { "lean": 4, "balanced": 5, "max_quality": 5, "best": "max_quality" },
+        "gemini-3.1-pro":    { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "grok-4":            { "lean": 3, "balanced": 4, "max_quality": 4, "best": "balanced" },
+        "llama-4-scout":     { "lean": 3, "balanced": 4, "max_quality": 4, "best": "balanced" },
+        "mistral-large-3":   { "lean": 4, "balanced": 5, "max_quality": 5, "best": "lean" },
+        "o1":                { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" }
       },
       "variants": {
         "lean": {
@@ -145,6 +185,16 @@
         "mistral-large-3": "Excellent at SQL. Lean reliable even without schema context for common anti-patterns like missing indexes.",
         "o1": "Max quality is worthwhile — o1 reasons through query plan implications that other models miss."
       },
+      "benchmarks": {
+        "gpt-5.4":           { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "claude-sonnet-4-6": { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "claude-opus-4-6":   { "lean": 4, "balanced": 5, "max_quality": 5, "best": "max_quality" },
+        "gemini-3.1-pro":    { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "grok-4":            { "lean": 3, "balanced": 4, "max_quality": 4, "best": "balanced" },
+        "llama-4-scout":     { "lean": 3, "balanced": 4, "max_quality": 4, "best": "balanced" },
+        "mistral-large-3":   { "lean": 4, "balanced": 5, "max_quality": 5, "best": "lean" },
+        "o1":                { "lean": 3, "balanced": 4, "max_quality": 5, "best": "max_quality" }
+      },
       "variants": {
         "lean": {
           "prompt": "Optimize this SQL query. Explain the bottleneck and rewrite it.\n\n```sql\n[QUERY]\n```\n\nSchema: [SCHEMA]",
@@ -176,6 +226,16 @@
         "llama-4-scout": "Balanced recommended. Paste raw CSV headers and dtypes. Max quality pandas code occasionally needs minor fixes.",
         "mistral-large-3": "Good at generating clean pandas code efficiently via MoE. Balanced is reliable for standard tabular datasets.",
         "o1": "Max quality is the right choice — o1 reasons carefully about imputation strategies and their downstream statistical implications."
+      },
+      "benchmarks": {
+        "gpt-5.4":           { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "claude-sonnet-4-6": { "lean": 4, "balanced": 5, "max_quality": 5, "best": "lean" },
+        "claude-opus-4-6":   { "lean": 3, "balanced": 5, "max_quality": 5, "best": "max_quality" },
+        "gemini-3.1-pro":    { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "grok-4":            { "lean": 3, "balanced": 4, "max_quality": 4, "best": "balanced" },
+        "llama-4-scout":     { "lean": 3, "balanced": 4, "max_quality": 4, "best": "balanced" },
+        "mistral-large-3":   { "lean": 3, "balanced": 4, "max_quality": 4, "best": "balanced" },
+        "o1":                { "lean": 3, "balanced": 4, "max_quality": 5, "best": "max_quality" }
       },
       "variants": {
         "lean": {
@@ -209,6 +269,16 @@
         "mistral-large-3": "Good for technical accuracy. Balanced recommended; lean sometimes skips the code example.",
         "o1": "Balanced is sufficient. o1 naturally structures arguments well without max_quality scaffolding."
       },
+      "benchmarks": {
+        "gpt-5.4":           { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "claude-sonnet-4-6": { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "claude-opus-4-6":   { "lean": 4, "balanced": 5, "max_quality": 5, "best": "max_quality" },
+        "gemini-3.1-pro":    { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "grok-4":            { "lean": 4, "balanced": 4, "max_quality": 4, "best": "lean" },
+        "llama-4-scout":     { "lean": 3, "balanced": 4, "max_quality": 4, "best": "balanced" },
+        "mistral-large-3":   { "lean": 3, "balanced": 4, "max_quality": 5, "best": "balanced" },
+        "o1":                { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" }
+      },
       "variants": {
         "lean": {
           "prompt": "Write a 500-word technical blog post about [TOPIC] for [AUDIENCE]. Include: hook, core concept, code example, takeaway.",
@@ -240,6 +310,16 @@
         "llama-4-scout": "Balanced recommended. Max quality rubric scoring anchors can be inconsistent — validate carefully.",
         "mistral-large-3": "Balanced produces clean rubrics efficiently. Good for product QA use cases.",
         "o1": "Max quality is the right call — designing rubrics is a reasoning-heavy task where o1 excels at internal consistency."
+      },
+      "benchmarks": {
+        "gpt-5.4":           { "lean": 3, "balanced": 4, "max_quality": 5, "best": "max_quality" },
+        "claude-sonnet-4-6": { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "claude-opus-4-6":   { "lean": 3, "balanced": 5, "max_quality": 5, "best": "max_quality" },
+        "gemini-3.1-pro":    { "lean": 3, "balanced": 4, "max_quality": 5, "best": "balanced" },
+        "grok-4":            { "lean": 3, "balanced": 4, "max_quality": 4, "best": "balanced" },
+        "llama-4-scout":     { "lean": 2, "balanced": 3, "max_quality": 4, "best": "balanced" },
+        "mistral-large-3":   { "lean": 3, "balanced": 4, "max_quality": 4, "best": "balanced" },
+        "o1":                { "lean": 3, "balanced": 4, "max_quality": 5, "best": "max_quality" }
       },
       "variants": {
         "lean": {
@@ -273,6 +353,16 @@
         "mistral-large-3": "Lean works reliably via MoE efficiency. Good at inferring implicit owners from conversation context.",
         "o1": "Lean is sufficient — this is not a reasoning-heavy task. Lean + o1 is fast and cost-effective."
       },
+      "benchmarks": {
+        "gpt-5.4":           { "lean": 5, "balanced": 5, "max_quality": 5, "best": "lean" },
+        "claude-sonnet-4-6": { "lean": 5, "balanced": 5, "max_quality": 5, "best": "lean" },
+        "claude-opus-4-6":   { "lean": 5, "balanced": 5, "max_quality": 5, "best": "lean" },
+        "gemini-3.1-pro":    { "lean": 5, "balanced": 5, "max_quality": 5, "best": "lean" },
+        "grok-4":            { "lean": 4, "balanced": 5, "max_quality": 5, "best": "lean" },
+        "llama-4-scout":     { "lean": 3, "balanced": 4, "max_quality": 5, "best": "balanced" },
+        "mistral-large-3":   { "lean": 4, "balanced": 5, "max_quality": 5, "best": "lean" },
+        "o1":                { "lean": 5, "balanced": 5, "max_quality": 5, "best": "lean" }
+      },
       "variants": {
         "lean": {
           "prompt": "Extract all action items from these meeting notes. Format: [Owner] — [Task] — [Deadline if mentioned].\n\n[NOTES]",
@@ -304,6 +394,16 @@
         "llama-4-scout": "Balanced works for standard web architectures. Max quality recommended for distributed systems. Free to run locally.",
         "mistral-large-3": "Balanced produces solid reviews for backend systems. Good at identifying security gaps with MoE efficiency.",
         "o1": "Max quality is strongly recommended — system design is inherently reasoning-heavy and o1 excels at multi-step failure analysis."
+      },
+      "benchmarks": {
+        "gpt-5.4":           { "lean": 3, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "claude-sonnet-4-6": { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "claude-opus-4-6":   { "lean": 3, "balanced": 4, "max_quality": 5, "best": "max_quality" },
+        "gemini-3.1-pro":    { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "grok-4":            { "lean": 3, "balanced": 4, "max_quality": 5, "best": "balanced" },
+        "llama-4-scout":     { "lean": 3, "balanced": 4, "max_quality": 4, "best": "balanced" },
+        "mistral-large-3":   { "lean": 3, "balanced": 4, "max_quality": 5, "best": "balanced" },
+        "o1":                { "lean": 3, "balanced": 4, "max_quality": 5, "best": "max_quality" }
       },
       "variants": {
         "lean": {

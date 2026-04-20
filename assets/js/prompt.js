@@ -160,6 +160,60 @@ document.addEventListener('DOMContentLoaded', async () => {
     ).join('');
   }
 
+  // Model × Variant Comparison
+  const comparisonEl = document.getElementById('model-comparison-table');
+  if (comparisonEl && prompt.benchmarks) {
+    const scoreColor = (s) => {
+      if (s >= 5) return '#22c55e';
+      if (s >= 4) return '#3b82f6';
+      if (s >= 3) return '#f59e0b';
+      return '#ef4444';
+    };
+    const scoreDot = (s, isBest) => {
+      const color = scoreColor(s);
+      const ring = isBest ? `box-shadow: 0 0 0 2px ${color};` : '';
+      return `<span style="display:inline-flex;align-items:center;gap:5px;">
+        <span style="width:10px;height:10px;border-radius:50%;background:${color};flex-shrink:0;${ring}"></span>
+        <span style="font-family:var(--font-mono);font-size:0.8rem;">${s}</span>
+        ${isBest ? '<span style="font-size:0.7rem;color:var(--text-3);">★</span>' : ''}
+      </span>`;
+    };
+    const variantLabel = { lean: '⚡ Lean', balanced: '⚖ Balanced', max_quality: '★ Max' };
+    const models = Object.keys(prompt.benchmarks);
+    const variantKeys = ['lean', 'balanced', 'max_quality'];
+
+    comparisonEl.innerHTML = `
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;font-size:0.875rem;min-width:480px;">
+          <thead>
+            <tr style="border-bottom:1px solid var(--border);">
+              <th style="text-align:left;padding:10px 12px;font-weight:600;color:var(--text-2);width:160px;">Model</th>
+              ${variantKeys.map(v => `<th style="text-align:center;padding:10px 12px;font-weight:600;color:var(--text-2);">${variantLabel[v]}</th>`).join('')}
+              <th style="text-align:center;padding:10px 12px;font-weight:600;color:var(--text-2);">Best Pick</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${models.map((model, i) => {
+              const b = prompt.benchmarks[model];
+              const rowBg = i % 2 === 0 ? 'background:var(--bg-2)' : '';
+              const bestLabel = { lean: '⚡ Lean', balanced: '⚖ Balanced', max_quality: '★ Max Quality' }[b.best];
+              const bestCls = b.best === 'max_quality' ? 'quality' : b.best;
+              return `<tr style="border-bottom:1px solid var(--border);${rowBg}">
+                <td style="padding:10px 12px;font-family:var(--font-mono);font-size:0.8rem;color:var(--accent-light);">${model}</td>
+                ${variantKeys.map(v => `<td style="text-align:center;padding:10px 12px;">${scoreDot(b[v], b.best === v)}</td>`).join('')}
+                <td style="text-align:center;padding:10px 12px;"><span class="badge badge-${bestCls}" style="font-size:0.75rem;">${bestLabel}</span></td>
+              </tr>`;
+            }).join('')}
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:10px;font-size:0.78rem;color:var(--text-3);">
+        ★ marks the recommended variant per model. Scores reflect output quality (1–5) for this prompt type — not model capability in general.
+      </p>`;
+  } else if (comparisonEl) {
+    document.getElementById('model-comparison-section').style.display = 'none';
+  }
+
   // Related prompts
   const related = data.prompts
     .filter(p => p.id !== id && (p.category === prompt.category || p.tags.some(t => prompt.tags.includes(t))))
