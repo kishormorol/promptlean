@@ -755,6 +755,552 @@
           "token_estimate": 210
         }
       }
+    },
+    {
+      "id": "fix-bug",
+      "title": "Debug & Fix a Bug",
+      "category": "Code",
+      "tags": ["code", "debugging", "bug fix", "error"],
+      "featured": false,
+      "description": "Identify the root cause of a bug and produce a fix. Lean gives a quick diagnosis; max quality gives a full root cause analysis with regression prevention.",
+      "model_notes": {
+        "gpt-5.4": "Max quality excellent for subtle bugs. Provide the full stack trace for best results.",
+        "claude-sonnet-4-6": "Lean is surprisingly effective — strong at spotting off-by-one errors and type mismatches quickly.",
+        "claude-opus-4-6": "Best for complex multi-file bugs. Extended thinking traces execution paths other models miss.",
+        "gemini-3.1-pro": "Balanced with full file context is reliable. Large context window handles big codebases.",
+        "grok-4": "Lean and balanced are solid for common error patterns.",
+        "llama-4-scout": "Balanced recommended. Provide full stack trace and surrounding code.",
+        "mistral-large-3": "Lean reliably catches common runtime errors. Balanced for logic bugs.",
+        "o1": "Max quality is worthwhile — o1 traces execution step by step and catches subtle state bugs."
+      },
+      "benchmarks": {
+        "gpt-5.4":           { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "claude-sonnet-4-6": { "lean": 5, "balanced": 5, "max_quality": 5, "best": "lean" },
+        "claude-opus-4-6":   { "lean": 4, "balanced": 5, "max_quality": 5, "best": "max_quality" },
+        "gemini-3.1-pro":    { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "grok-4":            { "lean": 4, "balanced": 4, "max_quality": 5, "best": "balanced" },
+        "llama-4-scout":     { "lean": 3, "balanced": 4, "max_quality": 4, "best": "balanced" },
+        "mistral-large-3":   { "lean": 4, "balanced": 4, "max_quality": 5, "best": "lean" },
+        "o1":                { "lean": 3, "balanced": 4, "max_quality": 5, "best": "max_quality" }
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Find and fix the bug in this code. Explain the root cause in one sentence.\n\nError: [ERROR]\n\n```\n[CODE]\n```",
+          "token_estimate": 22
+        },
+        "balanced": {
+          "prompt": "Debug the following code. The error is:\n\n```\n[ERROR / STACK TRACE]\n```\n\nCode:\n```\n[CODE]\n```\n\nProvide:\n1. **Root cause**: Why is this failing?\n2. **Fix**: Corrected code with the change highlighted\n3. **Explanation**: What changed and why it works",
+          "token_estimate": 60
+        },
+        "max_quality": {
+          "prompt": "You are a senior engineer debugging a production issue.\n\nError / stack trace:\n```\n[ERROR]\n```\n\nCode:\n```\n[CODE]\n```\n\nContext: [CONTEXT e.g. happens only under load, after a recent deploy, on specific inputs]\n\n## Root Cause Analysis\nTrace the execution path. What is the exact line and condition that causes the failure?\n\n## Fix\nProvide the corrected code. Explain every change.\n\n## Why This Happened\nWhat class of bug is this? (off-by-one, null reference, race condition, etc.)\n\n## Regression Prevention\nHow should this be tested to prevent recurrence? Write 1-2 specific test cases.\n\n## Related Risks\nAre there similar patterns elsewhere in the code that might have the same bug?",
+          "token_estimate": 156
+        }
+      }
+    },
+    {
+      "id": "refactor-code",
+      "title": "Refactor Code",
+      "category": "Code",
+      "tags": ["code", "refactoring", "clean code", "maintainability"],
+      "featured": false,
+      "description": "Refactor code for clarity, maintainability, and performance without changing behaviour. Lean identifies what to refactor; max quality produces a full rewrite with rationale.",
+      "model_notes": {
+        "gpt-5.4": "Max quality produces clean, idiomatic rewrites. Specify the language and target style guide.",
+        "claude-sonnet-4-6": "Best everyday model — balanced gives clear refactors with before/after. Lean is quick for small functions.",
+        "claude-opus-4-6": "Max quality rewrites are architecturally sound. Best for large-scale refactors.",
+        "gemini-3.1-pro": "Balanced is reliable. Large context handles full-file refactors.",
+        "grok-4": "Balanced works well for standard refactors.",
+        "llama-4-scout": "Balanced recommended. Paste full file for context.",
+        "mistral-large-3": "Lean is reliable for simple extractions. Balanced for structural refactors.",
+        "o1": "Max quality is worthwhile for complex refactors — o1 reasons about invariants and side effects carefully."
+      },
+      "benchmarks": {
+        "gpt-5.4":           { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "claude-sonnet-4-6": { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "claude-opus-4-6":   { "lean": 3, "balanced": 5, "max_quality": 5, "best": "max_quality" },
+        "gemini-3.1-pro":    { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "grok-4":            { "lean": 3, "balanced": 4, "max_quality": 4, "best": "balanced" },
+        "llama-4-scout":     { "lean": 3, "balanced": 4, "max_quality": 4, "best": "balanced" },
+        "mistral-large-3":   { "lean": 4, "balanced": 4, "max_quality": 5, "best": "lean" },
+        "o1":                { "lean": 3, "balanced": 4, "max_quality": 5, "best": "max_quality" }
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Refactor this code for clarity and maintainability. Don't change behaviour.\n\n```\n[CODE]\n```",
+          "token_estimate": 20
+        },
+        "balanced": {
+          "prompt": "Refactor the following code without changing its behaviour.\n\n```\n[CODE]\n```\n\nFocus on:\n- **Readability**: clearer naming, shorter functions, less nesting\n- **DRY**: remove duplication\n- **Simplicity**: eliminate unnecessary complexity\n\nFor each change, show the before/after and explain why.",
+          "token_estimate": 66
+        },
+        "max_quality": {
+          "prompt": "You are a senior engineer doing a thorough refactor. Improve the code below without changing observable behaviour.\n\n```\n[CODE]\n```\n\nLanguage / style guide: [LANGUAGE + STYLE e.g. Python / PEP8, TypeScript / Airbnb]\n\n## What to improve\n- Extract long functions into smaller, single-purpose ones\n- Remove duplication (DRY)\n- Improve naming (variables, functions, classes)\n- Reduce nesting depth\n- Remove dead code\n- Improve error handling\n\n## Refactored code\nProvide the full refactored version.\n\n## Change log\nList every meaningful change with a one-line rationale.\n\n## Behaviour preserved?\nConfirm that the refactor does not change any externally observable behaviour.",
+          "token_estimate": 160
+        }
+      }
+    },
+    {
+      "id": "write-documentation",
+      "title": "Write Code Documentation",
+      "category": "Code",
+      "tags": ["code", "documentation", "docstrings", "comments", "README"],
+      "featured": false,
+      "description": "Generate docstrings, inline comments, or a README section for a function, class, or module.",
+      "model_notes": {
+        "gpt-5.4": "Balanced produces clean, JSDoc/NumPy style docs. Max quality for public API documentation.",
+        "claude-sonnet-4-6": "Lean is excellent for quick docstrings. Balanced for module-level documentation.",
+        "claude-opus-4-6": "Max quality produces exemplary public API docs with usage examples.",
+        "gemini-3.1-pro": "Balanced is reliable for most documentation tasks.",
+        "grok-4": "Lean and balanced work well for standard docstrings.",
+        "llama-4-scout": "Balanced recommended. Specify the doc format (JSDoc, NumPy, Google style).",
+        "mistral-large-3": "Lean is reliable for simple docstrings. Balanced for class documentation.",
+        "o1": "Lean is sufficient — documentation is not a reasoning-heavy task."
+      },
+      "benchmarks": {
+        "gpt-5.4":           { "lean": 5, "balanced": 5, "max_quality": 5, "best": "lean" },
+        "claude-sonnet-4-6": { "lean": 5, "balanced": 5, "max_quality": 5, "best": "lean" },
+        "claude-opus-4-6":   { "lean": 4, "balanced": 5, "max_quality": 5, "best": "max_quality" },
+        "gemini-3.1-pro":    { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "grok-4":            { "lean": 4, "balanced": 5, "max_quality": 5, "best": "lean" },
+        "llama-4-scout":     { "lean": 4, "balanced": 4, "max_quality": 5, "best": "balanced" },
+        "mistral-large-3":   { "lean": 4, "balanced": 5, "max_quality": 5, "best": "lean" },
+        "o1":                { "lean": 5, "balanced": 5, "max_quality": 5, "best": "lean" }
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Write a docstring for this [LANGUAGE] function. Include params, return value, and one usage example.\n\n```\n[CODE]\n```",
+          "token_estimate": 24
+        },
+        "balanced": {
+          "prompt": "Write documentation for the following [LANGUAGE] code in [FORMAT e.g. JSDoc / NumPy / Google style].\n\n```\n[CODE]\n```\n\nInclude:\n- Module/class/function purpose\n- Parameters with types and descriptions\n- Return value\n- Raises / exceptions\n- One usage example",
+          "token_estimate": 62
+        },
+        "max_quality": {
+          "prompt": "You are writing public API documentation for the following [LANGUAGE] code.\n\n```\n[CODE]\n```\n\nDoc format: [FORMAT e.g. JSDoc, NumPy, Google style, reStructuredText]\nAudience: [AUDIENCE e.g. library users, internal team, open-source contributors]\n\n## Docstrings\nWrite complete docstrings for every function, class, and method.\n\n## Module-level docstring\nOverview of what this module does and when to use it.\n\n## Usage examples\nProvide 2-3 complete, runnable examples covering common use cases and one edge case.\n\n## Notes & warnings\nDocument any gotchas, performance considerations, or thread-safety concerns.",
+          "token_estimate": 145
+        }
+      }
+    },
+    {
+      "id": "generate-regex",
+      "title": "Generate a Regular Expression",
+      "category": "Code",
+      "tags": ["regex", "code", "pattern matching", "parsing"],
+      "featured": false,
+      "description": "Generate a regular expression for a pattern matching task. Includes explanation, test cases, and edge cases.",
+      "model_notes": {
+        "gpt-5.4": "Lean and balanced are reliable. Good at explaining complex patterns.",
+        "claude-sonnet-4-6": "Lean is excellent — reliably generates correct regex with a clear explanation.",
+        "claude-opus-4-6": "Max quality for complex multi-group patterns with named captures.",
+        "gemini-3.1-pro": "Balanced works well. Provide example strings for best results.",
+        "grok-4": "Lean is fast and accurate for common patterns.",
+        "llama-4-scout": "Balanced recommended. Lean can occasionally miss edge cases.",
+        "mistral-large-3": "Lean is reliable for standard patterns. Specify the regex flavour (PCRE, Python re, JS).",
+        "o1": "Lean is sufficient — regex generation is deterministic. o1 adds little beyond what lean provides."
+      },
+      "benchmarks": {
+        "gpt-5.4":           { "lean": 5, "balanced": 5, "max_quality": 5, "best": "lean" },
+        "claude-sonnet-4-6": { "lean": 5, "balanced": 5, "max_quality": 5, "best": "lean" },
+        "claude-opus-4-6":   { "lean": 5, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "gemini-3.1-pro":    { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "grok-4":            { "lean": 5, "balanced": 5, "max_quality": 5, "best": "lean" },
+        "llama-4-scout":     { "lean": 4, "balanced": 4, "max_quality": 5, "best": "balanced" },
+        "mistral-large-3":   { "lean": 5, "balanced": 5, "max_quality": 5, "best": "lean" },
+        "o1":                { "lean": 5, "balanced": 5, "max_quality": 5, "best": "lean" }
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Write a [FLAVOUR e.g. Python / JavaScript / PCRE] regex that matches: [DESCRIPTION]\n\nExamples that should match: [MATCH_EXAMPLES]\nExamples that should NOT match: [NO_MATCH_EXAMPLES]\n\nProvide the pattern and a one-line explanation.",
+          "token_estimate": 42
+        },
+        "balanced": {
+          "prompt": "Generate a [FLAVOUR] regular expression for the following task:\n\nTask: [DESCRIPTION]\nShould match: [MATCH_EXAMPLES]\nShould NOT match: [NO_MATCH_EXAMPLES]\n\nProvide:\n1. The regex pattern\n2. A plain-English explanation of each part\n3. 3 additional test cases (with expected result)",
+          "token_estimate": 64
+        },
+        "max_quality": {
+          "prompt": "You are a regex expert. Write a production-ready [FLAVOUR] regular expression.\n\nTask: [DESCRIPTION]\nShould match: [MATCH_EXAMPLES]\nShould NOT match: [NO_MATCH_EXAMPLES]\nConstraints: [CONSTRAINTS e.g. must be anchored, no lookaheads, must handle Unicode]\n\n## Pattern\n```\n[regex here]\n```\n\n## Breakdown\nExplain every group, quantifier, and character class.\n\n## Test matrix\nProvide 8 test cases: 4 that match, 4 that don't. Mark edge cases.\n\n## Gotchas\nAny inputs this regex might handle unexpectedly? Backtracking risks?",
+          "token_estimate": 128
+        }
+      }
+    },
+    {
+      "id": "translate-code",
+      "title": "Translate Code to Another Language",
+      "category": "Code",
+      "tags": ["code", "translation", "migration", "porting"],
+      "featured": false,
+      "description": "Port a function or module from one programming language to another, preserving behaviour and following target idioms.",
+      "model_notes": {
+        "gpt-5.4": "Balanced is excellent. Produces idiomatic target-language code.",
+        "claude-sonnet-4-6": "Best for this task — naturally produces idiomatic code in the target language.",
+        "claude-opus-4-6": "Max quality for large-scale migrations. Surfaces API compatibility issues.",
+        "gemini-3.1-pro": "Balanced is reliable. Good for Python ↔ Go / Rust migrations.",
+        "grok-4": "Lean and balanced work well for common language pairs.",
+        "llama-4-scout": "Balanced recommended. Specify target language version.",
+        "mistral-large-3": "Lean is reliable for straightforward translations. Balanced for idiomatic rewrites.",
+        "o1": "Lean is sufficient for direct translations. Max quality for semantic-preserving port of complex algorithms."
+      },
+      "benchmarks": {
+        "gpt-5.4":           { "lean": 5, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "claude-sonnet-4-6": { "lean": 5, "balanced": 5, "max_quality": 5, "best": "lean" },
+        "claude-opus-4-6":   { "lean": 4, "balanced": 5, "max_quality": 5, "best": "max_quality" },
+        "gemini-3.1-pro":    { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "grok-4":            { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "llama-4-scout":     { "lean": 3, "balanced": 4, "max_quality": 5, "best": "balanced" },
+        "mistral-large-3":   { "lean": 4, "balanced": 5, "max_quality": 5, "best": "lean" },
+        "o1":                { "lean": 4, "balanced": 4, "max_quality": 5, "best": "lean" }
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Translate this [SOURCE_LANG] code to [TARGET_LANG]. Follow [TARGET_LANG] idioms.\n\n```[source_lang]\n[CODE]\n```",
+          "token_estimate": 22
+        },
+        "balanced": {
+          "prompt": "Translate the following [SOURCE_LANG] code to idiomatic [TARGET_LANG].\n\n```[source_lang]\n[CODE]\n```\n\n- Preserve all behaviour exactly\n- Use [TARGET_LANG] idioms and standard library equivalents\n- Note any [SOURCE_LANG] features that have no direct equivalent and how you handled them",
+          "token_estimate": 60
+        },
+        "max_quality": {
+          "prompt": "You are porting production code from [SOURCE_LANG] to [TARGET_LANG] ([TARGET_VERSION]).\n\n```[source_lang]\n[CODE]\n```\n\n## Translated code\nFull translation using idiomatic [TARGET_LANG]. Follow [STYLE_GUIDE if any].\n\n## Translation notes\nFor each non-trivial decision (different standard library, type system differences, error handling model), explain what you did and why.\n\n## Behaviour differences\nList any cases where the translated code behaves differently from the original (floating-point precision, error types, etc.).\n\n## Tests to verify correctness\nWrite 3 test cases that confirm the translation is semantically equivalent.",
+          "token_estimate": 148
+        }
+      }
+    },
+    {
+      "id": "write-api-docs",
+      "title": "Write API Documentation",
+      "category": "Writing",
+      "tags": ["API", "documentation", "technical writing", "REST", "OpenAPI"],
+      "featured": false,
+      "description": "Write clear, developer-friendly API documentation for an endpoint or service. Lean gives a quick reference; max quality gives a full docs page.",
+      "model_notes": {
+        "gpt-5.4": "Max quality produces polished API docs with curl examples. Strong at OpenAPI spec generation.",
+        "claude-sonnet-4-6": "Balanced is excellent. Clean, developer-friendly output with good examples.",
+        "claude-opus-4-6": "Max quality for public-facing API docs. Produces Stripe/Twilio-quality documentation.",
+        "gemini-3.1-pro": "Balanced is reliable. Good at generating OpenAPI YAML from prose descriptions.",
+        "grok-4": "Balanced works well. Lean for quick endpoint references.",
+        "llama-4-scout": "Balanced recommended. Specify the doc format (OpenAPI, Markdown, Postman).",
+        "mistral-large-3": "Balanced is reliable for REST API documentation.",
+        "o1": "Lean is sufficient — documentation is not reasoning-heavy."
+      },
+      "benchmarks": {
+        "gpt-5.4":           { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "claude-sonnet-4-6": { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "claude-opus-4-6":   { "lean": 3, "balanced": 5, "max_quality": 5, "best": "max_quality" },
+        "gemini-3.1-pro":    { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "grok-4":            { "lean": 4, "balanced": 4, "max_quality": 5, "best": "balanced" },
+        "llama-4-scout":     { "lean": 3, "balanced": 4, "max_quality": 4, "best": "balanced" },
+        "mistral-large-3":   { "lean": 3, "balanced": 4, "max_quality": 5, "best": "balanced" },
+        "o1":                { "lean": 4, "balanced": 5, "max_quality": 5, "best": "lean" }
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Write a concise API reference for this endpoint:\n\nMethod: [METHOD] [PATH]\nRequest: [REQUEST]\nResponse: [RESPONSE]\n\nInclude: description, params table, example request/response.",
+          "token_estimate": 34
+        },
+        "balanced": {
+          "prompt": "Write developer-friendly documentation for the following API endpoint.\n\nEndpoint: [METHOD] [PATH]\nDescription: [DESCRIPTION]\nAuth: [AUTH_TYPE]\nRequest body / params: [REQUEST]\nResponse: [RESPONSE]\nErrors: [ERRORS]\n\nInclude: overview, parameters table, example curl request, example response (JSON), and common error codes.",
+          "token_estimate": 72
+        },
+        "max_quality": {
+          "prompt": "You are a technical writer creating production-quality API documentation.\n\nEndpoint: [METHOD] [PATH]\nService: [SERVICE_NAME]\nDescription: [DESCRIPTION]\nAuth: [AUTH_TYPE]\nRequest: [REQUEST_SCHEMA]\nResponse: [RESPONSE_SCHEMA]\nErrors: [ERROR_CODES]\n\n## Overview\nWhat this endpoint does and when to use it.\n\n## Authentication\nHow to authenticate this request.\n\n## Request\n### Parameters table\n| Name | Type | Required | Description |\n|------|------|----------|-------------|\n\n### Example request\n```bash\ncurl example\n```\n\n## Response\n### Fields table\n| Field | Type | Description |\n|-------|------|-------------|\n\n### Example response\n```json\n{}\n```\n\n## Error codes\n| Code | Meaning | How to handle |\n|------|---------|---------------|\n\n## Rate limits & notes\nAny limits, pagination, or gotchas developers should know.",
+          "token_estimate": 198
+        }
+      }
+    },
+    {
+      "id": "cold-email",
+      "title": "Write a Cold Email",
+      "category": "Writing",
+      "tags": ["email", "outreach", "sales", "networking", "writing"],
+      "featured": false,
+      "description": "Write a concise, personalised cold email for outreach, sales, or networking. Lean is punchy; max quality is highly tailored.",
+      "model_notes": {
+        "gpt-5.4": "Balanced produces polished, professional cold emails. Add recipient context for best results.",
+        "claude-sonnet-4-6": "Best for this — natural, non-salesy tone. Lean is surprisingly strong for quick outreach.",
+        "claude-opus-4-6": "Max quality for high-stakes outreach (investor emails, exec reach-outs). Highly tailored.",
+        "gemini-3.1-pro": "Balanced works well. Good at adjusting tone to the recipient's industry.",
+        "grok-4": "Lean is fast for high-volume outreach. Balanced for personalised emails.",
+        "llama-4-scout": "Balanced recommended. Lean can be too generic without enough context.",
+        "mistral-large-3": "Balanced is reliable. Good at professional tone.",
+        "o1": "Lean is sufficient — cold email writing is not reasoning-heavy. Prefer Claude for best tone."
+      },
+      "benchmarks": {
+        "gpt-5.4":           { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "claude-sonnet-4-6": { "lean": 5, "balanced": 5, "max_quality": 5, "best": "lean" },
+        "claude-opus-4-6":   { "lean": 4, "balanced": 5, "max_quality": 5, "best": "max_quality" },
+        "gemini-3.1-pro":    { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "grok-4":            { "lean": 4, "balanced": 4, "max_quality": 4, "best": "lean" },
+        "llama-4-scout":     { "lean": 3, "balanced": 4, "max_quality": 4, "best": "balanced" },
+        "mistral-large-3":   { "lean": 3, "balanced": 4, "max_quality": 5, "best": "balanced" },
+        "o1":                { "lean": 3, "balanced": 4, "max_quality": 4, "best": "lean" }
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Write a cold email from [SENDER_ROLE] to [RECIPIENT_ROLE] at [COMPANY]. Goal: [GOAL]. Max 5 sentences. No fluff.",
+          "token_estimate": 26
+        },
+        "balanced": {
+          "prompt": "Write a personalised cold email:\n\nFrom: [SENDER — name, role, company]\nTo: [RECIPIENT — name, role, company]\nGoal: [GOAL e.g. intro call, partnership, job inquiry]\nPersonalisation hook: [SOMETHING SPECIFIC about the recipient or their company]\nMy value prop: [WHAT I OFFER]\n\nRequirements:\n- Subject line: specific, not generic\n- Max 150 words\n- One clear CTA\n- Not salesy — treat them as a peer",
+          "token_estimate": 86
+        },
+        "max_quality": {
+          "prompt": "You are an expert at warm, effective cold outreach. Write a highly personalised cold email.\n\nFrom: [SENDER — name, role, company, 1-line credibility]\nTo: [RECIPIENT — name, role, company]\nContext: [WHAT YOU KNOW about them — recent work, shared connection, their company's news]\nGoal: [SPECIFIC GOAL]\nValue prop: [WHAT YOU OFFER that's relevant to them]\nTone: [TONE e.g. peer-to-peer, respectful, direct]\n\n## Subject line options (3)\nGive 3 subject lines — specific, no clickbait.\n\n## Email body\nMax 175 words. Structure:\n- Hook: reference something specific about them\n- Bridge: connect their situation to what you offer\n- Ask: one low-friction CTA\n\n## Follow-up (optional)\nA 2-sentence follow-up to send if no reply in 5 days.",
+          "token_estimate": 170
+        }
+      }
+    },
+    {
+      "id": "product-requirements",
+      "title": "Write a Product Requirements Document",
+      "category": "Engineering",
+      "tags": ["PRD", "product", "requirements", "planning", "engineering"],
+      "featured": false,
+      "description": "Write a product requirements document (PRD) for a feature or product. Lean gives a one-pager; max quality gives a full stakeholder-ready PRD.",
+      "model_notes": {
+        "gpt-5.4": "Max quality produces well-structured PRDs. Good at defining acceptance criteria.",
+        "claude-sonnet-4-6": "Balanced is the sweet spot — clear, actionable PRDs without unnecessary length.",
+        "claude-opus-4-6": "Max quality for executive-level PRDs with tradeoff analysis and success metrics.",
+        "gemini-3.1-pro": "Balanced is reliable. Good at deriving user stories from high-level descriptions.",
+        "grok-4": "Balanced works well for standard feature PRDs.",
+        "llama-4-scout": "Balanced recommended. Max quality for complex multi-team features.",
+        "mistral-large-3": "Balanced is reliable. Good at technical requirements sections.",
+        "o1": "Max quality is worthwhile — PRDs require reasoning about tradeoffs, edge cases, and dependencies."
+      },
+      "benchmarks": {
+        "gpt-5.4":           { "lean": 3, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "claude-sonnet-4-6": { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "claude-opus-4-6":   { "lean": 3, "balanced": 5, "max_quality": 5, "best": "max_quality" },
+        "gemini-3.1-pro":    { "lean": 3, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "grok-4":            { "lean": 3, "balanced": 4, "max_quality": 4, "best": "balanced" },
+        "llama-4-scout":     { "lean": 3, "balanced": 4, "max_quality": 4, "best": "balanced" },
+        "mistral-large-3":   { "lean": 3, "balanced": 4, "max_quality": 5, "best": "balanced" },
+        "o1":                { "lean": 3, "balanced": 4, "max_quality": 5, "best": "max_quality" }
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Write a one-page PRD for: [FEATURE]\n\nInclude: problem, goal, user stories (3), success metrics, out of scope.",
+          "token_estimate": 24
+        },
+        "balanced": {
+          "prompt": "Write a product requirements document for the following feature:\n\nFeature: [FEATURE]\nProduct: [PRODUCT]\nUsers affected: [USER_SEGMENT]\n\nInclude:\n- **Problem statement**: What pain does this solve?\n- **Goals & non-goals**\n- **User stories** (5, in 'As a… I want… So that…' format)\n- **Functional requirements** (numbered list)\n- **Success metrics**: How will we know it worked?\n- **Dependencies & risks**",
+          "token_estimate": 94
+        },
+        "max_quality": {
+          "prompt": "You are a senior product manager writing a stakeholder-ready PRD.\n\nFeature: [FEATURE]\nProduct: [PRODUCT]\nTeam: [TEAM SIZE / AFFECTED TEAMS]\nTimeline: [TIMELINE]\nPriority: [P0/P1/P2]\n\n## Executive summary\n2-3 sentences: what, why, and expected impact.\n\n## Problem statement\nUser pain, business pain, and supporting data if available.\n\n## Goals & success metrics\n| Goal | Metric | Target | Timeframe |\n|------|--------|--------|-----------|\n\n## Non-goals\nExplicitly out of scope — prevents scope creep.\n\n## User stories\nAt least 6, covering primary flow, edge cases, and error states.\n\n## Functional requirements\nNumbered, testable requirements. Each maps to a user story.\n\n## Technical considerations\nKnown constraints, dependencies, or architectural decisions.\n\n## Open questions\nDecisions still needed before engineering can start.\n\n## Launch plan\nPhases, rollout strategy, and definition of done.",
+          "token_estimate": 210
+        }
+      }
+    },
+    {
+      "id": "socratic-tutoring",
+      "title": "Socratic Tutoring Session",
+      "category": "Education & Tutoring",
+      "tags": ["tutoring", "Socratic method", "education", "critical thinking", "learning"],
+      "featured": false,
+      "description": "Guide a learner to understand a concept through questions rather than direct answers. Builds deeper understanding than passive explanation.",
+      "model_notes": {
+        "gpt-5.4": "Balanced produces natural Socratic dialogue. Max quality for structured exam prep.",
+        "claude-sonnet-4-6": "Best model for this — naturally asks probing questions without being condescending.",
+        "claude-opus-4-6": "Max quality produces exceptional Socratic sessions. Best for graduate-level material.",
+        "gemini-3.1-pro": "Balanced is reliable. Good at calibrating question difficulty.",
+        "grok-4": "Balanced works well. Lean for quick concept checks.",
+        "llama-4-scout": "Balanced recommended. Can occasionally give away the answer too quickly — add explicit instruction.",
+        "mistral-large-3": "Balanced is reliable for standard tutoring. Less naturally Socratic than Claude.",
+        "o1": "Max quality is excellent here — o1 reasons about what the learner likely knows and adapts accordingly."
+      },
+      "benchmarks": {
+        "gpt-5.4":           { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "claude-sonnet-4-6": { "lean": 5, "balanced": 5, "max_quality": 5, "best": "lean" },
+        "claude-opus-4-6":   { "lean": 4, "balanced": 5, "max_quality": 5, "best": "max_quality" },
+        "gemini-3.1-pro":    { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "grok-4":            { "lean": 4, "balanced": 4, "max_quality": 4, "best": "lean" },
+        "llama-4-scout":     { "lean": 3, "balanced": 4, "max_quality": 4, "best": "balanced" },
+        "mistral-large-3":   { "lean": 3, "balanced": 4, "max_quality": 5, "best": "balanced" },
+        "o1":                { "lean": 3, "balanced": 4, "max_quality": 5, "best": "max_quality" }
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Help me understand [CONCEPT] using the Socratic method. Ask me questions instead of explaining. Start with what I already know.",
+          "token_estimate": 24
+        },
+        "balanced": {
+          "prompt": "Tutor me on [CONCEPT] using the Socratic method.\n\nMy level: [LEVEL]\nMy goal: [GOAL e.g. pass an exam, understand deeply, apply it at work]\n\nRules:\n- Ask one question at a time\n- Don't give the answer directly — guide me to it\n- Correct misconceptions gently with follow-up questions\n- Only explain directly if I'm truly stuck after 3 attempts",
+          "token_estimate": 76
+        },
+        "max_quality": {
+          "prompt": "You are a Socratic tutor helping me deeply understand [CONCEPT].\n\nMy background: [BACKGROUND]\nMy current understanding: [CURRENT_UNDERSTANDING]\nLearning goal: [GOAL]\n\n## Ground rules\n- Ask one question at a time\n- Never give the answer — guide me to discover it\n- If I'm wrong, ask a question that reveals the contradiction\n- If I'm stuck after 3 attempts, give a hint (not the answer)\n- Track my misconceptions and return to them later\n- After 5-6 exchanges, summarise what I've figured out\n\n## Session start\nBegin with a diagnostic question to assess my current understanding of [CONCEPT]. Don't explain anything yet.",
+          "token_estimate": 148
+        }
+      }
+    },
+    {
+      "id": "generate-practice-questions",
+      "title": "Generate Practice Questions",
+      "category": "Education & Tutoring",
+      "tags": ["tutoring", "education", "quiz", "practice", "exam prep"],
+      "featured": false,
+      "description": "Generate practice questions for any subject or skill level. Lean gives a quick quiz; max quality gives a full question bank with answer keys and difficulty ratings.",
+      "model_notes": {
+        "gpt-5.4": "Balanced produces well-calibrated questions. Strong at MCQ generation with plausible distractors.",
+        "claude-sonnet-4-6": "Best for this — naturally calibrates difficulty and writes clear, unambiguous questions.",
+        "claude-opus-4-6": "Max quality for graduate-level or professional certification prep. Excellent answer explanations.",
+        "gemini-3.1-pro": "Balanced is reliable. Good at science and math questions with worked solutions.",
+        "grok-4": "Balanced works well. Lean for quick topic checks.",
+        "llama-4-scout": "Balanced recommended. Max quality for comprehensive question banks.",
+        "mistral-large-3": "Balanced is reliable for STEM subjects. Good at varying question types.",
+        "o1": "Max quality is worthwhile — o1 generates challenging questions that test deep understanding, not just recall."
+      },
+      "benchmarks": {
+        "gpt-5.4":           { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "claude-sonnet-4-6": { "lean": 5, "balanced": 5, "max_quality": 5, "best": "lean" },
+        "claude-opus-4-6":   { "lean": 4, "balanced": 5, "max_quality": 5, "best": "max_quality" },
+        "gemini-3.1-pro":    { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "grok-4":            { "lean": 4, "balanced": 4, "max_quality": 4, "best": "lean" },
+        "llama-4-scout":     { "lean": 3, "balanced": 4, "max_quality": 5, "best": "balanced" },
+        "mistral-large-3":   { "lean": 4, "balanced": 4, "max_quality": 5, "best": "lean" },
+        "o1":                { "lean": 3, "balanced": 4, "max_quality": 5, "best": "max_quality" }
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Generate 10 practice questions on [TOPIC] for [LEVEL e.g. undergrad / professional exam]. Mix question types. Include an answer key.",
+          "token_estimate": 24
+        },
+        "balanced": {
+          "prompt": "Generate a practice quiz on [TOPIC] for [LEVEL].\n\nInclude:\n- 5 multiple-choice questions (with 4 options and one correct answer)\n- 3 short-answer questions\n- 2 applied / case-based questions\n\nFor each question: provide the answer and a one-sentence explanation.\nDifficulty distribution: 40% easy, 40% medium, 20% hard.",
+          "token_estimate": 74
+        },
+        "max_quality": {
+          "prompt": "You are creating a professional practice question bank for [TOPIC].\n\nTarget audience: [AUDIENCE e.g. undergrads, bootcamp students, certification candidates]\nExam/goal context: [CONTEXT e.g. preparing for AWS Solutions Architect, university midterm]\nDifficulty range: [RANGE e.g. beginner to advanced]\n\n## Question bank (20 questions)\n\nFor each question provide:\n- **Question text**\n- **Type**: MCQ / short answer / case study / calculation\n- **Difficulty**: Easy / Medium / Hard\n- **Topic tag**: subtopic it tests\n- **Answer / solution**: full worked answer\n- **Why this matters**: what concept or skill this tests\n- **Common wrong answer**: what incorrect thinking it's designed to catch\n\nDistribution: 6 easy, 9 medium, 5 hard. Include at least 3 case-based questions.",
+          "token_estimate": 178
+        }
+      }
+    },
+    {
+      "id": "cover-letter",
+      "title": "Write a Cover Letter",
+      "category": "Career & Professional Growth",
+      "tags": ["cover letter", "career", "job search", "writing", "professional growth"],
+      "featured": false,
+      "description": "Write a tailored, compelling cover letter for a job application. Lean gives a punchy one-pager; max quality gives a fully personalised letter.",
+      "model_notes": {
+        "gpt-5.4": "Max quality produces polished, tailored letters. Provide the job description for best results.",
+        "claude-sonnet-4-6": "Best model — natural, confident voice. Balanced is the sweet spot for most applications.",
+        "claude-opus-4-6": "Max quality for competitive roles. Draws strong narrative threads between experience and the role.",
+        "gemini-3.1-pro": "Balanced is reliable. Good at identifying keyword alignment with the job description.",
+        "grok-4": "Balanced works well. Lean for quick drafts to iterate on.",
+        "llama-4-scout": "Balanced recommended. Provide the full job description for relevance.",
+        "mistral-large-3": "Balanced is reliable. Good at professional tone.",
+        "o1": "Balanced is sufficient — cover letter writing is not reasoning-heavy. Use Claude for best voice."
+      },
+      "benchmarks": {
+        "gpt-5.4":           { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "claude-sonnet-4-6": { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "claude-opus-4-6":   { "lean": 3, "balanced": 5, "max_quality": 5, "best": "max_quality" },
+        "gemini-3.1-pro":    { "lean": 3, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "grok-4":            { "lean": 4, "balanced": 4, "max_quality": 4, "best": "lean" },
+        "llama-4-scout":     { "lean": 3, "balanced": 4, "max_quality": 4, "best": "balanced" },
+        "mistral-large-3":   { "lean": 3, "balanced": 4, "max_quality": 5, "best": "balanced" },
+        "o1":                { "lean": 3, "balanced": 4, "max_quality": 4, "best": "balanced" }
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Write a 3-paragraph cover letter for [ROLE] at [COMPANY]. My background: [BACKGROUND]. Make it confident and specific — no generic openers.",
+          "token_estimate": 28
+        },
+        "balanced": {
+          "prompt": "Write a tailored cover letter for:\n\nRole: [ROLE]\nCompany: [COMPANY]\nMy background: [BACKGROUND]\nKey requirements from the job description: [KEY_REQUIREMENTS]\n\nRequirements:\n- No generic opener ('I am writing to apply...')\n- Lead with a specific hook — a result, insight, or connection to the company\n- Show, don't tell — use one concrete achievement as evidence\n- One clear paragraph on why this company specifically\n- Max 300 words\n- Confident but not arrogant tone",
+          "token_estimate": 96
+        },
+        "max_quality": {
+          "prompt": "You are a career coach writing a highly tailored cover letter.\n\nRole: [ROLE]\nCompany: [COMPANY]\nJob description highlights: [JD_HIGHLIGHTS]\nMy background: [BACKGROUND]\nMy strongest relevant achievement: [ACHIEVEMENT — with numbers if possible]\nWhy this company specifically: [REASON — not generic]\nTone: [TONE e.g. confident and direct / warm and collaborative]\n\n## Cover letter\nMax 350 words. Structure:\n1. **Hook** — specific, attention-grabbing opener (not 'I am applying for…')\n2. **Evidence** — one concrete achievement that maps to the role's core need\n3. **Fit** — why this company, not just this role; show you've done your homework\n4. **Close** — confident CTA, not apologetic\n\n## Subject line (for email applications)\nOne specific, non-generic subject line.\n\n## Tailoring notes\nList 3 keywords from the job description you wove in and where.",
+          "token_estimate": 192
+        }
+      }
+    },
+    {
+      "id": "linkedin-post",
+      "title": "Write a LinkedIn Post",
+      "category": "Career & Professional Growth",
+      "tags": ["LinkedIn", "career", "personal branding", "content", "social media"],
+      "featured": false,
+      "description": "Write an engaging LinkedIn post for thought leadership, project announcements, or career milestones. Lean is punchy; max quality is fully optimised for reach.",
+      "model_notes": {
+        "gpt-5.4": "Balanced produces polished LinkedIn posts. Good at professional storytelling.",
+        "claude-sonnet-4-6": "Best for this — human, non-corporate voice. Lean is excellent for quick posts.",
+        "claude-opus-4-6": "Max quality for high-stakes posts (launches, funding, major milestones). Deeply personal and resonant.",
+        "gemini-3.1-pro": "Balanced works well. Good at professional tone.",
+        "grok-4": "Lean is fast and direct. Good for opinion posts and quick takes.",
+        "llama-4-scout": "Balanced recommended. Lean can be too generic without enough context.",
+        "mistral-large-3": "Balanced is reliable for professional announcements.",
+        "o1": "Lean is sufficient. Prefer Claude for authentic, engaging voice."
+      },
+      "benchmarks": {
+        "gpt-5.4":           { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "claude-sonnet-4-6": { "lean": 5, "balanced": 5, "max_quality": 5, "best": "lean" },
+        "claude-opus-4-6":   { "lean": 4, "balanced": 5, "max_quality": 5, "best": "max_quality" },
+        "gemini-3.1-pro":    { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "grok-4":            { "lean": 4, "balanced": 4, "max_quality": 4, "best": "lean" },
+        "llama-4-scout":     { "lean": 3, "balanced": 4, "max_quality": 4, "best": "balanced" },
+        "mistral-large-3":   { "lean": 3, "balanced": 4, "max_quality": 5, "best": "balanced" },
+        "o1":                { "lean": 3, "balanced": 4, "max_quality": 4, "best": "lean" }
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Write a LinkedIn post about [TOPIC]. Hook in the first line. 150-200 words. End with a question to drive comments.",
+          "token_estimate": 24
+        },
+        "balanced": {
+          "prompt": "Write a LinkedIn post about [TOPIC].\n\nContext: [CONTEXT e.g. just launched a project, sharing a lesson learned, announcing a milestone]\nAudience: [AUDIENCE e.g. developers, founders, hiring managers]\nTone: [TONE e.g. reflective, excited, analytical]\n\nRequirements:\n- First line must stop the scroll — specific, not generic\n- 200-250 words\n- Personal story or concrete insight, not career jargon\n- End with an open question\n- 3-5 relevant hashtags",
+          "token_estimate": 84
+        },
+        "max_quality": {
+          "prompt": "You are a LinkedIn content strategist writing a high-performing post.\n\nTopic: [TOPIC]\nContext: [CONTEXT]\nAudience: [AUDIENCE]\nTone: [TONE]\nKey message: [THE ONE THING you want people to take away]\nPersonal angle: [YOUR STORY or unique perspective]\n\n## Post\nMax 300 words. Structure:\n- **Line 1**: scroll-stopping hook — specific, creates curiosity or emotion\n- **Lines 2-4**: set the scene or context\n- **Core content**: the insight, lesson, or story — concrete and specific\n- **Takeaway**: one actionable sentence\n- **Close**: open question to drive comments\n\n## Formatting\n- Short paragraphs (1-2 sentences max)\n- Strategic line breaks for readability\n- No corporate buzzwords\n\n## 5 relevant hashtags\n\n## Hook alternatives (3)\nGive 3 alternative first lines to A/B test.",
+          "token_estimate": 180
+        }
+      }
+    },
+    {
+      "id": "brainstorm-ideas",
+      "title": "Brainstorm Ideas",
+      "category": "General Purpose",
+      "tags": ["brainstorming", "ideation", "creativity", "problem solving", "general"],
+      "featured": false,
+      "description": "Generate a diverse set of ideas for any topic — product features, business models, content angles, solutions. Lean goes wide; max quality goes deep.",
+      "model_notes": {
+        "gpt-5.4": "Balanced produces diverse, creative ideas. Good at mixing conventional and lateral thinking.",
+        "claude-sonnet-4-6": "Excellent for ideation — naturally generates diverse, non-obvious ideas. Lean is highly effective.",
+        "claude-opus-4-6": "Max quality for strategic ideation. Surfaces non-obvious angles and challenges assumptions.",
+        "gemini-3.1-pro": "Balanced works well. Good at generating ideas grounded in current trends.",
+        "grok-4": "Lean is fast and surprisingly creative. Real-time knowledge helps generate timely ideas.",
+        "llama-4-scout": "Balanced recommended. Lean can be repetitive — add 'be unconventional' instruction.",
+        "mistral-large-3": "Balanced is reliable. Good at structured ideation frameworks.",
+        "o1": "Max quality is worthwhile for complex problem spaces — o1 reasons about feasibility and tradeoffs."
+      },
+      "benchmarks": {
+        "gpt-5.4":           { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "claude-sonnet-4-6": { "lean": 5, "balanced": 5, "max_quality": 5, "best": "lean" },
+        "claude-opus-4-6":   { "lean": 4, "balanced": 5, "max_quality": 5, "best": "max_quality" },
+        "gemini-3.1-pro":    { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "grok-4":            { "lean": 5, "balanced": 5, "max_quality": 4, "best": "lean" },
+        "llama-4-scout":     { "lean": 3, "balanced": 4, "max_quality": 4, "best": "balanced" },
+        "mistral-large-3":   { "lean": 3, "balanced": 4, "max_quality": 5, "best": "balanced" },
+        "o1":                { "lean": 3, "balanced": 4, "max_quality": 5, "best": "max_quality" }
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Generate 15 ideas for [TOPIC]. Be diverse — include conventional, unconventional, and wildcard ideas. No explanations, just the list.",
+          "token_estimate": 24
+        },
+        "balanced": {
+          "prompt": "Brainstorm ideas for [TOPIC].\n\nContext: [CONTEXT e.g. what you're trying to solve or achieve]\nConstraints: [CONSTRAINTS e.g. low budget, B2B focus, must be done in 2 weeks]\n\nGenerate 20 ideas across three tiers:\n- **Safe bets** (7): proven approaches adapted to this context\n- **Creative angles** (8): less obvious, higher upside\n- **Wild cards** (5): unconventional or contrarian — include at least one that challenges the premise\n\nFor each, one sentence on why it could work.",
+          "token_estimate": 90
+        },
+        "max_quality": {
+          "prompt": "You are a creative strategist running a structured ideation session.\n\nChallenge: [TOPIC / PROBLEM]\nContext: [CONTEXT]\nConstraints: [CONSTRAINTS]\nGoal: [WHAT SUCCESS LOOKS LIKE]\n\n## Phase 1 — Diverge (25 ideas)\nGenerate 25 ideas without filtering. Include:\n- Obvious solutions (don't skip these — they need to be on the table)\n- Analogies from other industries\n- Inverting the problem (what if we did the opposite?)\n- 10x thinking (what would solve this 10x better?)\n- At least 3 ideas that challenge the core assumption\n\n## Phase 2 — Evaluate\nScore each idea on: Feasibility (1-5) · Impact (1-5) · Novelty (1-5)\n\n## Phase 3 — Top 5\nFor the top 5 by combined score:\n- What makes this idea strong?\n- What's the biggest risk?\n- What's the first experiment you'd run to test it?",
+          "token_estimate": 188
+        }
+      }
     }
   ],
   "categories": [

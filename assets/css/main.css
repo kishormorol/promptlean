@@ -199,6 +199,27 @@ nav {
 }
 .nav-cta:hover { opacity: 0.85; color: #fff; }
 
+.github-star-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-2);
+  background: var(--bg-3);
+  transition: border-color var(--transition), color var(--transition), background var(--transition);
+  white-space: nowrap;
+}
+.github-star-btn:hover {
+  border-color: #f59e0b;
+  color: #f59e0b;
+  background: rgba(245,158,11,0.08);
+}
+.github-star-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+
 /* ── Buttons ─────────────────────────────────── */
 .btn {
   display: inline-flex;
