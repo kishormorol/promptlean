@@ -92,6 +92,22 @@ Each prompt detail page shows a **Model × Variant matrix** with color-coded qua
 
 ---
 
+## Alternatives comparison
+
+If you're evaluating PromptLean against other prompt libraries:
+
+| Tool | Free | Open source | Token variants | Model benchmarks | 14+ categories |
+|---|---|---|---|---|---|
+| **PromptLean** | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [AwesomePrompts](https://github.com/f/awesome-chatgpt-prompts) | ✅ | ✅ | ❌ | ❌ | ❌ |
+| [FlowGPT](https://flowgpt.com) | Partial | ❌ | ❌ | ❌ | ✅ |
+| [PromptHero](https://prompthero.com) | Partial | ❌ | ❌ | ❌ | ✅ |
+| [LangChain Hub](https://smith.langchain.com/hub) | ✅ | ✅ | ❌ | ❌ | ✅ |
+
+PromptLean is the only prompt library that gives you **three token-optimized variants per prompt with quality benchmarks across 8 frontier models** — free, no sign-up, open source.
+
+---
+
 ## Contributing
 
 All prompts live in [`data/prompts.json`](data/prompts.json). To add one:

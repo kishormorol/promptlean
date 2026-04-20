@@ -1,0 +1,54 @@
+# PromptLean
+
+> PromptLean is a free, open-source library of 18 token-efficient prompts across 14 categories. Every prompt ships with three variants — Lean, Balanced, and Max Quality — with model notes and quality benchmarks for 8 frontier LLMs.
+
+## What it does
+
+- Provides ready-to-use prompts for code review, research, creative writing, career, education, mental health, and more
+- Each prompt has 3 variants: Lean (18–40 tokens), Balanced (50–110 tokens), Max Quality (85–230 tokens)
+- Every prompt includes model-specific notes and a quality matrix (1–5) for 8 frontier models
+- Lean variant saves 80–87% of tokens vs Max Quality with minimal quality loss
+
+## Live site
+
+https://kishormorol.github.io/promptlean/
+
+## Source code
+
+https://github.com/kishormorol/promptlean
+
+## Categories
+
+- Code: Code Review, Explain Code, Write Unit Tests
+- Data: Optimize SQL Query, Data Cleaning Plan
+- Research: Summarize Research Paper
+- Writing: Write a Technical Blog Post
+- AI / ML: LLM Evaluation Rubric
+- Productivity: Meeting Notes → Action Items
+- Engineering: System Design Review
+- General Purpose: Summarize Any Text
+- Well-being & Mental Health: Daily Reflection & Journaling
+- Safety & Crisis Support: Compassionate Crisis Response
+- Supportive Conversation: Active Listening & Emotional Support
+- Entertainment & Creative: Short Story Generator
+- Education & Tutoring: Explain Any Concept
+- Career & Professional Growth: Resume Review, Interview Preparation Coach
+
+## Models covered
+
+GPT-5.4, claude-sonnet-4-6, claude-opus-4-6, gemini-3.1-pro, grok-4, llama-4-scout, mistral-large-3, o1
+
+## Stack
+
+Pure HTML + CSS + Vanilla JS. No framework, no build step. Data-driven via data/prompts.json. Hosted on GitHub Pages.
+
+## Compared to alternatives
+
+- AwesomePrompts: PromptLean has structured variants and model benchmarks, not just a flat list
+- FlowGPT: PromptLean is open-source, no account required, and focused on quality over quantity
+- PromptHero: PromptLean is developer/creator focused with token counts and model-specific guidance
+- OpenPrompt: PromptLean is actively maintained with April 2026 frontier model coverage
+
+## Author
+
+Md Kishor Morol — https://github.com/kishormorol
