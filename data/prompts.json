@@ -8,14 +8,14 @@
       "featured": true,
       "description": "Extract key contributions, methodology, and results from an academic paper. Evidence-grounded with lean/balanced/quality tradeoff.",
       "model_notes": {
-        "gpt-4o": "Works best with max_quality for nuanced methodology extraction.",
-        "claude-3-5-sonnet": "Lean variant is highly effective due to strong instruction-following.",
-        "claude-3-7-sonnet": "Enable extended thinking for max_quality — surfaces non-obvious methodology gaps. Lean is reliable and fast.",
-        "gemini-1.5-pro": "Balanced works well for long papers via large context window.",
-        "gemini-2.0-flash": "Lean variant is excellent — fast and accurate for standard paper formats. Use balanced for papers over 20 pages.",
-        "llama-3.3-70b": "Balanced recommended. Lean occasionally misses limitations section. Works well locally for private papers.",
-        "mistral-large-2": "Balanced produces clean structured output. Lean is sufficient for preprints.",
-        "o1": "Lean is often enough — o1 reasons internally through the structure. Max quality adds little on top of its chain-of-thought."
+        "gpt-5.4": "Max quality excels at nuanced methodology extraction. Strong on quantitative result interpretation.",
+        "claude-sonnet-4-6": "Lean is highly effective — strong instruction-following produces clean 5-bullet summaries. Best balance of speed and quality.",
+        "claude-opus-4-6": "Max quality with extended thinking surfaces non-obvious methodology gaps and limitations. Use for high-stakes literature reviews.",
+        "gemini-3.1-pro": "Highest GPQA Diamond score of any public model — excellent for technically dense papers. Balanced works well even for 100+ page documents via its large context window.",
+        "grok-4": "Lean and balanced work well. Real-time X/web access lets it pull citation context automatically — useful for recent papers.",
+        "llama-4-scout": "Balanced recommended. 10M token context window means you can paste the full paper PDF text. Lean occasionally misses limitations section.",
+        "mistral-large-3": "Balanced produces clean structured output with its MoE architecture. Lean is sufficient for preprints.",
+        "o1": "Lean is often enough — o1 reasons internally through structure. Max quality adds little on top of its chain-of-thought."
       },
       "variants": {
         "lean": {
@@ -40,14 +40,14 @@
       "featured": true,
       "description": "Review code for bugs, performance issues, and style. Lean gives a quick scan; quality gives a structured report.",
       "model_notes": {
-        "gpt-4o": "Max quality with o1 for algorithmic complexity analysis.",
-        "claude-3-5-sonnet": "All three variants perform well. Lean is surprisingly thorough.",
-        "claude-3-7-sonnet": "Best model for code review overall. Extended thinking on max_quality catches subtle race conditions and security issues.",
-        "gemini-1.5-pro": "Good for large codebases needing full-file context.",
-        "gemini-2.0-flash": "Lean and balanced are fast and accurate. Slightly less thorough on security analysis than Claude.",
-        "llama-3.3-70b": "Balanced works well for standard code. Less reliable for security-sensitive review — use max_quality.",
-        "mistral-large-2": "Strong code model. Lean variant is reliable for Python and JS. Excellent at spotting off-by-one errors.",
-        "o1": "Skip lean — o1's reasoning shines in max_quality mode for complex algorithmic issues. Overkill for style review."
+        "gpt-5.4": "Max quality is exceptional — top SWE-bench scores (77.2%). Catches subtle algorithmic issues and security vulnerabilities reliably.",
+        "claude-sonnet-4-6": "All three variants perform well. Lean is surprisingly thorough. Best model for balanced speed vs. depth.",
+        "claude-opus-4-6": "Leads on Arena code Elo (1548). Extended thinking on max_quality catches race conditions and security issues other models miss.",
+        "gemini-3.1-pro": "Strong on large codebases — large context handles full-file review. Balanced is reliable for most code types.",
+        "grok-4": "Lean and balanced are solid. Runs 4 parallel agent specializations internally on max_quality — good at catching issues from multiple angles.",
+        "llama-4-scout": "Balanced works well for standard code. Max quality recommended for security-sensitive review. Free to run locally.",
+        "mistral-large-3": "Strong code model with MoE architecture. Lean reliably flags bugs and off-by-one errors in Python and JS.",
+        "o1": "Max quality strongly recommended for complex algorithmic review. Skip lean — o1's reasoning shines with the full rubric."
       },
       "variants": {
         "lean": {
@@ -72,14 +72,14 @@
       "featured": false,
       "description": "Explain what a piece of code does at a level appropriate for someone new to the codebase.",
       "model_notes": {
-        "gpt-4o": "Lean is sufficient for most snippets.",
-        "claude-3-5-sonnet": "Excels at the analogies in max_quality variant.",
-        "claude-3-7-sonnet": "Max quality produces exceptional pedagogical explanations. Lean is reliable for straightforward code.",
-        "gemini-1.5-pro": "Balanced recommended.",
-        "gemini-2.0-flash": "Lean and balanced are fast and clear. Good for quick onboarding use cases.",
-        "llama-3.3-70b": "Balanced works well. Analogies in max_quality can be hit-or-miss — review before sharing with juniors.",
-        "mistral-large-2": "Balanced is reliable. Good at step-by-step walkthroughs for algorithmic code.",
-        "o1": "Lean is sufficient. o1 naturally adds reasoning depth without needing max_quality scaffolding."
+        "gpt-5.4": "Lean is sufficient for most snippets. Max quality produces polished pedagogical walkthroughs.",
+        "claude-sonnet-4-6": "Excels at analogies in max_quality. Lean is reliable for straightforward code.",
+        "claude-opus-4-6": "Best for max_quality — produces exceptional pedagogical explanations with real-world analogies.",
+        "gemini-3.1-pro": "Balanced recommended. Good at explaining code that involves complex math or algorithms.",
+        "grok-4": "Lean and balanced are fast and clear. Good default for quick onboarding tasks.",
+        "llama-4-scout": "Balanced works well. Can paste entire files thanks to 10M context window — useful for explaining code in context.",
+        "mistral-large-3": "Balanced is reliable. Good at step-by-step walkthroughs for algorithmic code.",
+        "o1": "Lean is sufficient — o1 naturally adds reasoning depth without max_quality scaffolding."
       },
       "variants": {
         "lean": {
@@ -104,13 +104,13 @@
       "featured": false,
       "description": "Generate comprehensive unit tests for a function or class. Lean gives basics, quality gives edge cases + mocks.",
       "model_notes": {
-        "gpt-4o": "Balanced is ideal. Specify your test framework.",
-        "claude-3-5-sonnet": "Excellent at inferring edge cases from function signatures.",
-        "claude-3-7-sonnet": "Max quality produces thorough test suites including concurrency and async edge cases. Best overall for complex functions.",
-        "gemini-1.5-pro": "Good for large files where full context helps.",
-        "gemini-2.0-flash": "Balanced is fast and generates clean tests. Lean can miss edge cases for complex functions.",
-        "llama-3.3-70b": "Balanced works well for unit tests. Max quality recommended for async/concurrent code.",
-        "mistral-large-2": "Strong at generating pytest and jest tests. Lean variant reliably covers the happy path and 2 edge cases as instructed.",
+        "gpt-5.4": "Balanced is ideal. Specify your test framework. Strong at inferring edge cases from type signatures.",
+        "claude-sonnet-4-6": "Excellent at inferring edge cases from function signatures. Best everyday choice.",
+        "claude-opus-4-6": "Max quality produces thorough test suites including concurrency and async edge cases. Best for complex functions.",
+        "gemini-3.1-pro": "Balanced is fast and generates clean tests. Good for large files where full context helps.",
+        "grok-4": "Balanced works well. Lean reliably covers happy path and 2 edge cases as instructed.",
+        "llama-4-scout": "Balanced recommended. Max quality needed for async/concurrent code. Free to run locally for private codebases.",
+        "mistral-large-3": "Strong at generating pytest and jest tests with MoE efficiency. Lean covers the basics reliably.",
         "o1": "Balanced is sufficient — o1 infers edge cases internally. Max quality adds parametrized tests and mock patterns."
       },
       "variants": {
@@ -136,14 +136,14 @@
       "featured": true,
       "description": "Analyze and rewrite a slow SQL query. Lean flags the issue; quality gives a full query plan analysis.",
       "model_notes": {
-        "gpt-4o": "Max quality with schema context is excellent.",
-        "claude-3-5-sonnet": "Balanced is very effective when schema is provided.",
-        "claude-3-7-sonnet": "Max quality with extended thinking catches subtle index interaction issues. Provide EXPLAIN output for best results.",
-        "gemini-1.5-pro": "Lean works well for simple queries.",
-        "gemini-2.0-flash": "Balanced is fast and reliable for common optimization patterns (missing indexes, N+1). Less strong on advanced query planner reasoning.",
-        "llama-3.3-70b": "Balanced works for standard SQL. Provide schema — lean variant struggles without it.",
-        "mistral-large-2": "Excellent at SQL. Lean variant is reliable even without schema context for common anti-patterns.",
-        "o1": "Max quality is worthwhile here — o1 reasons through query plan implications that other models miss."
+        "gpt-5.4": "Max quality with schema context is excellent. Provide EXPLAIN output for best results.",
+        "claude-sonnet-4-6": "Balanced is very effective when schema is provided. Fast and reliable for common patterns.",
+        "claude-opus-4-6": "Max quality with extended thinking catches subtle index interaction issues and query planner edge cases.",
+        "gemini-3.1-pro": "Strong reasoning on complex joins. Balanced handles most optimization tasks. Best price-to-performance for DB work.",
+        "grok-4": "Lean and balanced are solid for standard SQL anti-patterns. Real-time web access can pull DB-specific docs on demand.",
+        "llama-4-scout": "Balanced works for standard SQL. Always provide schema — lean struggles without it.",
+        "mistral-large-3": "Excellent at SQL. Lean reliable even without schema context for common anti-patterns like missing indexes.",
+        "o1": "Max quality is worthwhile — o1 reasons through query plan implications that other models miss."
       },
       "variants": {
         "lean": {
@@ -168,14 +168,14 @@
       "featured": false,
       "description": "Generate a systematic data cleaning plan for a dataset. Includes missing values, outliers, type issues, and duplicates.",
       "model_notes": {
-        "gpt-4o": "Balanced with column list context works great.",
-        "claude-3-5-sonnet": "Lean variant gives rapid audit checklist.",
-        "claude-3-7-sonnet": "Max quality with extended thinking produces rigorous MCAR/MAR/MNAR classification. Best for production data pipelines.",
-        "gemini-1.5-pro": "Paste df.info() output for best results.",
-        "gemini-2.0-flash": "Balanced is fast and practical. Lean works well when df.info() or column names are provided.",
-        "llama-3.3-70b": "Balanced recommended. Max quality pandas code occasionally needs minor fixes — review before running.",
-        "mistral-large-2": "Good at generating clean pandas code. Balanced is reliable for standard tabular datasets.",
-        "o1": "Max quality is the right choice — o1 reasons carefully about imputation strategies and their statistical implications."
+        "gpt-5.4": "Balanced with column list context works great. Strong at generating runnable pandas code.",
+        "claude-sonnet-4-6": "Lean gives a rapid and accurate audit checklist. Best for quick iterations.",
+        "claude-opus-4-6": "Max quality with extended thinking produces rigorous MCAR/MAR/MNAR classification. Best for production data pipelines.",
+        "gemini-3.1-pro": "Paste df.info() output for best results. Excellent at reasoning about statistical implications of cleaning choices.",
+        "grok-4": "Balanced is practical and fast. Good for datasets with domain-specific cleaning rules.",
+        "llama-4-scout": "Balanced recommended. Paste raw CSV headers and dtypes. Max quality pandas code occasionally needs minor fixes.",
+        "mistral-large-3": "Good at generating clean pandas code efficiently via MoE. Balanced is reliable for standard tabular datasets.",
+        "o1": "Max quality is the right choice — o1 reasons carefully about imputation strategies and their downstream statistical implications."
       },
       "variants": {
         "lean": {
@@ -200,13 +200,13 @@
       "featured": false,
       "description": "Write a developer-focused blog post on a technical topic. Lean gives an outline; quality gives a full draft.",
       "model_notes": {
-        "gpt-4o": "Max quality gives polished prose. Add brand voice notes.",
-        "claude-3-5-sonnet": "Best for balanced — engages without being verbose.",
-        "claude-3-7-sonnet": "Max quality produces the most natural developer voice. Add a tone note (e.g. 'pragmatic, no hype') for best results.",
-        "gemini-1.5-pro": "Good for long posts with many sections.",
-        "gemini-2.0-flash": "Balanced is fast and readable. Lean produces solid outlines for quick drafting.",
-        "llama-3.3-70b": "Balanced works well. Max quality can be verbose — trim the output.",
-        "mistral-large-2": "Good for technical accuracy. Balanced recommended; lean sometimes skips the code example.",
+        "gpt-5.4": "Max quality gives polished, SEO-friendly prose. Add brand voice notes for consistency.",
+        "claude-sonnet-4-6": "Best for balanced — engages without being verbose. Consistently natural developer voice.",
+        "claude-opus-4-6": "Max quality produces the most natural developer voice. Add a tone note (e.g. 'pragmatic, no hype') for best results.",
+        "gemini-3.1-pro": "Good for long posts with many technical sections. Balanced is fast and readable.",
+        "grok-4": "Lean produces solid outlines fast. Balanced output benefits from its real-time web access for up-to-date code examples.",
+        "llama-4-scout": "Balanced works well. Max quality can be verbose — trim the output before publishing.",
+        "mistral-large-3": "Good for technical accuracy. Balanced recommended; lean sometimes skips the code example.",
         "o1": "Balanced is sufficient. o1 naturally structures arguments well without max_quality scaffolding."
       },
       "variants": {
@@ -232,14 +232,14 @@
       "featured": true,
       "description": "Create a structured evaluation rubric for assessing LLM outputs. Useful for research, product QA, and A/B testing.",
       "model_notes": {
-        "gpt-4o": "Max quality excellent for nuanced multi-dimensional rubrics.",
-        "claude-3-5-sonnet": "Best model for this — strong meta-reasoning about LLM outputs.",
-        "claude-3-7-sonnet": "Top choice. Extended thinking on max_quality produces rubrics with exceptional inter-annotator reliability guidance.",
-        "gemini-1.5-pro": "Balanced is sufficient for most use cases.",
-        "gemini-2.0-flash": "Balanced works well for standard QA rubrics. Less nuanced on calibration and bias sections.",
-        "llama-3.3-70b": "Balanced is recommended. Max quality rubric structure can be inconsistent — validate scoring anchors carefully.",
-        "mistral-large-2": "Balanced produces clean rubrics. Good for product QA use cases.",
-        "o1": "Max quality is the right call — designing rubrics is a reasoning-heavy task where o1 excels. Produces the most internally consistent scoring guides."
+        "gpt-5.4": "Max quality is excellent for nuanced multi-dimensional rubrics. Strong at calibration example generation.",
+        "claude-sonnet-4-6": "Best everyday model for this — strong meta-reasoning about LLM outputs. All variants perform well.",
+        "claude-opus-4-6": "Top choice. Extended thinking on max_quality produces rubrics with exceptional inter-annotator reliability guidance.",
+        "gemini-3.1-pro": "Balanced is sufficient for most QA rubrics. Strong reasoning helps with complex multi-criteria tradeoffs.",
+        "grok-4": "Balanced works well. Useful for evaluating tasks that involve real-time or web-grounded outputs.",
+        "llama-4-scout": "Balanced recommended. Max quality rubric scoring anchors can be inconsistent — validate carefully.",
+        "mistral-large-3": "Balanced produces clean rubrics efficiently. Good for product QA use cases.",
+        "o1": "Max quality is the right call — designing rubrics is a reasoning-heavy task where o1 excels at internal consistency."
       },
       "variants": {
         "lean": {
@@ -264,13 +264,13 @@
       "featured": false,
       "description": "Convert raw meeting notes or transcript into structured action items with owners and deadlines.",
       "model_notes": {
-        "gpt-4o": "Lean is fully sufficient for most meetings.",
-        "claude-3-5-sonnet": "Lean variant gives fast, accurate extraction.",
-        "claude-3-7-sonnet": "Lean is excellent. Extended thinking adds little for this task — stick to lean or balanced.",
-        "gemini-1.5-pro": "Good for long transcripts via large context.",
-        "gemini-2.0-flash": "Lean is fast and accurate for typical meeting notes. Best choice for high-volume meeting processing.",
-        "llama-3.3-70b": "Balanced recommended. Lean occasionally merges related action items — review output.",
-        "mistral-large-2": "Lean works reliably. Good at inferring implicit owners from context.",
+        "gpt-5.4": "Lean is fully sufficient. Fast and accurate extraction for typical meeting formats.",
+        "claude-sonnet-4-6": "Lean is the sweet spot — fast, accurate, and picks up implicit owners from context.",
+        "claude-opus-4-6": "Lean is excellent. Extended thinking adds little for this task — overkill.",
+        "gemini-3.1-pro": "Lean works well, especially for long transcripts. Large context handles hour-long meeting recordings.",
+        "grok-4": "Lean is fast and practical. Best for high-volume meeting processing pipelines.",
+        "llama-4-scout": "Balanced recommended. Lean occasionally merges related action items — review output.",
+        "mistral-large-3": "Lean works reliably via MoE efficiency. Good at inferring implicit owners from conversation context.",
         "o1": "Lean is sufficient — this is not a reasoning-heavy task. Lean + o1 is fast and cost-effective."
       },
       "variants": {
@@ -296,14 +296,14 @@
       "featured": false,
       "description": "Review a system design proposal. Lean flags risks; quality gives a full architectural assessment.",
       "model_notes": {
-        "gpt-4o": "Max quality with full design document is exceptional.",
-        "claude-3-5-sonnet": "Excellent at identifying non-obvious failure modes.",
-        "claude-3-7-sonnet": "Best model for this task. Extended thinking uncovers cascading failure scenarios and subtle consistency issues other models miss.",
-        "gemini-1.5-pro": "Good for reviewing long design documents.",
-        "gemini-2.0-flash": "Balanced is good for quick design reviews. Less thorough on failure mode analysis than Claude.",
-        "llama-3.3-70b": "Balanced works for standard web architectures. Max quality recommended for distributed systems.",
-        "mistral-large-2": "Balanced produces solid reviews for backend systems. Good at identifying security gaps.",
-        "o1": "Max quality is strongly recommended — system design is inherently a reasoning-heavy task and o1 excels at multi-step failure analysis."
+        "gpt-5.4": "Max quality with full design document is exceptional. Top SWE-bench scores translate well to architectural reasoning.",
+        "claude-sonnet-4-6": "Excellent at identifying non-obvious failure modes. Best everyday choice for design reviews.",
+        "claude-opus-4-6": "Best model for this task. Extended thinking uncovers cascading failure scenarios and subtle consistency issues.",
+        "gemini-3.1-pro": "Highest reasoning scores of any public model. Max quality is excellent for distributed systems design. Best price-to-quality ratio.",
+        "grok-4": "Balanced is solid for backend architectures. Parallel agent reasoning on max_quality catches issues from multiple specializations simultaneously.",
+        "llama-4-scout": "Balanced works for standard web architectures. Max quality recommended for distributed systems. Free to run locally.",
+        "mistral-large-3": "Balanced produces solid reviews for backend systems. Good at identifying security gaps with MoE efficiency.",
+        "o1": "Max quality is strongly recommended — system design is inherently reasoning-heavy and o1 excels at multi-step failure analysis."
       },
       "variants": {
         "lean": {
@@ -331,13 +331,13 @@
     "Engineering"
   ],
   "models": [
-    "gpt-4o",
-    "claude-3-5-sonnet",
-    "claude-3-7-sonnet",
-    "gemini-1.5-pro",
-    "gemini-2.0-flash",
-    "llama-3.3-70b",
-    "mistral-large-2",
+    "gpt-5.4",
+    "claude-sonnet-4-6",
+    "claude-opus-4-6",
+    "gemini-3.1-pro",
+    "grok-4",
+    "llama-4-scout",
+    "mistral-large-3",
     "o1"
   ]
 }
