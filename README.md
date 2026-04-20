@@ -8,7 +8,7 @@ Every prompt ships with Lean, Balanced, and Max Quality variants.
 [![Live Site](https://img.shields.io/badge/Live%20Site-kishormorol.github.io%2Fpromptlean-7c3aed?style=for-the-badge&logo=github-pages&logoColor=white)](https://kishormorol.github.io/promptlean/)
 [![License](https://img.shields.io/badge/License-MIT-22c55e?style=for-the-badge)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-3b82f6?style=for-the-badge&logo=github)](https://github.com/kishormorol/promptlean/blob/main/contribute.html)
-[![Prompts](https://img.shields.io/badge/Prompts-10-f59e0b?style=for-the-badge)](https://kishormorol.github.io/promptlean/browse.html)
+[![Prompts](https://img.shields.io/badge/Prompts-18-f59e0b?style=for-the-badge)](https://kishormorol.github.io/promptlean/browse.html)
 
 </div>
 
@@ -122,7 +122,7 @@ python -m http.server 8000
 
 - [x] Check token consumption system for all frontier LLMs (GPT-4o, Claude 3.5/3.7, Gemini 1.5/2.0, Llama 3.3, Mistral Large 2, o1) and update token estimates accordingly — verified with tiktoken cl100k_base and o200k_base
 - [x] Add cross-model comparison feature: quality matrix (1–5) per model × variant added to all 10 prompts; rendered as a comparison table with recommended variant badges on each prompt detail page
-- [ ] Research and expand category coverage beyond developer tasks — candidate categories include: General Purpose, Well-being & Mental Health, Safety & Crisis Support, Supportive Conversation, Entertainment & Creative, Education & Tutoring, Career & Professional Growth — needs research on prompt patterns and best practices for each
+- [x] Expand category coverage beyond developer tasks — added 8 new prompts across 7 new categories: General Purpose, Well-being & Mental Health, Safety & Crisis Support, Supportive Conversation, Entertainment & Creative, Education & Tutoring, Career & Professional Growth
 
 ## License
 

@@ -419,6 +419,342 @@
           "token_estimate": 230
         }
       }
+    },
+    {
+      "id": "summarize-any-text",
+      "title": "Summarize Any Text",
+      "category": "General Purpose",
+      "tags": ["summarization", "reading", "productivity", "general"],
+      "featured": false,
+      "description": "Condense any article, report, email, or document into clear key points. Works on anything.",
+      "model_notes": {
+        "gpt-5.4": "Lean is excellent for most documents. Max quality for complex reports needing layered analysis.",
+        "claude-sonnet-4-6": "Lean is highly reliable — strong at distilling the most important information without over-prompting.",
+        "claude-opus-4-6": "Max quality surfaces implicit assumptions and gaps in dense academic or legal text.",
+        "gemini-3.1-pro": "Large context window handles very long documents. Lean is reliable for standard articles.",
+        "grok-4": "Lean works well for web articles. Real-time access lets it cross-reference context automatically.",
+        "llama-4-scout": "Lean works well. 10M token context handles very long documents natively.",
+        "mistral-large-3": "Balanced is reliable for most document types. Lean works for short articles.",
+        "o1": "Lean is sufficient — summarization doesn't need o1's reasoning depth."
+      },
+      "benchmarks": {
+        "gpt-5.4":           { "lean": 5, "balanced": 5, "max_quality": 5, "best": "lean" },
+        "claude-sonnet-4-6": { "lean": 5, "balanced": 5, "max_quality": 5, "best": "lean" },
+        "claude-opus-4-6":   { "lean": 5, "balanced": 5, "max_quality": 5, "best": "lean" },
+        "gemini-3.1-pro":    { "lean": 5, "balanced": 5, "max_quality": 5, "best": "lean" },
+        "grok-4":            { "lean": 4, "balanced": 5, "max_quality": 5, "best": "lean" },
+        "llama-4-scout":     { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "mistral-large-3":   { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "o1":                { "lean": 5, "balanced": 5, "max_quality": 5, "best": "lean" }
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Summarize the following in 3-5 bullet points. Be specific and concise.\n\n[TEXT]",
+          "token_estimate": 18
+        },
+        "balanced": {
+          "prompt": "Summarize the following text:\n\n[TEXT]\n\nProvide:\n- **Main point**: The core idea in one sentence\n- **Key points**: 3-5 supporting points\n- **Takeaway**: What the reader should do or remember",
+          "token_estimate": 52
+        },
+        "max_quality": {
+          "prompt": "Summarize the following text for a busy professional who needs to act on it.\n\n[TEXT]\n\n## One-sentence summary\n\n## Key points\nList 4-6 specific, evidence-backed points — not vague generalities.\n\n## What's missing or uncertain\nNote any gaps, caveats, or claims that lack support.\n\n## Action / So what?\nWhat should the reader do or decide based on this?",
+          "token_estimate": 88
+        }
+      }
+    },
+    {
+      "id": "daily-reflection",
+      "title": "Daily Reflection & Journaling Guide",
+      "category": "Well-being & Mental Health",
+      "tags": ["journaling", "reflection", "mental health", "mindfulness", "self-care"],
+      "featured": false,
+      "description": "Guide a structured daily reflection session — gratitude, challenges, intentions. Supports self-awareness without replacing professional care.",
+      "model_notes": {
+        "gpt-5.4": "Balanced produces warm, thoughtful prompts. Max quality adds CBT-informed reflection structure.",
+        "claude-sonnet-4-6": "Naturally empathetic across all variants. Lean is effective for daily check-ins.",
+        "claude-opus-4-6": "Best for nuanced emotional reflection. Max quality gently surfaces patterns without being prescriptive.",
+        "gemini-3.1-pro": "Balanced works well. Avoid lean for emotionally sensitive sessions — it can feel abrupt.",
+        "grok-4": "Balanced is reliable. Lean is quick for daily habit use.",
+        "llama-4-scout": "Balanced recommended. Lean can lack warmth — add an explicit tone note.",
+        "mistral-large-3": "Balanced works well for standard journaling. Max quality adds useful structure.",
+        "o1": "Lean is sufficient for daily prompts. Max quality can feel clinical — prefer Claude."
+      },
+      "benchmarks": {
+        "gpt-5.4":           { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "claude-sonnet-4-6": { "lean": 5, "balanced": 5, "max_quality": 5, "best": "lean" },
+        "claude-opus-4-6":   { "lean": 4, "balanced": 5, "max_quality": 5, "best": "max_quality" },
+        "gemini-3.1-pro":    { "lean": 3, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "grok-4":            { "lean": 4, "balanced": 4, "max_quality": 4, "best": "balanced" },
+        "llama-4-scout":     { "lean": 3, "balanced": 4, "max_quality": 4, "best": "balanced" },
+        "mistral-large-3":   { "lean": 3, "balanced": 4, "max_quality": 5, "best": "balanced" },
+        "o1":                { "lean": 4, "balanced": 5, "max_quality": 4, "best": "lean" }
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Give me 3 journaling prompts for today focused on [THEME e.g. gratitude / challenges / intentions]. Keep them open-ended and personal.",
+          "token_estimate": 28
+        },
+        "balanced": {
+          "prompt": "Guide me through a daily reflection for [DATE or 'today'].\n\nTheme: [THEME e.g. gratitude, energy, relationships]\n\nInclude:\n1. One warm-up question to settle in\n2. Two reflection questions on the theme\n3. One forward-looking intention for tomorrow\n\nKeep the tone gentle and non-judgmental.",
+          "token_estimate": 68
+        },
+        "max_quality": {
+          "prompt": "You are a thoughtful journaling guide helping with a structured daily reflection. This is not therapy — it is a space for self-awareness and growth.\n\nDate: [DATE]\nFocus area: [THEME e.g. energy, relationships, work, creativity]\nMood right now (1-10 and one word): [MOOD]\n\n## Opening\nA single grounding question to help transition into reflection.\n\n## Today's Review\nThree specific questions about what happened today, what went well, and what was hard.\n\n## Pattern Check\nOne question connecting today's experience to a broader pattern in the past week.\n\n## Gratitude\nTwo specific gratitude prompts — not generic, tied to [THEME].\n\n## Tomorrow's Intention\nOne concrete, achievable intention for tomorrow.\n\nTone: warm, curious, non-judgmental. Avoid clinical language.",
+          "token_estimate": 170
+        }
+      }
+    },
+    {
+      "id": "crisis-support-response",
+      "title": "Compassionate Crisis Response",
+      "category": "Safety & Crisis Support",
+      "tags": ["crisis support", "mental health", "empathy", "safety", "first response"],
+      "featured": false,
+      "description": "Draft a compassionate, safe response when someone expresses distress. Prioritizes listening, validation, and professional referral. Not a substitute for professional care.",
+      "model_notes": {
+        "gpt-5.4": "Balanced produces warm, human responses. Always review output before sharing — tone can occasionally be too formal.",
+        "claude-sonnet-4-6": "Naturally empathetic and measured. Reliably includes safety resources. Best overall model for this use case.",
+        "claude-opus-4-6": "Max quality is deeply attuned to emotional nuance. Best for complex or ambiguous distress situations.",
+        "gemini-3.1-pro": "Balanced works well. Always verify that crisis resource links are region-appropriate.",
+        "grok-4": "Balanced is reliable. Review output carefully — lean can be too brief for sensitive situations.",
+        "llama-4-scout": "Use balanced or max_quality only. Lean can miss critical safety signals. Always review before sending.",
+        "mistral-large-3": "Balanced recommended. Response quality is consistent but lacks some of Claude's natural warmth.",
+        "o1": "Balanced is sufficient. Max quality adds structured safety scaffolding for high-stakes contexts."
+      },
+      "benchmarks": {
+        "gpt-5.4":           { "lean": 3, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "claude-sonnet-4-6": { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "claude-opus-4-6":   { "lean": 3, "balanced": 5, "max_quality": 5, "best": "max_quality" },
+        "gemini-3.1-pro":    { "lean": 3, "balanced": 4, "max_quality": 5, "best": "balanced" },
+        "grok-4":            { "lean": 2, "balanced": 4, "max_quality": 4, "best": "balanced" },
+        "llama-4-scout":     { "lean": 2, "balanced": 3, "max_quality": 4, "best": "max_quality" },
+        "mistral-large-3":   { "lean": 2, "balanced": 4, "max_quality": 4, "best": "balanced" },
+        "o1":                { "lean": 3, "balanced": 5, "max_quality": 5, "best": "balanced" }
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Someone shared: \"[MESSAGE]\"\n\nWrite a brief, warm response that acknowledges their feelings and gently asks how you can support them. Remind them that professional help is available.",
+          "token_estimate": 38
+        },
+        "balanced": {
+          "prompt": "Someone reached out and said: \"[MESSAGE]\"\n\nWrite a compassionate, non-judgmental response that:\n- Validates their feelings without minimizing or exaggerating\n- Does not diagnose, advise, or problem-solve unless asked\n- Asks one open question to understand more\n- Gently mentions that professional support is available (e.g. a therapist or crisis line)\n\nTone: warm, present, unhurried.",
+          "token_estimate": 82
+        },
+        "max_quality": {
+          "prompt": "You are helping draft a compassionate response to someone who has expressed emotional distress. This is a peer support context — you are not a clinician.\n\nWhat they said: \"[MESSAGE]\"\nContext (if known): [CONTEXT e.g. first time sharing, ongoing struggle, acute crisis]\nYour relationship: [RELATIONSHIP e.g. friend, colleague, community moderator]\n\n## Response guidelines\n- Lead with acknowledgment — reflect back what you heard before anything else\n- Validate the emotion, not just the situation\n- Do not jump to solutions, silver linings, or comparisons\n- Ask one open, caring question\n- If there are any signals of immediate risk (self-harm, harm to others), include a specific crisis resource for [REGION] and gently encourage them to reach out\n- Close with presence — let them know you're here\n\nIf the message contains direct expressions of suicidal ideation or intent to harm, the response MUST include the relevant crisis line.\n\nDraft the response below. Keep it human — not clinical, not scripted.",
+          "token_estimate": 185
+        }
+      }
+    },
+    {
+      "id": "active-listening",
+      "title": "Active Listening & Emotional Support",
+      "category": "Supportive Conversation",
+      "tags": ["emotional support", "listening", "empathy", "conversation", "relationships"],
+      "featured": false,
+      "description": "Act as a non-judgmental, empathetic conversation partner. Lean listens quietly; max quality guides a structured supportive dialogue.",
+      "model_notes": {
+        "gpt-5.4": "Balanced is warm and natural. Good at maintaining supportive tone across a long conversation.",
+        "claude-sonnet-4-6": "Best model for this — naturally conversational and emotionally attuned. Lean is excellent for ongoing support.",
+        "claude-opus-4-6": "Max quality produces deeply thoughtful, nuanced supportive dialogue. Best for complex emotional situations.",
+        "gemini-3.1-pro": "Balanced works well. Large context window helps maintain full conversation history.",
+        "grok-4": "Balanced is reliable. Avoid lean for sensitive topics — responses can be too brief.",
+        "llama-4-scout": "Balanced recommended. Add explicit tone instruction (e.g. 'be warm and gentle') for best results.",
+        "mistral-large-3": "Balanced is consistent. Less naturally warm than Claude but reliable with explicit framing.",
+        "o1": "Lean is sufficient for supportive check-ins. Prefer Claude for emotionally nuanced conversations."
+      },
+      "benchmarks": {
+        "gpt-5.4":           { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "claude-sonnet-4-6": { "lean": 5, "balanced": 5, "max_quality": 5, "best": "lean" },
+        "claude-opus-4-6":   { "lean": 4, "balanced": 5, "max_quality": 5, "best": "max_quality" },
+        "gemini-3.1-pro":    { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "grok-4":            { "lean": 3, "balanced": 4, "max_quality": 4, "best": "balanced" },
+        "llama-4-scout":     { "lean": 3, "balanced": 4, "max_quality": 4, "best": "balanced" },
+        "mistral-large-3":   { "lean": 3, "balanced": 4, "max_quality": 4, "best": "balanced" },
+        "o1":                { "lean": 4, "balanced": 4, "max_quality": 5, "best": "lean" }
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Listen to what I share and respond with empathy. Don't give advice unless I ask. Just be present.\n\n[WHAT_I_WANT_TO_SHARE]",
+          "token_estimate": 26
+        },
+        "balanced": {
+          "prompt": "Act as a supportive, non-judgmental conversation partner.\n\nWhat I want to share: [WHAT_I_WANT_TO_SHARE]\n\nGuidelines:\n- Reflect back what you hear before responding\n- Validate feelings without minimizing or exaggerating\n- Don't offer advice or solutions unless I ask\n- Ask one open question to help me explore further\n- Keep the tone warm and unhurried",
+          "token_estimate": 76
+        },
+        "max_quality": {
+          "prompt": "You are a skilled, empathetic conversation partner practicing active listening.\n\nContext: [CONTEXT e.g. I need to vent / I'm processing a difficult decision / I want to think out loud]\nWhat I want to share: [WHAT_I_WANT_TO_SHARE]\n\n## Your approach\n1. **Hear first**: Reflect back what you heard — not a summary, but the emotional core\n2. **Validate**: Name the feeling you sense without projecting\n3. **Explore**: Ask one open question that helps me go deeper, not wider\n4. **Hold space**: Don't rush to fix, reframe, or resolve — stay with me in the difficulty\n5. **Check in**: At the end, ask what kind of support I'm looking for (just to be heard / help thinking through options / practical suggestions)\n\nTone: warm, present, curious. No jargon. No silver linings unless invited.",
+          "token_estimate": 162
+        }
+      }
+    },
+    {
+      "id": "short-story",
+      "title": "Short Story Generator",
+      "category": "Entertainment & Creative",
+      "tags": ["creative writing", "storytelling", "fiction", "entertainment"],
+      "featured": true,
+      "description": "Generate a short story with a character, conflict, and resolution. Lean gives flash fiction; max quality gives a fully developed narrative arc.",
+      "model_notes": {
+        "gpt-5.4": "Max quality produces polished literary fiction. Add genre and tone notes for best results.",
+        "claude-sonnet-4-6": "Best balance of speed and narrative quality. Lean produces surprisingly strong flash fiction.",
+        "claude-opus-4-6": "Best overall for creative writing — rich voice, subtext, and character depth at max quality.",
+        "gemini-3.1-pro": "Balanced is reliable. Strong at genre fiction (sci-fi, fantasy). Add style references for best results.",
+        "grok-4": "Lean and balanced are fast. Good at contemporary and humorous fiction.",
+        "llama-4-scout": "Balanced recommended. Max quality for longer, more structured narratives.",
+        "mistral-large-3": "Balanced works well. Lean is reliable for genre flash fiction.",
+        "o1": "Balanced is the right call — creative tasks don't benefit from o1's reasoning mode. Use Claude or GPT-5.4 for best results."
+      },
+      "benchmarks": {
+        "gpt-5.4":           { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "claude-sonnet-4-6": { "lean": 5, "balanced": 5, "max_quality": 5, "best": "lean" },
+        "claude-opus-4-6":   { "lean": 4, "balanced": 5, "max_quality": 5, "best": "max_quality" },
+        "gemini-3.1-pro":    { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "grok-4":            { "lean": 4, "balanced": 4, "max_quality": 4, "best": "lean" },
+        "llama-4-scout":     { "lean": 3, "balanced": 4, "max_quality": 4, "best": "balanced" },
+        "mistral-large-3":   { "lean": 3, "balanced": 4, "max_quality": 5, "best": "balanced" },
+        "o1":                { "lean": 3, "balanced": 4, "max_quality": 4, "best": "balanced" }
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Write a 200-word flash fiction story. Genre: [GENRE]. Theme: [THEME]. End with a twist or resonant final line.",
+          "token_estimate": 25
+        },
+        "balanced": {
+          "prompt": "Write a short story (~600 words) with the following:\n\n- **Genre**: [GENRE e.g. sci-fi, literary, horror, romance]\n- **Main character**: [CHARACTER]\n- **Core conflict**: [CONFLICT]\n- **Setting**: [SETTING]\n- **Tone**: [TONE e.g. melancholic, tense, hopeful]\n\nStructure: setup → rising tension → climax → resonant ending. No cliffhangers — resolve the core conflict.",
+          "token_estimate": 84
+        },
+        "max_quality": {
+          "prompt": "You are a skilled fiction writer. Write a complete short story (~1000 words) with the following brief:\n\n- **Genre**: [GENRE]\n- **Protagonist**: [CHARACTER — name, age, want, fear]\n- **Antagonist or obstacle**: [ANTAGONIST]\n- **Setting**: [SETTING — time and place]\n- **Central conflict**: [CONFLICT]\n- **Theme**: [THEME — the deeper truth the story explores]\n- **Tone**: [TONE]\n- **Style inspiration**: [AUTHOR or STYLE e.g. Raymond Carver, Ursula K. Le Guin]\n\n## Craft requirements\n- Open in scene, not summary — drop the reader into a specific moment\n- Show character through action and dialogue, not description\n- Build tension through scene-level cause and effect\n- The ending should feel earned and emotionally resonant\n- Use sensory detail sparingly but precisely\n\nWrite the story below.",
+          "token_estimate": 178
+        }
+      }
+    },
+    {
+      "id": "explain-concept",
+      "title": "Explain Any Concept",
+      "category": "Education & Tutoring",
+      "tags": ["tutoring", "education", "learning", "explanation", "teaching"],
+      "featured": true,
+      "description": "Explain any concept at the right level for the learner — from complete beginner to expert. Lean gives a quick definition; max quality delivers a full Socratic lesson.",
+      "model_notes": {
+        "gpt-5.4": "Max quality produces structured, pedagogically sound explanations with worked examples.",
+        "claude-sonnet-4-6": "Best model for tutoring — naturally calibrates to learner level. Lean is excellent for quick concept checks.",
+        "claude-opus-4-6": "Max quality produces exceptional Socratic dialogue. Best for nuanced or interdisciplinary concepts.",
+        "gemini-3.1-pro": "Balanced is reliable. Strong at explaining math and science concepts with formal precision.",
+        "grok-4": "Lean and balanced are fast. Good for contemporary topics where it has real-time knowledge.",
+        "llama-4-scout": "Balanced recommended. Max quality for concepts requiring worked examples and exercises.",
+        "mistral-large-3": "Balanced works well for STEM topics. Lean is reliable for well-defined concepts.",
+        "o1": "Balanced is the right choice — o1 explains its reasoning naturally and calibrates depth well."
+      },
+      "benchmarks": {
+        "gpt-5.4":           { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "claude-sonnet-4-6": { "lean": 5, "balanced": 5, "max_quality": 5, "best": "lean" },
+        "claude-opus-4-6":   { "lean": 4, "balanced": 5, "max_quality": 5, "best": "max_quality" },
+        "gemini-3.1-pro":    { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "grok-4":            { "lean": 4, "balanced": 4, "max_quality": 4, "best": "lean" },
+        "llama-4-scout":     { "lean": 3, "balanced": 4, "max_quality": 5, "best": "balanced" },
+        "mistral-large-3":   { "lean": 4, "balanced": 4, "max_quality": 5, "best": "lean" },
+        "o1":                { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" }
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Explain [CONCEPT] to someone who knows [LEVEL e.g. nothing / the basics / related fields]. Use one analogy and one example.",
+          "token_estimate": 22
+        },
+        "balanced": {
+          "prompt": "Explain [CONCEPT] to a [LEVEL e.g. high school student / first-year undergrad / professional from another field].\n\nStructure:\n1. **What it is** — plain-language definition\n2. **Why it matters** — real-world relevance\n3. **How it works** — core mechanism with an analogy\n4. **Worked example** — a concrete case\n5. **Common misconception** — one thing people often get wrong",
+          "token_estimate": 80
+        },
+        "max_quality": {
+          "prompt": "You are an expert tutor explaining [CONCEPT] to [LEARNER e.g. a curious undergraduate, a professional upskilling, a high schooler].\n\nLearner's background: [BACKGROUND]\nLearner's goal: [GOAL e.g. pass an exam, apply it at work, satisfy curiosity]\n\n## Lesson structure\n\n### 1. Hook\nStart with a question or surprising fact that creates genuine curiosity about [CONCEPT].\n\n### 2. Core idea\nExplain from first principles. Use one strong analogy. Be precise without being jargon-heavy.\n\n### 3. Mechanism\nHow does it actually work? Walk through the key moving parts.\n\n### 4. Worked example\nApply [CONCEPT] to a concrete, relatable case. Show each step.\n\n### 5. Boundary conditions\nWhere does [CONCEPT] break down or not apply?\n\n### 6. Check for understanding\nAsk two Socratic questions to test application, not recall.\n\n### 7. Next steps\nTwo resources or related concepts worth exploring next.",
+          "token_estimate": 172
+        }
+      }
+    },
+    {
+      "id": "resume-review",
+      "title": "Resume Review",
+      "category": "Career & Professional Growth",
+      "tags": ["resume", "career", "job search", "ATS", "professional growth"],
+      "featured": true,
+      "description": "Review a resume for impact, ATS optimization, and clarity. Lean flags the biggest issues; max quality gives a line-by-line rewrite guide.",
+      "model_notes": {
+        "gpt-5.4": "Max quality produces detailed, actionable rewrites. Strong at ATS keyword optimization.",
+        "claude-sonnet-4-6": "Best everyday model — balanced gives strong feedback on impact and clarity.",
+        "claude-opus-4-6": "Max quality produces exceptional narrative-level resume coaching. Best for senior or executive resumes.",
+        "gemini-3.1-pro": "Balanced is reliable for most resume types. Good at identifying industry-specific gaps.",
+        "grok-4": "Balanced works well. Real-time knowledge of job market trends helps with keyword recommendations.",
+        "llama-4-scout": "Balanced recommended. Max quality for detailed line-by-line feedback.",
+        "mistral-large-3": "Balanced is reliable. Good at structural and clarity feedback.",
+        "o1": "Balanced is sufficient — resume review is not reasoning-heavy. Prefer Claude for best results."
+      },
+      "benchmarks": {
+        "gpt-5.4":           { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "claude-sonnet-4-6": { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "claude-opus-4-6":   { "lean": 3, "balanced": 5, "max_quality": 5, "best": "max_quality" },
+        "gemini-3.1-pro":    { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "grok-4":            { "lean": 3, "balanced": 4, "max_quality": 5, "best": "balanced" },
+        "llama-4-scout":     { "lean": 3, "balanced": 4, "max_quality": 4, "best": "balanced" },
+        "mistral-large-3":   { "lean": 3, "balanced": 4, "max_quality": 5, "best": "balanced" },
+        "o1":                { "lean": 3, "balanced": 4, "max_quality": 4, "best": "balanced" }
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Review this resume. Flag the top 3 weaknesses and suggest specific fixes.\n\nRole targeting: [TARGET_ROLE]\n\n[RESUME]",
+          "token_estimate": 22
+        },
+        "balanced": {
+          "prompt": "Review the following resume for [TARGET_ROLE] at [TARGET_COMPANY_TYPE e.g. a startup / a large tech company / a non-profit].\n\n[RESUME]\n\nProvide feedback on:\n- **Impact**: Are achievements quantified? Do bullets lead with action verbs and results?\n- **ATS**: Does it include keywords a recruiter would search for this role?\n- **Clarity**: Is formatting clean and appropriately concise?\n- **Gaps**: Any missing sections or red flags a recruiter might notice?\n\nEnd with a priority fix list (top 5, ordered by importance).",
+          "token_estimate": 102
+        },
+        "max_quality": {
+          "prompt": "You are an experienced recruiter and career coach reviewing a resume for [TARGET_ROLE] at [TARGET_COMPANY_TYPE].\n\n[RESUME]\n\n## First impression (5-second scan)\nWhat stands out immediately — positively and negatively?\n\n## Impact & Quantification\nFor each bullet point lacking a measurable outcome, rewrite it with a stronger action verb and estimated impact. Format: [Action] + [What] + [Result/Scale].\n\n## ATS & Keywords\nList the top 10 keywords a recruiter for [TARGET_ROLE] would search. Which are present? Which are missing?\n\n## Narrative Coherence\nDoes the resume tell a clear career story? What thread connects the roles?\n\n## Red Flags\nAnything a recruiter might pause on — gaps, job-hopping, vague titles, missing dates?\n\n## Section-by-Section Feedback\nSummary · Experience · Skills · Education — rate each (Strong/Adequate/Weak) with 1-2 specific improvements.\n\n## Priority Fix List\nTop 5 changes ordered by impact on getting past ATS and landing an interview.",
+          "token_estimate": 195
+        }
+      }
+    },
+    {
+      "id": "interview-prep",
+      "title": "Interview Preparation Coach",
+      "category": "Career & Professional Growth",
+      "tags": ["interview", "career", "job search", "STAR method", "preparation"],
+      "featured": false,
+      "description": "Prepare for a job interview with role-specific questions, STAR method coaching, and a mock Q&A. Lean gives quick practice; max quality gives a full prep plan.",
+      "model_notes": {
+        "gpt-5.4": "Max quality produces rigorous mock interviews with detailed feedback. Strong at technical interview prep.",
+        "claude-sonnet-4-6": "Best for behavioral interview prep — natural at coaching STAR method answers. Lean is great for quick question generation.",
+        "claude-opus-4-6": "Best for senior/executive interview coaching. Max quality identifies subtle narrative gaps in answers.",
+        "gemini-3.1-pro": "Balanced is reliable. Good at technical role interview prep.",
+        "grok-4": "Lean is fast for question generation. Balanced for full prep sessions.",
+        "llama-4-scout": "Balanced recommended. Max quality for comprehensive mock interviews.",
+        "mistral-large-3": "Balanced works well for technical interview prep. Lean is reliable for question generation.",
+        "o1": "Max quality is worthwhile for technical roles — o1 anticipates follow-up questions and edge cases well."
+      },
+      "benchmarks": {
+        "gpt-5.4":           { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "claude-sonnet-4-6": { "lean": 5, "balanced": 5, "max_quality": 5, "best": "lean" },
+        "claude-opus-4-6":   { "lean": 4, "balanced": 5, "max_quality": 5, "best": "max_quality" },
+        "gemini-3.1-pro":    { "lean": 4, "balanced": 5, "max_quality": 5, "best": "balanced" },
+        "grok-4":            { "lean": 4, "balanced": 4, "max_quality": 4, "best": "lean" },
+        "llama-4-scout":     { "lean": 3, "balanced": 4, "max_quality": 4, "best": "balanced" },
+        "mistral-large-3":   { "lean": 4, "balanced": 4, "max_quality": 5, "best": "lean" },
+        "o1":                { "lean": 3, "balanced": 4, "max_quality": 5, "best": "max_quality" }
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Generate 10 interview questions for a [ROLE] at [COMPANY_TYPE]. Mix behavioral, situational, and role-specific technical questions.",
+          "token_estimate": 26
+        },
+        "balanced": {
+          "prompt": "Help me prepare for a [ROLE] interview at [COMPANY_TYPE].\n\nMy background: [BACKGROUND]\n\nProvide:\n1. **10 likely questions** — mix of behavioral, situational, and role-specific\n2. **STAR coaching** — for 3 behavioral questions, outline what a strong answer covers (Situation, Task, Action, Result)\n3. **Questions to ask them** — 3 thoughtful questions I should ask the interviewer\n4. **Watch-outs** — 2 common mistakes candidates make for this role",
+          "token_estimate": 99
+        },
+        "max_quality": {
+          "prompt": "You are an experienced hiring manager and interview coach preparing a candidate for a [ROLE] interview at [COMPANY_TYPE].\n\nCandidate background: [BACKGROUND]\nInterview format: [FORMAT e.g. panel, technical screen, case study, behavioral]\nKey concerns: [CONCERNS e.g. career gap, switching industries, limited experience in X]\n\n## Interview Question Bank\nGenerate 15 questions grouped by type:\n- Behavioral (5): past experience and soft skills\n- Situational (4): hypothetical scenarios\n- Role-specific technical (4): skills and domain knowledge\n- Culture/values (2): fit for this company type\n\n## STAR Answer Framework\nFor each of the 5 behavioral questions, provide:\n- What a weak answer looks like\n- What a strong answer covers (S/T/A/R breakdown)\n- A trap to avoid\n\n## Questions to Ask\n5 thoughtful questions to ask the interviewer that demonstrate strategic thinking.\n\n## 30-60-90 Day Plan\nDraft a 30/60/90-day outline for 'What would you do in your first 90 days?'",
+          "token_estimate": 210
+        }
+      }
     }
   ],
   "categories": [
@@ -428,7 +764,14 @@
     "Writing",
     "AI / ML",
     "Productivity",
-    "Engineering"
+    "Engineering",
+    "General Purpose",
+    "Well-being & Mental Health",
+    "Safety & Crisis Support",
+    "Supportive Conversation",
+    "Entertainment & Creative",
+    "Education & Tutoring",
+    "Career & Professional Growth"
   ],
   "models": [
     "gpt-5.4",
