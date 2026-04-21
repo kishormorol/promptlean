@@ -35,6 +35,41 @@ Every prompt detail page also includes a **Model × Variant comparison table** �
 
 ---
 
+## Features
+
+### On every prompt page
+- **⌨ Playground** — fill `[PLACEHOLDER]` slots with live preview and one-click copy of the completed prompt
+- **⊞ Diff view** — word-level diff between Max Quality and Lean, side by side with additions/removals highlighted
+- **Cost estimator** — sidebar dropdown: pick a model, see estimated cost per 1,000 API calls for each variant
+- **★ Favorites** — star any prompt to save it; browse page has a "Saved" filter
+- **🔥 Popular badge** — appears on cards after 10+ copy-clicks (tracked in `localStorage`)
+
+### On the browse page
+- **Token budget filters** — ⚡ < 30t · ⚖ 30–100t · ★ 100+t filter chips on the lean variant
+- **Saved filter** — show only starred prompts
+- **Tag + category filters** — sidebar with all 14 categories and top 18 tags
+
+### On prompt detail pages
+- **Workflow stepper** — 7 predefined workflows (Code Quality, Writing, Research, Career, Data, Learning, Engineering); shows where the current prompt sits and links to the next step
+- **Community variant tabs** — extra tabs loaded from `community/{id}.json`; fuchsia-styled to distinguish from standard variants
+
+### Use as an API
+All prompts are available as a raw JSON endpoint — no key, no auth:
+
+```
+https://raw.githubusercontent.com/kishormorol/promptlean/main/data/prompts.json
+```
+
+```js
+const { prompts } = await fetch(
+  'https://raw.githubusercontent.com/kishormorol/promptlean/main/data/prompts.json'
+).then(r => r.json());
+```
+
+CORS is open (`access-control-allow-origin: *`). Full docs on the [About page](https://kishormorol.github.io/promptlean/about.html#api).
+
+---
+
 ## Prompts
 
 31 prompts across 14 categories:
@@ -84,17 +119,15 @@ Each prompt detail page shows a **Model × Variant matrix** with color-coded qua
 | Page | URL |
 |------|-----|
 | Home | [`/`](https://kishormorol.github.io/promptlean/) |
-| Browse | [`/browse.html`](https://kishormorol.github.io/promptlean/browse.html) — search, filter by category/tag |
-| Prompt detail | [`/prompt.html?id=...`](https://kishormorol.github.io/promptlean/prompt.html?id=code-review) — variant tabs, token breakdown, model notes, comparison table |
+| Browse | [`/browse.html`](https://kishormorol.github.io/promptlean/browse.html) — search, filter by category/tag/budget/saved |
+| Prompt detail | [`/prompt.html?id=...`](https://kishormorol.github.io/promptlean/prompt.html?id=code-review) — variants, playground, diff, cost estimator, workflow, community tabs |
 | Compare | [`/compare.html`](https://kishormorol.github.io/promptlean/compare.html) — 3-column side-by-side view |
-| About | [`/about.html`](https://kishormorol.github.io/promptlean/about.html) |
-| Contribute | [`/contribute.html`](https://kishormorol.github.io/promptlean/contribute.html) |
+| About | [`/about.html`](https://kishormorol.github.io/promptlean/about.html) — includes API docs |
+| Contribute | [`/contribute.html`](https://kishormorol.github.io/promptlean/contribute.html) — prompt builder + community variant guide |
 
 ---
 
 ## Alternatives comparison
-
-If you're evaluating PromptLean against other prompt libraries:
 
 | Tool | Free | Open source | Token variants | Model benchmarks | 14+ categories |
 |---|---|---|---|---|---|
@@ -110,11 +143,9 @@ PromptLean is the only prompt library that gives you **three token-optimized var
 
 ## Contributing
 
-All prompts live in [`data/prompts.json`](data/prompts.json). To add one:
+### Add a new prompt
 
-1. Fork the repo
-2. Add your entry following the schema below
-3. Open a PR — include example outputs from at least one model
+All prompts live in [`data/prompts.json`](data/prompts.json). Use the **[Prompt Builder](https://kishormorol.github.io/promptlean/contribute.html)** on the contribute page to generate the correct JSON, then open a PR.
 
 **Schema:**
 ```json
@@ -147,6 +178,25 @@ All prompts live in [`data/prompts.json`](data/prompts.json). To add one:
 }
 ```
 
+### Add a community variant
+
+Have a specialized take on an existing prompt? Create `community/{prompt-id}.json`:
+
+```json
+[
+  {
+    "id": "your-variant-id",
+    "label": "🔒 Your Variant Name",
+    "author": "your-github-username",
+    "description": "One sentence: what does this variant optimize for?",
+    "prompt": "Your prompt text. Use [PLACEHOLDER] for user content.",
+    "token_estimate": 95
+  }
+]
+```
+
+Community variants appear as extra tabs on the prompt detail page. See [`community/code-review.json`](community/code-review.json) for a working example.
+
 Full contribution guidelines: [`contribute.html`](https://kishormorol.github.io/promptlean/contribute.html)
 
 ---
@@ -154,7 +204,7 @@ Full contribution guidelines: [`contribute.html`](https://kishormorol.github.io/
 ## Stack
 
 - **Pure HTML + CSS + Vanilla JS** — no framework, no build step
-- **Data-driven** — all prompts in `data/prompts.json`, rendered client-side
+- **Data-driven** — all prompts in `data/prompts.json`, community variants in `community/`
 - **GitHub Pages** — deployed via GitHub Actions on every push to `main`
 - **Dark mode default**, light mode toggle, persisted in `localStorage`
 
@@ -169,26 +219,6 @@ cd promptlean
 python -m http.server 8000
 # then visit http://localhost:8000
 ```
-
----
-
-## TODO
-
-### Easy (pure HTML/JS/data)
-- [ ] **Prompt Playground** — inline textarea with auto-highlighted `[PLACEHOLDER]` slots and one-click copy of the filled version
-- [ ] **Favorites / Bookmarks** — `localStorage`-backed star on each prompt card with a "Saved" filter on browse
-- [ ] **Usage counter badge** — track copy-clicks in `localStorage`, show "Popular" badge on cards with 10+ copies
-- [ ] **Prompt diff view** — side-by-side token diff between Max Quality → Lean, color-highlighted like a GitHub diff
-- [ ] **Token cost estimator** — pick a model + pricing tier, show estimated cost per 1000 API calls for each variant
-
-### Medium
-- [ ] **Submit a prompt UI** — form on `contribute.html` that generates the correct JSON schema for copy-paste into a PR
-- [ ] **Prompt chaining view** — "Next prompt" suggestions based on workflow tags (e.g. Summarize → Evaluate → Design)
-- [ ] **Search with token budget filters** — filter chips for < 30 / 30–100 / 100+ tokens and best-model picks
-
-### Bigger
-- [ ] **User-contributed variants** — `community/` folder for extra variants beyond lean/balanced/max_quality, rendered as extra tabs
-- [ ] **API endpoint** — document the `prompts.json` GitHub raw URL so developers can `fetch()` it directly in their apps
 
 ---
 
