@@ -8,7 +8,7 @@ Every prompt ships with Lean, Balanced, and Max Quality variants.
 [![Live Site](https://img.shields.io/badge/Live%20Site-kishormorol.github.io%2Fpromptlean-7c3aed?style=for-the-badge&logo=github-pages&logoColor=white)](https://kishormorol.github.io/promptlean/)
 [![License](https://img.shields.io/badge/License-MIT-22c55e?style=for-the-badge)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-3b82f6?style=for-the-badge&logo=github)](https://github.com/kishormorol/promptlean/blob/main/contribute.html)
-[![Prompts](https://img.shields.io/badge/Prompts-31-f59e0b?style=for-the-badge)](https://kishormorol.github.io/promptlean/browse.html)
+[![Prompts](https://img.shields.io/badge/Prompts-50-f59e0b?style=for-the-badge)](https://kishormorol.github.io/promptlean/browse.html)
 [![Categories](https://img.shields.io/badge/Categories-14-ec4899?style=for-the-badge)](https://kishormorol.github.io/promptlean/browse.html)
 
 </div>
@@ -72,24 +72,24 @@ CORS is open (`access-control-allow-origin: *`). Full docs on the [About page](h
 
 ## Prompts
 
-31 prompts across 14 categories:
+50 prompts across 14 categories:
 
 | Category | Prompts |
 |----------|---------|
 | Code | Code Review · Explain Code · Write Unit Tests · Debug & Fix a Bug · Refactor Code · Write Code Documentation · Generate Regex · Translate Code |
-| Data | Optimize SQL Query · Data Cleaning Plan |
-| Research | Summarize Research Paper |
-| Writing | Write a Technical Blog Post · Write API Docs · Cold Email |
-| AI / ML | LLM Evaluation Rubric |
-| Productivity | Meeting Notes → Action Items |
-| Engineering | System Design Review · Product Requirements Document |
-| General Purpose | Summarize Any Text · Brainstorm Ideas |
-| Well-being & Mental Health | Daily Reflection & Journaling Guide |
+| Data | Optimize SQL Query · Data Cleaning Plan · EDA Plan |
+| Research | Summarize Research Paper · Literature Review |
+| Writing | Write a Technical Blog Post · Write API Docs · Cold Email · Executive Summary |
+| AI / ML | LLM Evaluation Rubric · System Prompt Writer |
+| Productivity | Meeting Notes → Action Items · Weekly Planner · Email Reply · Decision Framework |
+| Engineering | System Design Review · Product Requirements Document · Incident Postmortem · Architecture Decision Record |
+| General Purpose | Summarize Any Text · Brainstorm Ideas · Explain Like I'm 5 · Give Feedback |
+| Well-being & Mental Health | Daily Reflection & Journaling Guide · Stress Reframe · Goal Setting |
 | Safety & Crisis Support | Compassionate Crisis Response |
 | Supportive Conversation | Active Listening & Emotional Support |
-| Entertainment & Creative | Short Story Generator |
-| Education & Tutoring | Explain Any Concept · Socratic Tutoring · Generate Practice Questions |
-| Career & Professional Growth | Resume Review · Interview Preparation Coach · Cover Letter · LinkedIn Post |
+| Entertainment & Creative | Short Story Generator · Poem Generator · Character Creator |
+| Education & Tutoring | Explain Any Concept · Socratic Tutoring · Generate Practice Questions · Lesson Plan · Study Guide |
+| Career & Professional Growth | Resume Review · Interview Preparation Coach · Cover Letter · LinkedIn Post · Salary Negotiation · Performance Review |
 
 → **[Browse all prompts](https://kishormorol.github.io/promptlean/browse.html)**
 
