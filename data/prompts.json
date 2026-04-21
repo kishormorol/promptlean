@@ -4466,6 +4466,14 @@
           "prompt": "You are a critical thinking expert and formal logic instructor.\n\nAnalyze the argument below for logical fallacies, faulty reasoning, false assumptions, and invalid conclusions. For each issue:\n1. Name the fallacy (with its formal name if applicable)\n2. Quote the exact passage containing the error\n3. Explain clearly why the reasoning is flawed\n4. Suggest how the argument could be made more logically sound\n\nAlso note any valid points the argument makes. Be precise and evidence-based.\n\nArgument: [ARGUMENT]",
           "token_estimate": 110
         }
+      },
+      "source": {
+        "name": "awesome-chatgpt-prompts",
+        "author": "Fatih Kadir Akın and contributors",
+        "url": "https://github.com/f/awesome-chatgpt-prompts",
+        "license": "CC0 1.0 Universal",
+        "license_url": "https://github.com/f/awesome-chatgpt-prompts/blob/main/LICENSE",
+        "note": "Prompt content is CC0 (public domain). Adapted and expanded with PromptLean variants."
       }
     },
     {
@@ -4554,6 +4562,14 @@
           "prompt": "You are an expert debate coach and research analyst.\n\nTopic: [TOPIC]\n\nResearch and present a balanced analysis:\n\n**Arguments FOR:**\n- Present the 3–4 strongest arguments with evidence, statistics, or expert consensus\n- Include the best-case scenario if this position prevails\n\n**Arguments AGAINST:**\n- Present the 3–4 strongest counter-arguments with equal rigor\n- Include risks and unintended consequences\n\n**Refutations:** For each side, address the other's strongest point\n\n**Synthesis:** Identify where both sides agree, and what evidence would change minds\n\nBe intellectually honest. Steelman both positions.",
           "token_estimate": 140
         }
+      },
+      "source": {
+        "name": "awesome-chatgpt-prompts",
+        "author": "Fatih Kadir Akın and contributors",
+        "url": "https://github.com/f/awesome-chatgpt-prompts",
+        "license": "CC0 1.0 Universal",
+        "license_url": "https://github.com/f/awesome-chatgpt-prompts/blob/main/LICENSE",
+        "note": "Prompt content is CC0 (public domain). Adapted and expanded with PromptLean variants."
       }
     },
     {
@@ -4642,6 +4658,14 @@
           "prompt": "You are a professional etymologist and historical linguist.\n\nResearch the complete etymology of the word \"[WORD]\":\n\n1. **Origin** — Language of origin, root form, and literal meaning\n2. **Ancient usage** — Earliest known attestation and context\n3. **Evolution** — How the word entered and changed in each language it passed through (include dates where known)\n4. **Semantic shift** — How and why the meaning changed over time\n5. **Related words** — Cognates, derivatives, and words from the same root in other languages\n6. **Modern usage** — Current meaning(s), including any specialized senses\n\nInclude specific dates, source languages, and linguistic periods where possible.",
           "token_estimate": 130
         }
+      },
+      "source": {
+        "name": "awesome-chatgpt-prompts",
+        "author": "Fatih Kadir Akın and contributors",
+        "url": "https://github.com/f/awesome-chatgpt-prompts",
+        "license": "CC0 1.0 Universal",
+        "license_url": "https://github.com/f/awesome-chatgpt-prompts/blob/main/LICENSE",
+        "note": "Prompt content is CC0 (public domain). Adapted and expanded with PromptLean variants."
       }
     },
     {
@@ -4730,6 +4754,14 @@
           "prompt": "You are an expert statistician with deep knowledge of inferential statistics, experimental design, and data analysis.\n\nQuestion/Dataset: [DESCRIBE YOUR DATA OR QUESTION]\n\nProvide a comprehensive statistical guidance report:\n1. **Problem framing** — Clarify the statistical question and objective\n2. **Recommended method** — Specify the test/model and justify the choice\n3. **Assumptions check** — List assumptions and how to verify them\n4. **Effect size & power** — What sample size is needed? What effect size matters?\n5. **Interpretation guide** — How to read and report results (p-values, CIs, effect sizes)\n6. **Alternative approaches** — If the primary method's assumptions fail, what to use instead\n7. **Visualization** — Recommended chart types for this analysis\n\nUse plain language alongside technical terms.",
           "token_estimate": 145
         }
+      },
+      "source": {
+        "name": "awesome-chatgpt-prompts",
+        "author": "Fatih Kadir Akın and contributors",
+        "url": "https://github.com/f/awesome-chatgpt-prompts",
+        "license": "CC0 1.0 Universal",
+        "license_url": "https://github.com/f/awesome-chatgpt-prompts/blob/main/LICENSE",
+        "note": "Prompt content is CC0 (public domain). Adapted and expanded with PromptLean variants."
       }
     },
     {
@@ -4818,6 +4850,14 @@
           "prompt": "You are a startup strategist and venture capital analyst.\n\nGenerate 3 digital startup ideas based on this problem or wish: [PROBLEM OR WISH]\n\nFor each idea, provide a full business canvas:\n- **Idea name & tagline**\n- **Target user persona** — who exactly, and their specific pain\n- **Value proposition** — what uniquely solves the problem\n- **Revenue streams** — primary and secondary monetization\n- **Cost structure** — key cost drivers\n- **Go-to-market channels** — first 3 acquisition channels\n- **Key risks** — top 2 business and technical risks\n- **Validation steps** — 3 concrete experiments to test demand before building\n- **First-year cost estimate** — rough ballpark\n\nFormat as a structured table or canvas for each idea.",
           "token_estimate": 155
         }
+      },
+      "source": {
+        "name": "awesome-chatgpt-prompts",
+        "author": "Fatih Kadir Akın and contributors",
+        "url": "https://github.com/f/awesome-chatgpt-prompts",
+        "license": "CC0 1.0 Universal",
+        "license_url": "https://github.com/f/awesome-chatgpt-prompts/blob/main/LICENSE",
+        "note": "Prompt content is CC0 (public domain). Adapted and expanded with PromptLean variants."
       }
     },
     {
@@ -4906,6 +4946,14 @@
           "prompt": "You are a certified financial planner (CFP) and tax advisor.\n\nSituation: [DESCRIBE YOUR FINANCIAL SITUATION AND GOALS]\n\nProvide a comprehensive financial strategy:\n1. **Cash flow analysis** — income vs. expenses, savings rate assessment\n2. **Emergency fund** — target amount and build-up plan\n3. **Debt strategy** — prioritization framework (avalanche vs. snowball)\n4. **Investment plan** — asset allocation, account types (401k, IRA, taxable), risk-appropriate vehicles\n5. **Tax optimization** — strategies to reduce taxable income or maximize deductions\n6. **Insurance gaps** — coverage areas to review\n7. **90-day action plan** — concrete next steps in priority order\n\nNote: This is educational information, not personalized financial advice. Consult a licensed professional for your specific situation.",
           "token_estimate": 155
         }
+      },
+      "source": {
+        "name": "awesome-chatgpt-prompts",
+        "author": "Fatih Kadir Akın and contributors",
+        "url": "https://github.com/f/awesome-chatgpt-prompts",
+        "license": "CC0 1.0 Universal",
+        "license_url": "https://github.com/f/awesome-chatgpt-prompts/blob/main/LICENSE",
+        "note": "Prompt content is CC0 (public domain). Adapted and expanded with PromptLean variants."
       }
     },
     {
@@ -4994,6 +5042,14 @@
           "prompt": "You are a contract summarization assistant with knowledge of common commercial terms.\n\nReview the contract below and provide a structured analysis:\n1. **Overview** — parties involved, contract purpose, and term/duration\n2. **Key obligations** — what each party must do, with deadlines\n3. **Rights and protections** — what each party is entitled to\n4. **Termination triggers** — conditions that end the contract early\n5. **Critical deadlines** — all dates and notice periods\n6. **Risk flags** — ambiguous language, unusual indemnities, one-sided penalty clauses, liability caps, or missing standard protections\n7. **Missing provisions** — standard clauses that are absent\n\nClose with: *This summary is for informational purposes only and does not constitute legal advice. Consult a licensed attorney before signing.*\n\nContract: [CONTRACT TEXT]",
           "token_estimate": 155
         }
+      },
+      "source": {
+        "name": "LLM-Prompt-Library",
+        "author": "Alexander Bilzerian",
+        "url": "https://github.com/abilzerian/LLM-Prompt-Library",
+        "license": "MIT",
+        "license_url": "https://github.com/abilzerian/LLM-Prompt-Library/blob/main/LICENSE",
+        "note": "MIT License © 2025 Alexander Bilzerian. Adapted and expanded with PromptLean variants."
       }
     },
     {
@@ -5082,6 +5138,14 @@
           "prompt": "You are a senior financial analyst. Analyze the following SEC 10-K annual report and produce a concise executive memo suitable for sharing with a leadership team.\n\nStructure your memo as:\n1. **Financial Performance** — revenue, gross margin, net income, YoY comparisons, EPS\n2. **Business Highlights** — major strategic wins, product launches, M&A activity\n3. **Operational Metrics** — segment performance, unit economics, headcount trends\n4. **Risk Factors** — top 3 operating and revenue risks expected in the coming quarter\n5. **Outlook** — management guidance, analyst consensus, qualitative assessment\n6. **Summary** — one paragraph with your analytical take\n\nBe precise with numbers. Note any red flags in management commentary.\n\n10-K filing: [10-K TEXT OR SECTION]",
           "token_estimate": 155
         }
+      },
+      "source": {
+        "name": "LLM-Prompt-Library",
+        "author": "Alexander Bilzerian",
+        "url": "https://github.com/abilzerian/LLM-Prompt-Library",
+        "license": "MIT",
+        "license_url": "https://github.com/abilzerian/LLM-Prompt-Library/blob/main/LICENSE",
+        "note": "MIT License © 2025 Alexander Bilzerian. Adapted and expanded with PromptLean variants."
       }
     },
     {
@@ -5170,6 +5234,14 @@
           "prompt": "You are a direct-response copywriter with 15 years of experience writing high-converting ad copy.\n\nProduct/service: [PRODUCT OR SERVICE DESCRIPTION]\nTarget audience: [AUDIENCE]\nKey USPs: [KEY BENEFITS]\nTone: [TONE — e.g., professional, urgent, playful]\nPlatform: [PLATFORM — e.g., Google, Facebook, email]\n\nWrite 3 variations of ad copy, each containing:\n1. **Headline** — one line, benefit-first, under 10 words\n2. **Body** — 2–3 sentences addressing the audience's pain point, building desire, and establishing credibility\n3. **CTA** — action-oriented, specific; include urgency or discount if applicable\n\nAfter each variation, note the psychological trigger used (scarcity, social proof, curiosity, etc.).",
           "token_estimate": 155
         }
+      },
+      "source": {
+        "name": "LLM-Prompt-Library",
+        "author": "Alexander Bilzerian",
+        "url": "https://github.com/abilzerian/LLM-Prompt-Library",
+        "license": "MIT",
+        "license_url": "https://github.com/abilzerian/LLM-Prompt-Library/blob/main/LICENSE",
+        "note": "MIT License © 2025 Alexander Bilzerian. Adapted and expanded with PromptLean variants."
       }
     },
     {
@@ -5258,6 +5330,14 @@
           "prompt": "You are a social media strategist specializing in organic engagement growth.\n\nPlatform: [PLATFORM]\nTarget audience: [TARGET AUDIENCE]\nBrand voice: [TONE — e.g., professional, witty, inspirational]\nOriginal post:\n\"\"\"[ORIGINAL POST]\"\"\"\n\nProvide:\n1. **Rewritten post** — optimized for the platform's algorithm and audience expectations\n2. **Hook analysis** — what makes the opening line compelling\n3. **Hashtag strategy** — 5–8 hashtags with rationale (mix of broad and niche)\n4. **Engagement triggers** — emojis, questions, or formatting choices and why they work\n5. **Alt version** — a shorter version under the platform character limit\n6. **Best time to post** — based on the platform and audience",
           "token_estimate": 145
         }
+      },
+      "source": {
+        "name": "LLM-Prompt-Library",
+        "author": "Alexander Bilzerian",
+        "url": "https://github.com/abilzerian/LLM-Prompt-Library",
+        "license": "MIT",
+        "license_url": "https://github.com/abilzerian/LLM-Prompt-Library/blob/main/LICENSE",
+        "note": "MIT License © 2025 Alexander Bilzerian. Adapted and expanded with PromptLean variants."
       }
     },
     {
@@ -5346,6 +5426,14 @@
           "prompt": "You are an Excel and Google Sheets formula specialist.\n\nTask: [DESCRIBE WHAT YOU WANT THE FORMULA TO DO, INCLUDING CELL REFERENCES]\nSpreadsheet context: [DESCRIBE YOUR DATA LAYOUT, COLUMN NAMES, SHEET NAMES IF RELEVANT]\n\nProvide:\n1. **Formula** — the complete, ready-to-paste formula\n2. **Component breakdown** — explain each function and argument\n3. **How it works** — step-by-step walkthrough of the logic\n4. **Edge cases** — what happens with blanks, errors, or unexpected input\n5. **Alternative approaches** — simpler formula if a shorter version exists; Power Query or PivotTable alternative if applicable\n6. **Google Sheets equivalent** — if different\n\nFormat the formula in a code block.",
           "token_estimate": 140
         }
+      },
+      "source": {
+        "name": "LLM-Prompt-Library",
+        "author": "Alexander Bilzerian",
+        "url": "https://github.com/abilzerian/LLM-Prompt-Library",
+        "license": "MIT",
+        "license_url": "https://github.com/abilzerian/LLM-Prompt-Library/blob/main/LICENSE",
+        "note": "MIT License © 2025 Alexander Bilzerian. Adapted and expanded with PromptLean variants."
       }
     },
     {
@@ -5434,6 +5522,14 @@
           "prompt": "You are a data extraction specialist. Convert the unstructured text below into a well-formed JSON object.\n\nExpected fields: [FIELDS, OR \"infer from context\"]\n\nInstructions:\n1. Identify all entities and attributes mentioned in the text\n2. Map them to the expected fields where possible; add additional fields for data not covered\n3. Use consistent camelCase naming conventions\n4. Use `null` for any fields where information is absent — do not omit fields\n5. For arrays (lists of items), use JSON arrays\n6. For dates, use ISO 8601 format (YYYY-MM-DD) where possible\n7. Output only valid, minified JSON (no markdown fences, no explanation)\n\nText:\n\"\"\"[TEXT]\"\"\"\n\nAfter the JSON, add a brief **Extraction notes** section explaining any ambiguities or assumptions made.",
           "token_estimate": 150
         }
+      },
+      "source": {
+        "name": "LLM-Prompt-Library",
+        "author": "Alexander Bilzerian",
+        "url": "https://github.com/abilzerian/LLM-Prompt-Library",
+        "license": "MIT",
+        "license_url": "https://github.com/abilzerian/LLM-Prompt-Library/blob/main/LICENSE",
+        "note": "MIT License © 2025 Alexander Bilzerian. Adapted and expanded with PromptLean variants."
       }
     },
     {
@@ -5522,6 +5618,14 @@
           "prompt": "You are a Developer Relations (DevRel) consultant specializing in open-source ecosystem growth.\n\nPackage/library: [PACKAGE NAME]\nDocumentation: [DOCS URL]\n\nProvide a comprehensive DevRel audit:\n1. **Community health metrics** — GitHub stars/forks, issue resolution rate, PR velocity, StackOverflow activity, download trends\n2. **Documentation audit** — completeness, clarity, quickstart quality, example coverage, missing scenarios\n3. **Developer journey** — evaluate time-to-first-working-example (TTFWE) and identify friction points\n4. **Competitor benchmarking** — compare to 2–3 alternatives on DX, docs, and community\n5. **Content gaps** — specific tutorials, guides, or reference docs that should be added\n6. **Prioritized recommendations** — top 5 improvements ranked by impact vs. effort\n7. **Community growth levers** — conferences, integrations, ambassador programs, or content strategies\n\nBe specific. Reference actual documentation sections or GitHub data where possible.",
           "token_estimate": 165
         }
+      },
+      "source": {
+        "name": "awesome-chatgpt-prompts",
+        "author": "Fatih Kadir Akın and contributors",
+        "url": "https://github.com/f/awesome-chatgpt-prompts",
+        "license": "CC0 1.0 Universal",
+        "license_url": "https://github.com/f/awesome-chatgpt-prompts/blob/main/LICENSE",
+        "note": "Prompt content is CC0 (public domain). Adapted and expanded with PromptLean variants."
       }
     },
     {
@@ -5610,6 +5714,14 @@
           "prompt": "You are a senior cybersecurity architect and compliance specialist.\n\nEnvironment: [DESCRIBE YOUR STACK, DATA TYPES, TEAM SIZE, AND SPECIFIC CONCERNS]\n\nProvide a prioritized cybersecurity strategy:\n1. **Threat model** — identify the most likely attack vectors for this environment\n2. **Data protection** — encryption at rest and in transit, key management\n3. **Identity & access** — authentication methods, RBAC, least-privilege principles, MFA\n4. **Network security** — firewall rules, VPN, network segmentation, WAF recommendations\n5. **Application security** — OWASP top 10 controls, dependency scanning, secrets management\n6. **Monitoring & detection** — logging strategy, SIEM, anomaly detection, alerting\n7. **Compliance mapping** — relevant standards (SOC 2, GDPR, HIPAA, PCI-DSS) and gaps\n8. **Incident response** — key steps for your most likely breach scenario\n9. **Quick wins** — top 5 high-impact, low-effort improvements to implement this week\n\nPrioritize practical, implementable advice over theory.",
           "token_estimate": 185
         }
+      },
+      "source": {
+        "name": "awesome-chatgpt-prompts",
+        "author": "Fatih Kadir Akın and contributors",
+        "url": "https://github.com/f/awesome-chatgpt-prompts",
+        "license": "CC0 1.0 Universal",
+        "license_url": "https://github.com/f/awesome-chatgpt-prompts/blob/main/LICENSE",
+        "note": "Prompt content is CC0 (public domain). Adapted and expanded with PromptLean variants."
       }
     },
     {
@@ -5698,6 +5810,14 @@
           "prompt": "You are a senior IT Solution Architect specializing in enterprise system integration.\n\nNew system/application: [NEW SYSTEM DESCRIPTION]\nCurrent IT landscape: [EXISTING SYSTEMS, DATABASES, APIS, INFRASTRUCTURE]\nBusiness requirements: [KEY BUSINESS GOALS THIS INTEGRATION MUST ACHIEVE]\n\nDeliver a solution architecture covering:\n1. **Gap analysis** — what the new system adds vs. what already exists; overlaps and conflicts\n2. **System mapping** — how the new system maps to the existing IT landscape\n3. **Interface design** — APIs, data formats, protocols, and integration patterns (REST, event-driven, ETL, etc.)\n4. **Data flow** — data ownership, master data management, sync vs. async flows\n5. **Solution blueprint** — logical architecture diagram description, component responsibilities\n6. **Deployment blueprint** — infrastructure requirements, environments, CI/CD pipeline needs\n7. **Security considerations** — authentication between systems, data classification, access controls\n8. **Migration plan** — phased rollout approach and rollback strategy\n9. **Risks & mitigations** — top 4 technical and organizational risks\n\nBe prescriptive. Recommend specific patterns and explain trade-offs.",
           "token_estimate": 195
         }
+      },
+      "source": {
+        "name": "awesome-chatgpt-prompts",
+        "author": "Fatih Kadir Akın and contributors",
+        "url": "https://github.com/f/awesome-chatgpt-prompts",
+        "license": "CC0 1.0 Universal",
+        "license_url": "https://github.com/f/awesome-chatgpt-prompts/blob/main/LICENSE",
+        "note": "Prompt content is CC0 (public domain). Adapted and expanded with PromptLean variants."
       }
     },
     {
@@ -5786,6 +5906,14 @@
           "prompt": "You are an expert data visualization specialist with deep knowledge of visual perception, dashboard design, and scientific communication.\n\nDataset description: [DESCRIBE YOUR DATA — TYPE, SIZE, DIMENSIONS]\nAudience: [WHO WILL VIEW THIS — EXECUTIVES, ANALYSTS, GENERAL PUBLIC]\nStory/insight to convey: [WHAT DO YOU WANT VIEWERS TO UNDERSTAND OR DECIDE]\nContext: [WHERE WILL THIS APPEAR — REPORT, DASHBOARD, PRESENTATION, WEB APP]\n\nProvide a comprehensive visualization strategy:\n1. **Chart selection** — recommend 2–3 chart types with rationale; explain why alternatives were rejected\n2. **Visual hierarchy** — how to structure the layout for scanning and comprehension\n3. **Color strategy** — palette recommendations, accessibility (colorblind-friendly), use of color for emphasis\n4. **Tool recommendation** — specific tool with implementation approach (e.g., Plotly in Python, Vega-Lite, Tableau)\n5. **Interactivity** — which interactions add value (filters, tooltips, drill-down) vs. add complexity\n6. **Key callouts** — which data points or trends to annotate directly\n7. **Anti-patterns to avoid** — common mistakes for this data type\n8. **Dashboard layout** — if building a full dashboard, sketch the section structure",
           "token_estimate": 185
         }
+      },
+      "source": {
+        "name": "awesome-chatgpt-prompts",
+        "author": "Fatih Kadir Akın and contributors",
+        "url": "https://github.com/f/awesome-chatgpt-prompts",
+        "license": "CC0 1.0 Universal",
+        "license_url": "https://github.com/f/awesome-chatgpt-prompts/blob/main/LICENSE",
+        "note": "Prompt content is CC0 (public domain). Adapted and expanded with PromptLean variants."
       }
     },
     {
@@ -5874,6 +6002,14 @@
           "prompt": "You are a senior UX/UI designer and usability consultant with expertise in heuristic evaluation and accessibility.\n\nProduct: [PRODUCT NAME AND TYPE — web app, mobile app, etc.]\nTarget users: [USER PERSONA — demographics, goals, technical level]\nPlatform: [iOS / Android / Web / Desktop]\nScreen or flow: [DESCRIBE THE SCREEN OR USER JOURNEY BEING REVIEWED]\nKnown pain points: [ANY SPECIFIC ISSUES REPORTED OR SUSPECTED]\n\nConduct a comprehensive UX/UI review:\n1. **Heuristic evaluation** — assess against Nielsen's 10 usability heuristics; flag violations\n2. **Information architecture** — navigation clarity, menu labeling, content organization\n3. **Visual hierarchy** — use of typography, spacing, color, and contrast to guide attention\n4. **Accessibility** — WCAG 2.1 AA compliance gaps, color contrast, keyboard navigation, screen reader support\n5. **User journey friction** — steps where users are likely to drop off or get confused\n6. **What works well** — specific elements or patterns that are effective\n7. **Prioritized improvements** — top 5 changes ranked by impact × effort, with specific implementation suggestions\n8. **Prototyping recommendations** — what to test with users next\n\nBe specific. Reference exact UI elements rather than general advice.",
           "token_estimate": 195
         }
+      },
+      "source": {
+        "name": "awesome-chatgpt-prompts",
+        "author": "Fatih Kadir Akın and contributors",
+        "url": "https://github.com/f/awesome-chatgpt-prompts",
+        "license": "CC0 1.0 Universal",
+        "license_url": "https://github.com/f/awesome-chatgpt-prompts/blob/main/LICENSE",
+        "note": "Prompt content is CC0 (public domain). Adapted and expanded with PromptLean variants."
       }
     },
     {
@@ -5962,6 +6098,14 @@
           "prompt": "You are an expert software project architect specializing in taking ideas from concept to executable development plans.\n\nProject idea: [PROJECT IDEA]\nTarget users: [WHO WILL USE THIS]\nTech stack preference: [PREFERRED STACK, OR \"recommend one\"]\n\nDeliver a complete project planning package:\n\n**Phase 1 — PRD:**\n- Problem statement and opportunity\n- Target audience and user personas\n- Feature list (must-have, should-have, won't-have for MVP)\n- Success metrics and KPIs\n- Technical constraints and assumptions\n\n**Phase 2 — User Journeys:**\n- 2–3 primary user flows with step-by-step walkthrough\n- Edge cases and error states\n\n**Phase 3 — Milestones:**\n- 4–6 sequenced milestones, each with: title, objective, key deliverables, and specific acceptance criteria\n\n**Phase 4 — AI-assisted development specs:**\n- For each milestone, provide granular task breakdowns formatted for AI code generation (context, requirements, expected output)\n\nAsk clarifying questions before proceeding if the idea is ambiguous.",
           "token_estimate": 210
         }
+      },
+      "source": {
+        "name": "Open Source Prompt Library (community)",
+        "author": "BigDog1400 and contributors",
+        "url": "https://gist.github.com/BigDog1400/bd81f31fe680cc83deb6dab4ad9e6c67",
+        "license": "MIT",
+        "license_url": null,
+        "note": "Inspired by and adapted from a community GitHub Gist. Expanded with PromptLean variants."
       }
     },
     {
@@ -6050,6 +6194,14 @@
           "prompt": "You are a venture capital analyst conducting due diligence. Produce a comprehensive investment analysis of [COMPANY NAME].\n\nStructure your report as:\n1. **Company overview** — founding story, mission, problem solved, why now\n2. **Product** — value proposition, key features, differentiation, IP or moat\n3. **Traction & customers** — ARR, MoM growth rate, NRR/NDR, churn, LTV/CAC, notable logos, ICP\n4. **Business model** — revenue streams, ACV, pricing strategy, sales motion (PLG, enterprise, etc.)\n5. **Market** — TAM/SAM/SOM, market timing, tailwinds, regulatory environment\n6. **Competition** — landscape map, differentiation vs. top 3 competitors, defensibility\n7. **Team** — founders' backgrounds, domain expertise, key hires, board composition\n8. **Financials** — funding history, current raise, burn rate, runway, path to break-even\n9. **Risks** — top 5 business, market, and execution risks with mitigation assessment\n10. **Investment thesis** — bull case, bear case, and recommended position\n\nCite sources where available. Flag data gaps explicitly.",
           "token_estimate": 200
         }
+      },
+      "source": {
+        "name": "LLM-Prompt-Library",
+        "author": "Alexander Bilzerian",
+        "url": "https://github.com/abilzerian/LLM-Prompt-Library",
+        "license": "MIT",
+        "license_url": "https://github.com/abilzerian/LLM-Prompt-Library/blob/main/LICENSE",
+        "note": "MIT License © 2025 Alexander Bilzerian. Adapted and expanded with PromptLean variants."
       }
     },
     {

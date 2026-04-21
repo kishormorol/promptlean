@@ -222,6 +222,20 @@ python -m http.server 8000
 
 ---
 
+## Attribution
+
+Some prompts are adapted from open-source collections. All adaptations are significantly rewritten into PromptLean's three-tier format with model notes and benchmarks added. Source metadata is stored in `data/prompts.json` for full traceability.
+
+| Source | License | Prompts adapted |
+|--------|---------|----------------|
+| [awesome-chatgpt-prompts](https://github.com/f/awesome-chatgpt-prompts) by Fatih Kadir Akın | CC0 1.0 (public domain) | 11 |
+| [LLM-Prompt-Library](https://github.com/abilzerian/LLM-Prompt-Library) by Alexander Bilzerian | MIT © 2025 Alexander Bilzerian | 7 |
+| [Community Gist](https://gist.github.com/BigDog1400/bd81f31fe680cc83deb6dab4ad9e6c67) by BigDog1400 | MIT | 1 |
+
+Full attribution details: [`ATTRIBUTION.md`](ATTRIBUTION.md)
+
+---
+
 ## License
 
 MIT — use freely, contribute back.

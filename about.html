@@ -191,7 +191,15 @@ print(f"{tokens} tokens: {prompt_text[:60]}...")</pre>
         "lean":        { "prompt": string, "token_estimate": number },
         "balanced":    { "prompt": string, "token_estimate": number },
         "max_quality": { "prompt": string, "token_estimate": number }
-      }
+      },
+      "source": {           // present only on adapted prompts
+        "name":        string,
+        "author":      string,
+        "url":         string,
+        "license":     string,
+        "license_url": string | null,
+        "note":        string
+      } | undefined
     }
   ],
   "categories": string[],
