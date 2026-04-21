@@ -10,8 +10,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   const all = data.prompts;
 
   let activeCategory = PL.param('cat') || 'All';
-  let activeTag = '';
+  let activeTag = PL.param('tag') || '';
   let query = '';
+  let activeSaved = false;
+  let activeBudget = 'all';
 
   /* ── Build category filters ─── */
   const catWrap = document.getElementById('cat-filters');
@@ -35,7 +37,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const topTags = Object.entries(tagMap).sort((a,b) => b[1]-a[1]).slice(0, 18).map(e => e[0]);
   const tagWrap = document.getElementById('tag-cloud');
   tagWrap.innerHTML = topTags.map(t =>
-    `<button class="tag" data-tag="${t}">${t}</button>`
+    `<button class="tag ${t === activeTag ? 'active' : ''}" data-tag="${t}">${t}</button>`
   ).join('');
 
   tagWrap.addEventListener('click', e => {
@@ -45,6 +47,40 @@ document.addEventListener('DOMContentLoaded', async () => {
     tagWrap.querySelectorAll('.tag').forEach(b => b.classList.toggle('active', b.dataset.tag === activeTag));
     render();
   });
+
+  /* ── Saved filter ─── */
+  const savedWrap = document.getElementById('saved-filter');
+  if (savedWrap) {
+    savedWrap.innerHTML = `<button class="sidebar-item" id="saved-btn">★ Saved</button>`;
+    document.getElementById('saved-btn').addEventListener('click', () => {
+      activeSaved = !activeSaved;
+      document.getElementById('saved-btn').classList.toggle('active', activeSaved);
+      render();
+    });
+  }
+
+  window.__onFavChange = () => { if (activeSaved) render(); };
+
+  /* ── Token budget filters ─── */
+  const budgetWrap = document.getElementById('budget-filters');
+  if (budgetWrap) {
+    const budgets = [
+      { key: 'all',   label: 'Any tokens' },
+      { key: 'ultra', label: '⚡ < 30t' },
+      { key: 'mid',   label: '⚖ 30–100t' },
+      { key: 'full',  label: '★ 100+t' },
+    ];
+    budgetWrap.innerHTML = budgets.map(b =>
+      `<button class="filter-btn${b.key === activeBudget ? ' active' : ''}" data-budget="${b.key}">${b.label}</button>`
+    ).join('');
+    budgetWrap.addEventListener('click', e => {
+      const btn = e.target.closest('[data-budget]');
+      if (!btn) return;
+      activeBudget = btn.dataset.budget;
+      budgetWrap.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.dataset.budget === activeBudget));
+      render();
+    });
+  }
 
   /* ── Search ─── */
   const searchInput = document.getElementById('search');
@@ -60,11 +96,24 @@ document.addEventListener('DOMContentLoaded', async () => {
   const render = () => {
     let results = all;
 
+    if (activeSaved) {
+      const favs = PL.getFavorites();
+      results = results.filter(p => favs.has(p.id));
+    }
     if (activeCategory !== 'All') {
       results = results.filter(p => p.category === activeCategory);
     }
     if (activeTag) {
       results = results.filter(p => p.tags.includes(activeTag));
+    }
+    if (activeBudget !== 'all') {
+      results = results.filter(p => {
+        const t = p.variants.lean?.token_estimate || 0;
+        if (activeBudget === 'ultra') return t < 30;
+        if (activeBudget === 'mid')   return t >= 30 && t <= 100;
+        if (activeBudget === 'full')  return t > 100;
+        return true;
+      });
     }
     if (query) {
       results = results.filter(p =>
@@ -75,14 +124,15 @@ document.addEventListener('DOMContentLoaded', async () => {
       );
     }
 
-    meta.textContent = `${results.length} prompt${results.length !== 1 ? 's' : ''}`;
+    const budgetLabel = { ultra: ' · lean < 30t', mid: ' · lean 30–100t', full: ' · lean 100+t' }[activeBudget] || '';
+    meta.textContent = `${results.length} prompt${results.length !== 1 ? 's' : ''}${activeSaved ? ' saved' : ''}${budgetLabel}`;
 
     if (results.length === 0) {
       grid.innerHTML = `
         <div class="empty-state">
-          <div class="empty-state-icon">🔍</div>
-          <h3>No prompts found</h3>
-          <p>Try a different filter or <a href="contribute.html">contribute one</a>.</p>
+          <div class="empty-state-icon">${activeSaved ? '★' : '🔍'}</div>
+          <h3>${activeSaved ? 'No saved prompts yet' : 'No prompts found'}</h3>
+          <p>${activeSaved ? 'Star a prompt to save it here.' : 'Try a different filter or <a href="contribute.html">contribute one</a>.'}</p>
         </div>`;
       return;
     }

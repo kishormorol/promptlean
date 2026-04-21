@@ -56,6 +56,11 @@
           <div class="sidebar-label">Tags</div>
           <div id="tag-cloud" class="tag-wrap"></div>
         </div>
+
+        <div class="sidebar-section">
+          <div class="sidebar-label">Saved</div>
+          <div id="saved-filter"></div>
+        </div>
       </aside>
 
       <!-- Main -->
@@ -65,6 +70,9 @@
           <span class="search-icon">🔍</span>
           <input type="search" class="search-input" id="search" placeholder="Search prompts..." autocomplete="off">
         </div>
+
+        <!-- Token budget filters -->
+        <div id="budget-filters" class="filter-row mb-4"></div>
 
         <div class="results-meta" id="results-meta"></div>
         <div class="grid-3" id="prompt-grid">

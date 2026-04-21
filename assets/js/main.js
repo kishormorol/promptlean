@@ -111,6 +111,39 @@ PL.variantBadge = (v) => {
 
 PL.tokenPill = (v, tokens) => `<span class="token-pill ${v === 'max_quality' ? 'quality' : v}">${tokens}t</span>`;
 
+/* ── Favorites ───────────────────────────────── */
+PL.getFavorites = () => {
+  try { return new Set(JSON.parse(localStorage.getItem('pl-favorites') || '[]')); }
+  catch { return new Set(); }
+};
+PL.isFavorite = (id) => PL.getFavorites().has(id);
+PL.toggleFavorite = (id) => {
+  const favs = PL.getFavorites();
+  favs.has(id) ? favs.delete(id) : favs.add(id);
+  localStorage.setItem('pl-favorites', JSON.stringify([...favs]));
+};
+PL.clickFav = (e, id) => {
+  e.preventDefault();
+  e.stopPropagation();
+  PL.toggleFavorite(id);
+  const isFav = PL.isFavorite(id);
+  document.querySelectorAll(`[data-fav="${id}"]`).forEach(el => {
+    el.classList.toggle('active', isFav);
+    el.title = isFav ? 'Remove from saved' : 'Save prompt';
+    el.textContent = isFav ? '★' : '☆';
+  });
+  if (typeof window.__onFavChange === 'function') window.__onFavChange();
+};
+
+/* ── Usage tracking ──────────────────────────── */
+PL.getCopyCount = (id) => {
+  try { return parseInt(localStorage.getItem(`pl-copies-${id}`) || '0', 10); }
+  catch { return 0; }
+};
+PL.trackCopy = (id) => {
+  localStorage.setItem(`pl-copies-${id}`, PL.getCopyCount(id) + 1);
+};
+
 /* ── Card rendering ──────────────────────────── */
 PL.renderCard = (p) => {
   const variants = Object.keys(p.variants);
@@ -123,6 +156,8 @@ PL.renderCard = (p) => {
   ).join('');
 
   const featuredBadge = p.featured ? '<span class="badge badge-featured">Featured</span>' : '';
+  const popularBadge = PL.getCopyCount(p.id) >= 10 ? '<span class="badge badge-popular">🔥 Popular</span>' : '';
+  const isFav = PL.isFavorite(p.id);
 
   return `
 <a class="card-link" href="${PL.BASE}prompt.html?id=${p.id}">
@@ -135,7 +170,9 @@ PL.renderCard = (p) => {
     <div class="card-meta">
       <span class="badge badge-cat">${p.category}</span>
       ${featuredBadge}
+      ${popularBadge}
       ${savings > 0 ? `<span class="text-xs text-3 ml-auto">⚡ ${savings}% leaner</span>` : ''}
+      <span class="fav-btn${isFav ? ' active' : ''}" data-fav="${p.id}" title="${isFav ? 'Remove from saved' : 'Save prompt'}" onclick="PL.clickFav(event,'${p.id}')">${isFav ? '★' : '☆'}</span>
     </div>
   </div>
 </a>`.trim();

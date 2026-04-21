@@ -1,0 +1,18 @@
+[
+  {
+    "id": "security-audit",
+    "label": "🔒 Security Audit",
+    "author": "community",
+    "description": "Focuses the review on security vulnerabilities, injection risks, and trust boundaries.",
+    "prompt": "Perform a security-focused code review. Check for:\n\n**Injection risks**: SQL injection, XSS, command injection, path traversal\n**Auth & access**: Missing auth checks, privilege escalation, insecure direct object references\n**Data exposure**: Secrets in code, excessive logging, unencrypted sensitive data\n**Trust boundaries**: Unvalidated input, unsafe deserialization, SSRF\n**Dependencies**: Known-vulnerable packages or unsafe usage patterns\n\nFor each issue: severity (Critical / High / Medium / Low), affected line(s), and a concrete fix.\n\n```\n[CODE]\n```",
+    "token_estimate": 107
+  },
+  {
+    "id": "tdd-lens",
+    "label": "🧪 TDD Lens",
+    "author": "community",
+    "description": "Reviews code from a test-driven development perspective — coverage, test quality, and untested edge cases.",
+    "prompt": "Review this code through a TDD lens:\n\n**Test coverage**: Which code paths, branches, and edge cases have no test?\n**Test quality**: Are existing tests assertions-rich or just checking 'it runs'?\n**Test isolation**: Are tests independent, or do they share state and break in sequence?\n**Missing cases**: What inputs, states, or error paths would expose a bug?\n\nSuggest 3–5 specific test cases to add, with the assertion each test would make.\n\n```\n[CODE]\n```",
+    "token_estimate": 97
+  }
+]

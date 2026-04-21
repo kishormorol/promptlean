@@ -77,6 +77,95 @@
 
     <div class="divider"></div>
 
+    <!-- Prompt Builder -->
+    <div class="mb-8">
+      <h2 style="font-size: 1.25rem; margin-bottom: 6px;">Prompt Builder</h2>
+      <p style="margin-bottom: 20px;">Fill in the form — the correct JSON is generated automatically. Copy it into <code class="mono">data/prompts.json</code>.</p>
+
+      <div class="card" style="display: flex; flex-direction: column; gap: 16px;">
+
+        <!-- Row 1: title + category -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div class="builder-field">
+            <label class="builder-label">Title</label>
+            <input class="builder-input" id="bf-title" placeholder="e.g. Write a SQL Migration" />
+          </div>
+          <div class="builder-field">
+            <label class="builder-label">Category</label>
+            <select class="builder-input" id="bf-category">
+              <option>Code</option>
+              <option>Data</option>
+              <option>Research</option>
+              <option>Writing</option>
+              <option>AI / ML</option>
+              <option>Productivity</option>
+              <option>Engineering</option>
+              <option>General Purpose</option>
+              <option>Well-being &amp; Mental Health</option>
+              <option>Safety &amp; Crisis Support</option>
+              <option>Supportive Conversation</option>
+              <option>Entertainment &amp; Creative</option>
+              <option>Education &amp; Tutoring</option>
+              <option>Career &amp; Professional Growth</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Row 2: tags + description -->
+        <div class="builder-field">
+          <label class="builder-label">Tags <span style="font-weight:400;color:var(--text-3);">(comma-separated, lowercase)</span></label>
+          <input class="builder-input" id="bf-tags" placeholder="e.g. sql, migration, database" />
+        </div>
+        <div class="builder-field">
+          <label class="builder-label">Description <span style="font-weight:400;color:var(--text-3);">(one sentence)</span></label>
+          <input class="builder-input" id="bf-desc" placeholder="What does this prompt do and when should someone use it?" />
+        </div>
+
+        <!-- Row 3: variants -->
+        <div style="display: grid; grid-template-columns: 1fr; gap: 12px;">
+          <div class="builder-field">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+              <label class="builder-label" style="margin:0;">⚡ Lean prompt</label>
+              <span class="builder-token-count" id="bf-lean-count">0t</span>
+            </div>
+            <textarea class="builder-input builder-textarea" id="bf-lean" placeholder="Shortest effective prompt. Use [PLACEHOLDER] for user content." rows="3"></textarea>
+          </div>
+          <div class="builder-field">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+              <label class="builder-label" style="margin:0;">⚖ Balanced prompt</label>
+              <span class="builder-token-count" id="bf-balanced-count">0t</span>
+            </div>
+            <textarea class="builder-input builder-textarea" id="bf-balanced" placeholder="Structured prompt with consistent format." rows="4"></textarea>
+          </div>
+          <div class="builder-field">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+              <label class="builder-label" style="margin:0;">★ Max Quality prompt</label>
+              <span class="builder-token-count" id="bf-quality-count">0t</span>
+            </div>
+            <textarea class="builder-input builder-textarea" id="bf-quality" placeholder="Full rubric for external deliverables or expert review." rows="6"></textarea>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Generated JSON output -->
+      <div class="prompt-block" style="margin-top: 16px;">
+        <div class="prompt-block-header">
+          <div class="prompt-block-meta">
+            <span class="badge badge-cat">Generated JSON</span>
+            <span style="font-size:0.75rem;color:var(--text-3);">model_notes &amp; benchmarks need manual completion</span>
+          </div>
+          <button class="copy-btn" id="copy-builder-btn" onclick="copyBuilderJson()">⧉ Copy</button>
+        </div>
+        <pre class="prompt-text" id="builder-output" style="max-height:360px;overflow-y:auto;">{
+  "id": "your-prompt-id",
+  ...
+}</pre>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
     <!-- Schema -->
     <div class="mb-8">
       <h2 style="font-size: 1.25rem; margin-bottom: 16px;">JSON Schema</h2>
@@ -169,6 +258,43 @@
       </div>
     </div>
 
+    <div class="divider"></div>
+
+    <!-- Community variants -->
+    <div class="mb-8" id="community">
+      <h2 style="font-size: 1.25rem; margin-bottom: 6px;">Community Variants</h2>
+      <p style="margin-bottom: 16px;">Have a specialized take on an existing prompt? Add it as a community variant — it shows up as an extra tab on the prompt page without replacing the standard ones.</p>
+
+      <div class="card mb-4">
+        <div style="font-weight: 600; margin-bottom: 10px; font-size: 0.9rem;">How it works</div>
+        <ol style="font-size: 0.875rem; color: var(--text-2); padding-left: 20px; line-height: 2.2;">
+          <li>Fork the repo and create <code class="mono">community/{prompt-id}.json</code></li>
+          <li>Add your variant(s) as a JSON array (schema below)</li>
+          <li>Open a PR — include example output from at least one model</li>
+        </ol>
+        <p style="font-size: 0.8125rem; color: var(--text-3); margin-top: 10px;">
+          Example: to add a variant for the <em>Code Review</em> prompt, create <code class="mono">community/code-review.json</code>.
+        </p>
+      </div>
+
+      <div class="prompt-block">
+        <div class="prompt-block-header">
+          <span class="badge badge-cat">community/{prompt-id}.json</span>
+          <button class="copy-btn" onclick="copyCommunitySchema()">⧉ Copy</button>
+        </div>
+        <pre class="prompt-text" id="community-schema">[
+  {
+    "id": "your-variant-id",         // kebab-case, unique within this prompt
+    "label": "🔒 Your Variant Name", // shown in the tab — keep it short
+    "author": "your-github-username",
+    "description": "One sentence: what does this variant optimize for?",
+    "prompt": "Your specialized prompt text. Use [PLACEHOLDER] for user content.",
+    "token_estimate": 95             // rough count; use chars/4 as approximation
+  }
+]</pre>
+      </div>
+    </div>
+
     <div style="text-align: center; padding: 20px 0;">
       <a href="https://github.com/kishormorol/promptlean" class="btn btn-primary btn-lg" target="_blank">Open GitHub →</a>
     </div>
@@ -198,6 +324,79 @@ window.copySchema = () => {
   const text = document.getElementById('schema-block').textContent;
   PL.copy(text);
 };
+window.copyCommunitySchema = () => {
+  const text = document.getElementById('community-schema').textContent;
+  PL.copy(text);
+};
+
+window.copyBuilderJson = () => {
+  const text = document.getElementById('builder-output').textContent;
+  PL.copy(text, document.getElementById('copy-builder-btn'));
+};
+
+(function initBuilder() {
+  const MODELS = ['gpt-5.4','claude-sonnet-4-6','claude-opus-4-6','gemini-3.1-pro','grok-4','llama-4-scout','mistral-large-3','o1'];
+
+  const toSlug = (s) => s.toLowerCase().replace(/[^a-z0-9\s-]/g,'').trim().replace(/\s+/g,'-');
+  const estimateTokens = (s) => Math.max(1, Math.ceil((s.trim().length || 0) / 4));
+
+  const updateCount = (textareaId, countId) => {
+    const text = document.getElementById(textareaId)?.value || '';
+    const el = document.getElementById(countId);
+    if (el) el.textContent = estimateTokens(text) + 't';
+  };
+
+  const generateJson = () => {
+    const title     = (document.getElementById('bf-title')?.value || '').trim();
+    const category  = document.getElementById('bf-category')?.value || 'Code';
+    const tagsRaw   = document.getElementById('bf-tags')?.value || '';
+    const desc      = (document.getElementById('bf-desc')?.value || '').trim();
+    const leanP     = document.getElementById('bf-lean')?.value || '';
+    const balP      = document.getElementById('bf-balanced')?.value || '';
+    const qualP     = document.getElementById('bf-quality')?.value || '';
+
+    const id   = toSlug(title) || 'your-prompt-id';
+    const tags = tagsRaw.split(',').map(t => t.trim().toLowerCase()).filter(Boolean);
+
+    const modelNotes = {};
+    MODELS.forEach(m => { modelNotes[m] = 'Add notes about how this model handles this prompt type.'; });
+
+    const benchmarks = {};
+    MODELS.forEach(m => { benchmarks[m] = { lean: 4, balanced: 4, max_quality: 5, best: 'balanced' }; });
+
+    const obj = {
+      id,
+      title:       title       || 'Your Prompt Title',
+      category,
+      tags:        tags.length ? tags : ['tag1', 'tag2'],
+      featured:    false,
+      description: desc        || 'One sentence describing what this prompt does and when to use it.',
+      model_notes: modelNotes,
+      benchmarks,
+      variants: {
+        lean:        { prompt: leanP || 'Your lean prompt here. Use [PLACEHOLDER] for user content.', token_estimate: estimateTokens(leanP || 'placeholder') },
+        balanced:    { prompt: balP  || 'Your balanced prompt here.',     token_estimate: estimateTokens(balP  || 'placeholder') },
+        max_quality: { prompt: qualP || 'Your max quality prompt here.',  token_estimate: estimateTokens(qualP || 'placeholder') }
+      }
+    };
+
+    return JSON.stringify(obj, null, 2);
+  };
+
+  const refresh = () => {
+    updateCount('bf-lean',     'bf-lean-count');
+    updateCount('bf-balanced', 'bf-balanced-count');
+    updateCount('bf-quality',  'bf-quality-count');
+    const out = document.getElementById('builder-output');
+    if (out) out.textContent = generateJson();
+  };
+
+  document.addEventListener('DOMContentLoaded', () => {
+    ['bf-title','bf-category','bf-tags','bf-desc','bf-lean','bf-balanced','bf-quality']
+      .forEach(id => document.getElementById(id)?.addEventListener('input', refresh));
+    refresh();
+  });
+})();
 </script>
 </body>
 </html>

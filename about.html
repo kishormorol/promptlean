@@ -116,6 +116,97 @@
 
     <div class="divider"></div>
 
+    <div class="mb-8" id="api">
+      <h2 style="font-size: 1.25rem; margin-bottom: 6px;">Use as an API</h2>
+      <p style="margin-bottom: 16px;">All prompts live in a single JSON file on GitHub. You can <code style="font-family: var(--font-mono); font-size: 0.85em;">fetch()</code> it directly in any app — no key, no auth, no rate limit.</p>
+
+      <div class="prompt-block mb-4">
+        <div class="prompt-block-header">
+          <span class="badge badge-cat">Endpoint</span>
+          <button class="copy-btn" onclick="PL.copy('https://raw.githubusercontent.com/kishormorol/promptlean/main/data/prompts.json')">⧉ Copy URL</button>
+        </div>
+        <pre class="prompt-text" style="color: var(--accent-light);">https://raw.githubusercontent.com/kishormorol/promptlean/main/data/prompts.json</pre>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+
+        <div class="prompt-block">
+          <div class="prompt-block-header">
+            <span class="badge badge-cat">JavaScript</span>
+            <button class="copy-btn" onclick="copySnippet('snippet-js')">⧉ Copy</button>
+          </div>
+          <pre class="prompt-text" id="snippet-js">const res = await fetch(
+  'https://raw.githubusercontent.com/kishormorol/promptlean/main/data/prompts.json'
+);
+const { prompts } = await res.json();
+
+// Get the lean variant of a specific prompt
+const codeReview = prompts.find(p => p.id === 'code-review');
+const leanPrompt = codeReview.variants.lean.prompt;
+console.log(leanPrompt); // "Review this code. Flag bugs..."</pre>
+        </div>
+
+        <div class="prompt-block">
+          <div class="prompt-block-header">
+            <span class="badge badge-cat">Python</span>
+            <button class="copy-btn" onclick="copySnippet('snippet-py')">⧉ Copy</button>
+          </div>
+          <pre class="prompt-text" id="snippet-py">import requests
+
+URL = "https://raw.githubusercontent.com/kishormorol/promptlean/main/data/prompts.json"
+prompts = requests.get(URL).json()["prompts"]
+
+# Find a prompt and pick the balanced variant
+review = next(p for p in prompts if p["id"] == "code-review")
+prompt_text = review["variants"]["balanced"]["prompt"]
+tokens      = review["variants"]["balanced"]["token_estimate"]
+print(f"{tokens} tokens: {prompt_text[:60]}...")</pre>
+        </div>
+
+        <div class="prompt-block">
+          <div class="prompt-block-header">
+            <span class="badge badge-cat">curl</span>
+            <button class="copy-btn" onclick="copySnippet('snippet-curl')">⧉ Copy</button>
+          </div>
+          <pre class="prompt-text" id="snippet-curl">curl -s https://raw.githubusercontent.com/kishormorol/promptlean/main/data/prompts.json \
+  | jq '.prompts[] | select(.id == "code-review") | .variants.lean.prompt'</pre>
+        </div>
+
+      </div>
+
+      <div class="card" style="margin-top: 16px;">
+        <div style="font-size: 0.875rem; font-weight: 600; margin-bottom: 10px;">Response shape</div>
+        <pre style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-2); line-height: 1.7; white-space: pre-wrap;">{
+  "prompts": [
+    {
+      "id":          string,   // kebab-case slug
+      "title":       string,
+      "category":    string,
+      "tags":        string[],
+      "featured":    boolean,
+      "description": string,
+      "model_notes": { [model]: string },
+      "benchmarks":  { [model]: { lean, balanced, max_quality: 1–5, best: string } },
+      "variants": {
+        "lean":        { "prompt": string, "token_estimate": number },
+        "balanced":    { "prompt": string, "token_estimate": number },
+        "max_quality": { "prompt": string, "token_estimate": number }
+      }
+    }
+  ],
+  "categories": string[],
+  "models":     string[]
+}</pre>
+      </div>
+
+      <p style="margin-top: 12px; font-size: 0.8125rem; color: var(--text-3);">
+        CORS: GitHub raw content is served with <code style="font-family: var(--font-mono); font-size: 0.85em;">access-control-allow-origin: *</code> — fetch works from any browser origin.
+        The file updates on every push to <code style="font-family: var(--font-mono); font-size: 0.85em;">main</code>. Cache-bust with a query string if you need fresh data.
+      </p>
+    </div>
+
+    <div class="divider"></div>
+
     <div style="text-align: center; padding: 20px 0;">
       <h2 style="margin-bottom: 10px;">Open source, MIT license</h2>
       <p style="margin-bottom: 20px; max-width: 480px; margin-left: auto; margin-right: auto;">PromptLean is fully open. Every prompt is in <code style="font-family: var(--font-mono); font-size: 0.85em;">data/prompts.json</code>. Fork it, use it, add to it.</p>
@@ -145,5 +236,11 @@
 
 <div id="toast"></div>
 <script src="assets/js/main.js"></script>
+<script>
+window.copySnippet = (elId) => {
+  const text = document.getElementById(elId)?.textContent || '';
+  PL.copy(text);
+};
+</script>
 </body>
 </html>
