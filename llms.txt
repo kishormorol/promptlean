@@ -1,6 +1,6 @@
 # PromptLean
 
-> PromptLean is a free, open-source library of 18 token-efficient prompts across 14 categories. Every prompt ships with three variants — Lean, Balanced, and Max Quality — with model notes and quality benchmarks for 8 frontier LLMs.
+> PromptLean is a free, open-source library of 70 token-efficient prompts across 14 categories. Every prompt ships with three variants — Lean, Balanced, and Max Quality — with model notes and quality benchmarks for 8 frontier LLMs.
 
 ## What it does
 
@@ -17,22 +17,22 @@ https://kishormorol.github.io/promptlean/
 
 https://github.com/kishormorol/promptlean
 
-## Categories
+## Categories (70 prompts)
 
-- Code: Code Review, Explain Code, Write Unit Tests
-- Data: Optimize SQL Query, Data Cleaning Plan
-- Research: Summarize Research Paper
-- Writing: Write a Technical Blog Post
-- AI / ML: LLM Evaluation Rubric
-- Productivity: Meeting Notes → Action Items
-- Engineering: System Design Review
-- General Purpose: Summarize Any Text
-- Well-being & Mental Health: Daily Reflection & Journaling
-- Safety & Crisis Support: Compassionate Crisis Response
-- Supportive Conversation: Active Listening & Emotional Support
-- Entertainment & Creative: Short Story Generator
-- Education & Tutoring: Explain Any Concept
-- Career & Professional Growth: Resume Review, Interview Preparation Coach
+- Code (10): Code Review, Explain Code, Write Unit Tests, Debug & Fix a Bug, Refactor Code, Write Code Documentation, Generate Regex, Translate Code, Developer Relations Consultant, Cybersecurity Strategy Advisor
+- Data (8): Optimize SQL Query, Data Cleaning Plan, EDA Plan, Statistical Analysis Advisor, Excel Formula Specialist, Unstructured Text to JSON, Annual Report Analyst, Data Visualization Advisor
+- Research (4): Summarize Research Paper, Literature Review, Debate Both Sides, Venture Capital Analyst
+- Writing (6): Write a Technical Blog Post, Write API Docs, Cold Email, Executive Summary, Ad Copy Generator, Social Media Post Optimizer
+- AI / ML (2): LLM Evaluation Rubric, System Prompt Writer
+- Productivity (7): Meeting Notes → Action Items, Weekly Planner, Email Reply, Decision Framework, Startup Idea Generator, Personal Finance Advisor, Legal Contract Reviewer
+- Engineering (7): System Design Review, Product Requirements Document, Incident Postmortem, Architecture Decision Record, IT Solution Architect, UX/UI Design Reviewer, Software Project Planner
+- General Purpose (6): Summarize Any Text, Brainstorm Ideas, Explain Like I'm 5, Give Feedback, Fallacy Finder, Product Critique & Feedback
+- Well-being & Mental Health (3): Daily Reflection & Journaling Guide, Stress Reframe, Goal Setting
+- Safety & Crisis Support (1): Compassionate Crisis Response
+- Supportive Conversation (1): Active Listening & Emotional Support
+- Entertainment & Creative (3): Short Story Generator, Poem Generator, Character Creator
+- Education & Tutoring (6): Explain Any Concept, Socratic Tutoring, Generate Practice Questions, Lesson Plan, Study Guide, Word Etymology Explorer
+- Career & Professional Growth (6): Resume Review, Interview Preparation Coach, Cover Letter, LinkedIn Post, Salary Negotiation, Performance Review
 
 ## Models covered
 

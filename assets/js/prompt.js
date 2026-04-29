@@ -34,6 +34,45 @@ document.addEventListener('DOMContentLoaded', async () => {
   const qualT = prompt.variants.max_quality?.token_estimate;
   const savings = leanT && qualT ? Math.round((1 - leanT / qualT) * 100) : 0;
 
+  const sourceBlock = prompt.source ? (() => {
+    const s = prompt.source;
+    const licenseLabel = s.license || 'Open source';
+    return `
+    <div style="
+      margin-top: 14px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    ">
+      <span style="color: var(--text-2);">📄 Adapted from</span>
+      <a href="${s.url}" target="_blank" rel="noopener"
+         style="color: var(--accent); font-weight: 600; text-decoration: none;"
+         onmouseover="this.style.textDecoration='underline'"
+         onmouseout="this.style.textDecoration='none'">
+        ${escapeHtml(s.name)}${s.author ? ` by ${escapeHtml(s.author)}` : ''}
+      </a>
+      <span style="
+        padding: 2px 8px;
+        border-radius: 99px;
+        background: var(--surface-3);
+        color: var(--text-2);
+        font-size: 0.72rem;
+      ">${escapeHtml(licenseLabel)}</span>
+      <a href="${PL.BASE}ATTRIBUTION.md" target="_blank" rel="noopener"
+         style="color: var(--text-3); font-size: 0.72rem; margin-left: auto; text-decoration: none;"
+         onmouseover="this.style.textDecoration='underline'"
+         onmouseout="this.style.textDecoration='none'">
+        Full attribution →
+      </a>
+    </div>`;
+  })() : '';
+
   document.getElementById('prompt-header').innerHTML = `
     <div class="flex-center gap-2 mb-3 flex-wrap">
       <span class="badge badge-cat">${prompt.category}</span>
@@ -44,7 +83,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     <p style="font-size: 1.0625rem; max-width: 680px;">${prompt.description}</p>
     <div class="flex-center gap-2 mt-3 flex-wrap">
       ${prompt.tags.map(t => `<a href="browse.html?tag=${t}" class="tag">${t}</a>`).join('')}
-    </div>`;
+    </div>
+    ${sourceBlock}`;
 
   // ── State ────────────────────────────────────────────────────────
   const stdVariants = Object.keys(prompt.variants);
@@ -542,11 +582,6 @@ function computeDiff(a, b) {
   return result;
 }
 
-/* ── Text helpers ────────────────────────────── */
-function escapeHtml(str) {
-  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}
-
-function highlightPrompt(str) {
-  return escapeHtml(str).replace(/\[([A-Z_/ ]+)\]/g, '<span class="ph">[$1]</span>');
-}
+/* escapeHtml / highlightPrompt live in main.js as PL.escapeHtml / PL.highlightPrompt */
+const escapeHtml = (s) => PL.escapeHtml(s);
+const highlightPrompt = (s) => PL.highlightPrompt(s);

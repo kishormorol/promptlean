@@ -181,6 +181,13 @@ PL.renderCard = (p) => {
 /* ── URL params ──────────────────────────────── */
 PL.param = (key) => new URLSearchParams(location.search).get(key);
 
+/* ── Text helpers (shared by prompt.js & compare.js) ─────────────── */
+PL.escapeHtml = (str) =>
+  str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+PL.highlightPrompt = (str) =>
+  PL.escapeHtml(str).replace(/\[([A-Z_/ ]+)\]/g, '<span class="ph">[$1]</span>');
+
 /* ── Init ────────────────────────────────────── */
 PL.init = () => {
   PL.initTheme();

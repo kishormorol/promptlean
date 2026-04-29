@@ -101,10 +101,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   render();
 });
 
-function escapeHtml(str) {
-  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
-
-function highlightPrompt(str) {
-  return escapeHtml(str).replace(/\[([A-Z_/ ]+)\]/g, '<span class="ph">[$1]</span>');
-}
+/* escapeHtml / highlightPrompt live in main.js as PL.escapeHtml / PL.highlightPrompt */
+const escapeHtml = (s) => PL.escapeHtml(s);
+const highlightPrompt = (s) => PL.highlightPrompt(s);
