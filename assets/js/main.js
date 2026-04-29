@@ -188,12 +188,33 @@ PL.escapeHtml = (str) =>
 PL.highlightPrompt = (str) =>
   PL.escapeHtml(str).replace(/\[([A-Z_/ ]+)\]/g, '<span class="ph">[$1]</span>');
 
+/* ── GitHub stars ────────────────────────────── */
+PL.fetchGithubStars = async () => {
+  const el = document.getElementById('gh-stars');
+  if (!el) return;
+  try {
+    const cached = sessionStorage.getItem('pl-gh-stars');
+    if (cached) { el.textContent = cached; return; }
+    const res = await fetch('https://api.github.com/repos/kishormorol/promptlean', {
+      headers: { Accept: 'application/vnd.github+json' }
+    });
+    if (!res.ok) return;
+    const { stargazers_count } = await res.json();
+    const label = stargazers_count >= 1000
+      ? (stargazers_count / 1000).toFixed(1).replace(/\.0$/, '') + 'k'
+      : String(stargazers_count);
+    el.textContent = label;
+    sessionStorage.setItem('pl-gh-stars', label);
+  } catch { /* silently ignore — button still works as a link */ }
+};
+
 /* ── Init ────────────────────────────────────── */
 PL.init = () => {
   PL.initTheme();
   PL.setActiveNav();
   const themeBtn = document.getElementById('theme-toggle');
   if (themeBtn) themeBtn.addEventListener('click', PL.toggleTheme);
+  PL.fetchGithubStars();
 };
 
 document.addEventListener('DOMContentLoaded', PL.init);

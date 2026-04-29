@@ -224,6 +224,8 @@ nav {
   background: rgba(245,158,11,0.08);
 }
 .github-star-btn svg { width: 14px; height: 14px; flex-shrink: 0; display: block; }
+.gh-star-sep { opacity: 0.35; margin: 0 2px; }
+#gh-stars:empty { display: none; }
 
 /* ── Buttons ─────────────────────────────────── */
 .btn {
