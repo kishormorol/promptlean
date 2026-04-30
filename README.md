@@ -8,7 +8,7 @@ Every prompt ships with Lean, Balanced, and Max Quality variants.
 [![Live Site](https://img.shields.io/badge/Live%20Site-kishormorol.github.io%2Fpromptlean-7c3aed?style=for-the-badge&logo=github-pages&logoColor=white)](https://kishormorol.github.io/promptlean/)
 [![License](https://img.shields.io/badge/License-MIT-22c55e?style=for-the-badge)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-3b82f6?style=for-the-badge&logo=github)](https://github.com/kishormorol/promptlean/blob/main/contribute.html)
-[![Prompts](https://img.shields.io/badge/Prompts-70-f59e0b?style=for-the-badge)](https://kishormorol.github.io/promptlean/browse.html)
+[![Prompts](https://img.shields.io/badge/Prompts-100-f59e0b?style=for-the-badge)](https://kishormorol.github.io/promptlean/browse.html)
 [![Categories](https://img.shields.io/badge/Categories-14-ec4899?style=for-the-badge)](https://kishormorol.github.io/promptlean/browse.html)
 
 </div>
@@ -17,7 +17,7 @@ Every prompt ships with Lean, Balanced, and Max Quality variants.
 
 ## What is PromptLean?
 
-PromptLean is a curated, open-source library of prompts across 14 categories — from code review and SQL optimization to creative writing, journaling, interview prep, and emotional support.
+PromptLean is a curated, open-source library of 100 prompts across 14 categories — from code review and SQL optimization to creative writing, journaling, interview prep, and emotional support.
 
 The key idea: **most prompts are overengineered**. You don't need 200 tokens of preamble for a code review. But sometimes you do need the full rubric. PromptLean gives you the right prompt for the right moment.
 
@@ -70,26 +70,47 @@ CORS is open (`access-control-allow-origin: *`). Full docs on the [About page](h
 
 ---
 
+## What's New
+
+**30 new prompts** added in the latest expansion (70 → 100):
+
+| Category | New Prompts |
+|----------|------------|
+| Code | Git Commit Message Generator · Code Documentation Generator · Dependency Audit · Deep Code Explainer |
+| Writing | Email Newsletter Writer · SEO Content Optimizer · Press Release Writer · FAQ Generator · Speech Writer |
+| Engineering | REST API Endpoint Designer · Changelog Writer · Security Threat Model · Terraform / IaC Reviewer |
+| Research | User Persona Creator · Competitive Analysis · A/B Test Designer · Research Hypothesis Generator |
+| Productivity | OKR Writer · Sprint Retrospective Facilitator · Product Launch Plan · Meeting Agenda Builder |
+| Education & Tutoring | Learning Roadmap Creator · Book Club Discussion Guide · Mental Model Explainer |
+| AI / ML | Prompt Optimizer · System Prompt Debugger |
+| Data | Data Storytelling · CSV Data Analyzer |
+| Career & Professional Growth | Negotiation Coach |
+| General Purpose | Travel Itinerary Planner |
+
+→ **[Browse all new prompts](https://kishormorol.github.io/promptlean/browse.html)**
+
+---
+
 ## Prompts
 
-70 prompts across 14 categories:
+100 prompts across 14 categories:
 
-| Category | Prompts |
-|----------|---------|
-| Code | Code Review · Explain Code · Write Unit Tests · Debug & Fix a Bug · Refactor Code · Write Code Documentation · Generate Regex · Translate Code · Developer Relations Consultant · Cybersecurity Strategy Advisor |
-| Data | Optimize SQL Query · Data Cleaning Plan · EDA Plan · Statistical Analysis Advisor · Excel Formula Specialist · Unstructured Text to JSON · Annual Report Analyst · Data Visualization Advisor |
-| Research | Summarize Research Paper · Literature Review · Debate Both Sides · Venture Capital Analyst |
-| Writing | Write a Technical Blog Post · Write API Docs · Cold Email · Executive Summary · Ad Copy Generator · Social Media Post Optimizer |
-| AI / ML | LLM Evaluation Rubric · System Prompt Writer |
-| Productivity | Meeting Notes → Action Items · Weekly Planner · Email Reply · Decision Framework · Startup Idea Generator · Personal Finance Advisor · Legal Contract Reviewer |
-| Engineering | System Design Review · Product Requirements Document · Incident Postmortem · Architecture Decision Record · IT Solution Architect · UX/UI Design Reviewer · Software Project Planner |
-| General Purpose | Summarize Any Text · Brainstorm Ideas · Explain Like I'm 5 · Give Feedback · Fallacy Finder · Product Critique & Feedback |
-| Well-being & Mental Health | Daily Reflection & Journaling Guide · Stress Reframe · Goal Setting |
-| Safety & Crisis Support | Compassionate Crisis Response |
-| Supportive Conversation | Active Listening & Emotional Support |
-| Entertainment & Creative | Short Story Generator · Poem Generator · Character Creator |
-| Education & Tutoring | Explain Any Concept · Socratic Tutoring · Generate Practice Questions · Lesson Plan · Study Guide · Word Etymology Explorer |
-| Career & Professional Growth | Resume Review · Interview Preparation Coach · Cover Letter · LinkedIn Post · Salary Negotiation · Performance Review |
+| Category | Count | Prompts |
+|----------|-------|---------|
+| Code | 14 | Code Review · Explain Code to a Junior Dev · Write Unit Tests · Debug & Fix a Bug · Refactor Code · Write Code Documentation · Generate a Regular Expression · Translate Code to Another Language · Developer Relations Consultant · Cybersecurity Strategy Advisor · Git Commit Message Generator · Code Documentation Generator · Dependency Audit · Deep Code Explainer |
+| Data | 10 | Optimize a SQL Query · Data Cleaning Plan · Exploratory Data Analysis Plan · Statistical Analysis Advisor · Annual Report Analyst (10-K) · Excel Formula Specialist · Unstructured Text to JSON · Data Visualization Advisor · Data Storytelling · CSV Data Analyzer |
+| Writing | 11 | Write a Technical Blog Post · Write API Documentation · Write a Cold Email · Write an Executive Summary · Ad Copy Generator · Social Media Post Optimizer · Email Newsletter Writer · SEO Content Optimizer · Press Release Writer · FAQ Generator · Speech Writer |
+| Productivity | 11 | Meeting Notes → Action Items · Weekly Planner & Prioritization · Draft a Professional Email Reply · Decision Framework · Startup Idea Generator · Personal Finance Advisor · Legal Contract Reviewer · OKR Writer · Sprint Retrospective Facilitator · Product Launch Plan · Meeting Agenda Builder |
+| Engineering | 11 | System Design Review · Write a Product Requirements Document · Incident Postmortem · Architecture Decision Record (ADR) · IT Solution Architect · UX/UI Design Reviewer · Software Project Planner · REST API Endpoint Designer · Changelog Writer · Security Threat Model · Terraform / IaC Reviewer |
+| Research | 8 | Summarize a Research Paper · Literature Review Synthesis · Debate Both Sides · Venture Capital Analyst · User Persona Creator · Competitive Analysis · A/B Test Designer · Research Hypothesis Generator |
+| Education & Tutoring | 9 | Explain Any Concept · Socratic Tutoring Session · Generate Practice Questions · Lesson Plan Generator · Study Guide Creator · Word Etymology Explorer · Learning Roadmap Creator · Book Club Discussion Guide · Mental Model Explainer |
+| Career & Professional Growth | 7 | Resume Review · Interview Preparation Coach · Write a Cover Letter · Write a LinkedIn Post · Salary Negotiation Script · Performance Review Self-Assessment · Negotiation Coach |
+| General Purpose | 7 | Summarize Any Text · Brainstorm Ideas · Explain Like I'm 5 (ELI5) · Give Constructive Feedback · Fallacy Finder · Product Critique & Feedback · Travel Itinerary Planner |
+| AI / ML | 4 | LLM Evaluation Rubric · Write a System Prompt · Prompt Optimizer · System Prompt Debugger |
+| Well-being & Mental Health | 3 | Daily Reflection & Journaling Guide · Stress Relief & Reframing · Goal Setting & Action Plan |
+| Entertainment & Creative | 3 | Short Story Generator · Poem Generator · Character Creator |
+| Safety & Crisis Support | 1 | Compassionate Crisis Response |
+| Supportive Conversation | 1 | Active Listening & Emotional Support |
 
 → **[Browse all prompts](https://kishormorol.github.io/promptlean/browse.html)**
 

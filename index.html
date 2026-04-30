@@ -128,6 +128,18 @@
 
     <div class="divider"></div>
 
+    <!-- What's New -->
+    <div class="section-header mb-6">
+      <h2 class="section-title">🆕 What's New</h2>
+      <span style="font-size:0.85rem;color:var(--text-3);">30 new prompts added — library expanded to 100</span>
+    </div>
+    <div id="whats-new-grid" style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:2rem;"></div>
+    <div style="text-align:center;margin-bottom:2rem;">
+      <a href="browse.html" class="btn btn-ghost btn-sm">Browse all 100 prompts →</a>
+    </div>
+
+    <div class="divider"></div>
+
     <!-- How it works -->
     <div class="mb-8">
       <h2 class="section-title mb-6">Three variants. One job.</h2>
@@ -210,6 +222,37 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Featured grid
     const featured = prompts.filter(p => p.featured).slice(0, 3);
     document.getElementById('featured-grid').innerHTML = featured.map(PL.renderCard).join('');
+
+    // What's New chips
+    const newIds = [
+      'git-commit-message','code-documentation-generator','dependency-audit','code-explainer-deep',
+      'newsletter-writer','seo-optimizer','press-release','faq-generator','speech-writer',
+      'api-endpoint-designer','changelog-writer','security-threat-model','terraform-reviewer',
+      'user-persona','competitive-analysis','a-b-test-designer','hypothesis-generator',
+      'okr-writer','retrospective-facilitator','product-launch-plan','meeting-agenda-builder',
+      'learning-roadmap','book-club-guide','mental-model-explainer',
+      'prompt-optimizer','system-prompt-debugger',
+      'data-storytelling','csv-data-analyzer',
+      'negotiation-coach','travel-planner'
+    ];
+    const newPrompts = newIds.map(id => prompts.find(p => p.id === id)).filter(Boolean);
+    const catColors = {
+      'Code':'#6366f1','Engineering':'#0ea5e9','Writing':'#f59e0b','Research':'#10b981',
+      'Productivity':'#8b5cf6','Education & Tutoring':'#ec4899','AI / ML':'#f97316',
+      'Data':'#14b8a6','Career & Professional Growth':'#84cc16','General Purpose':'#94a3b8'
+    };
+    document.getElementById('whats-new-grid').innerHTML = newPrompts.map(p => {
+      const color = catColors[p.category] || '#94a3b8';
+      return `<a href="prompt.html?id=${p.id}" style="
+        display:inline-flex;align-items:center;gap:6px;padding:6px 14px;
+        border-radius:999px;border:1px solid ${color}33;background:${color}11;
+        color:var(--text-1);text-decoration:none;font-size:0.8rem;font-weight:500;
+        transition:background 0.15s;white-space:nowrap;
+      " onmouseover="this.style.background='${color}22'" onmouseout="this.style.background='${color}11'">
+        <span style="width:7px;height:7px;border-radius:50%;background:${color};flex-shrink:0;"></span>
+        ${p.title}
+      </a>`;
+    }).join('');
   } catch (err) {
     PL.showError('featured-grid', err.message);
   }
