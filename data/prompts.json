@@ -8903,6 +8903,1767 @@
           "token_estimate": 199
         }
       }
+    },
+    {
+      "id": "fine-tuning-dataset-designer",
+      "title": "Fine-Tuning Dataset Designer",
+      "category": "AI / ML",
+      "tags": [
+        "fine-tuning",
+        "dataset",
+        "LLM",
+        "training data",
+        "JSONL"
+      ],
+      "featured": true,
+      "description": "Generate structured training examples for fine-tuning an LLM on a custom task. Outputs prompt/completion pairs with quality guidelines.",
+      "model_notes": {
+        "gpt-5.4": "Max quality produces consistent, diverse training pairs. Excellent at generating edge-case coverage.",
+        "claude-sonnet-4-6": "Best everyday choice — strong instruction-following produces well-formatted JSONL examples. Balanced is the sweet spot.",
+        "claude-opus-4-6": "Max quality with extended thinking surfaces subtle distribution gaps in training data. Use for high-stakes fine-tuning.",
+        "gemini-3.1-pro": "Balanced works well. Large context handles extensive task definitions without truncation.",
+        "grok-4": "Balanced recommended. Can generate diverse real-world-style examples with web-grounded variation.",
+        "llama-4-scout": "Balanced recommended. Lean can produce repetitive examples — vary seeds manually.",
+        "mistral-large-3": "Solid structured output in balanced. Efficient for large dataset generation jobs.",
+        "o1": "Max quality is worth it — o1 reasons about distribution coverage and common failure modes before generating."
+      },
+      "benchmarks": {
+        "gpt-5.4": {
+          "lean": 3,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "balanced"
+        },
+        "claude-sonnet-4-6": {
+          "lean": 4,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "balanced"
+        },
+        "claude-opus-4-6": {
+          "lean": 3,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "max_quality"
+        },
+        "gemini-3.1-pro": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 5,
+          "best": "balanced"
+        },
+        "grok-4": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "llama-4-scout": {
+          "lean": 2,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "mistral-large-3": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "o1": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 5,
+          "best": "max_quality"
+        }
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Generate 10 prompt/completion training pairs for fine-tuning a model to do: [TASK]. Format as JSONL.",
+          "token_estimate": 22
+        },
+        "balanced": {
+          "prompt": "Create 20 fine-tuning training examples for the following task:\n\nTask: [TASK]\nDesired output style: [TONE / FORMAT / LENGTH]\nDomain: [DOMAIN]\n\nFor each example:\n- Write a realistic user prompt\n- Write the ideal completion (matching the desired style)\n- Include 5 easy, 10 typical, and 5 challenging examples\n\nFormat as JSONL: {\"prompt\": \"...\", \"completion\": \"...\"}",
+          "token_estimate": 87
+        },
+        "max_quality": {
+          "prompt": "You are a machine learning engineer designing a fine-tuning dataset. Your goal is to maximize training signal coverage and minimize redundancy.\n\nTask to fine-tune for: [TASK]\nBase model: [MODEL_NAME]\nDesired output style: [TONE / FORMAT / CONSTRAINTS]\nDomain: [DOMAIN]\nKnown failure modes of the base model: [WHAT IT CURRENTLY DOES WRONG]\n\n## Dataset Design Plan\nBefore generating examples, outline:\n- Core capability dimensions to cover\n- Edge cases that must be represented\n- Negative examples (what NOT to do) to include\n- Distribution split (easy / typical / hard / adversarial)\n\n## Training Examples\nGenerate 30 examples across the planned distribution:\n- 5 easy canonical examples\n- 12 typical real-world examples\n- 8 challenging / edge-case examples\n- 5 adversarial examples (inputs designed to trigger the base model's failure modes)\n\nFor adversarial examples, briefly note which failure mode they target.\n\nFormat as JSONL: {\"prompt\": \"...\", \"completion\": \"...\", \"difficulty\": \"easy|typical|hard|adversarial\"}\n\n## Quality Checklist\nAfter generating, flag any examples that:\n- Are too similar to each other (>80% semantic overlap)\n- Have ambiguous completions\n- Contain information that may be outdated",
+          "token_estimate": 243
+        }
+      }
+    },
+    {
+      "id": "prompt-chain-architect",
+      "title": "Prompt Chain Architect",
+      "category": "AI / ML",
+      "tags": [
+        "prompt engineering",
+        "chaining",
+        "multi-step",
+        "agents",
+        "pipeline"
+      ],
+      "featured": false,
+      "description": "Design a multi-step prompt chain for complex AI tasks. Decomposes goals into sequential or parallel steps with clear handoffs.",
+      "model_notes": {
+        "gpt-5.4": "Max quality produces well-reasoned chains with clear error-handling steps. Excellent at conditional branching.",
+        "claude-sonnet-4-6": "Strong meta-reasoning makes this a top pick. All variants produce clean, actionable chain designs.",
+        "claude-opus-4-6": "Best for complex agentic chains. Extended thinking surfaces subtle dependency issues between steps.",
+        "gemini-3.1-pro": "Balanced works well. Large context useful for documenting long chains with many steps.",
+        "grok-4": "Balanced recommended. Good at designing chains that incorporate web-retrieval steps.",
+        "llama-4-scout": "Balanced recommended. Lean can skip error-handling and fallback steps.",
+        "mistral-large-3": "Balanced produces structured output reliably. Suitable for production pipeline documentation.",
+        "o1": "Lean is surprisingly strong — o1 reasons through dependencies internally before outputting the chain."
+      },
+      "benchmarks": {
+        "gpt-5.4": {
+          "lean": 3,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "balanced"
+        },
+        "claude-sonnet-4-6": {
+          "lean": 4,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "balanced"
+        },
+        "claude-opus-4-6": {
+          "lean": 3,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "max_quality"
+        },
+        "gemini-3.1-pro": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "grok-4": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "llama-4-scout": {
+          "lean": 2,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "mistral-large-3": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "o1": {
+          "lean": 4,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "lean"
+        }
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Design a prompt chain to accomplish: [GOAL]. List each step, its input, and its output.",
+          "token_estimate": 18
+        },
+        "balanced": {
+          "prompt": "Design a prompt chain for the following goal:\n\nGoal: [GOAL]\nAvailable tools/APIs: [TOOLS]\nConstraints: [LATENCY / COST / RELIABILITY REQUIREMENTS]\n\nFor each step provide:\n- Step name and purpose\n- Input (from user or previous step)\n- Prompt template\n- Expected output format\n- What to do on failure\n\nNote any steps that can run in parallel.",
+          "token_estimate": 85
+        },
+        "max_quality": {
+          "prompt": "You are an AI systems architect. Design a production-ready prompt chain for the following:\n\nGoal: [GOAL]\nUser input: [WHAT THE USER PROVIDES]\nExpected final output: [WHAT THE USER RECEIVES]\nAvailable tools/APIs: [LIST TOOLS]\nConstraints: [LATENCY / COST / ACCURACY TRADEOFFS]\n\n## Decomposition\nBreak the goal into atomic sub-tasks. For each, note:\n- Can it run in parallel with other steps?\n- Does it require a tool call or pure LLM reasoning?\n- What's the failure mode and recovery strategy?\n\n## Chain Design\nFor each step:\n- **Step N — [Name]**\n- Purpose:\n- Input format:\n- Prompt template: (full prompt with [PLACEHOLDERS])\n- Output format: (JSON schema or description)\n- Validation: (how to verify the output before passing to next step)\n- Fallback: (what to do if this step fails)\n\n## Execution Graph\nDraw the dependency graph (ASCII or mermaid notation).\n\n## Token Budget\nEstimate total tokens per chain execution: [lean path] / [full path]\n\n## Risk Analysis\nTop 3 ways this chain could produce wrong or harmful outputs.",
+          "token_estimate": 220
+        }
+      }
+    },
+    {
+      "id": "rag-query-optimizer",
+      "title": "RAG Query Optimizer",
+      "category": "AI / ML",
+      "tags": [
+        "RAG",
+        "retrieval",
+        "embeddings",
+        "semantic search",
+        "query rewriting"
+      ],
+      "featured": false,
+      "description": "Rewrite and expand user queries to improve retrieval recall in RAG systems. Generates HyDE variants, sub-queries, and keyword expansions.",
+      "model_notes": {
+        "gpt-5.4": "Excellent at generating semantically diverse query variants. Max quality covers rare terminology well.",
+        "claude-sonnet-4-6": "Top choice — balanced produces diverse, high-quality rewrites efficiently. Strong domain vocabulary.",
+        "claude-opus-4-6": "Max quality excels at technical domain query expansion. Worth it for specialized corpora.",
+        "gemini-3.1-pro": "Balanced recommended. Handles multilingual query expansion particularly well.",
+        "grok-4": "Balanced works well. Real-time knowledge helps with queries about recent topics.",
+        "llama-4-scout": "Balanced recommended. Lean can produce superficially similar rewrites with low diversity.",
+        "mistral-large-3": "Efficient for high-volume query rewriting. Balanced is reliable and fast.",
+        "o1": "Lean is sufficient — o1 naturally reasons about semantic coverage without extra instruction."
+      },
+      "benchmarks": {
+        "gpt-5.4": {
+          "lean": 4,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "balanced"
+        },
+        "claude-sonnet-4-6": {
+          "lean": 4,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "balanced"
+        },
+        "claude-opus-4-6": {
+          "lean": 3,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "max_quality"
+        },
+        "gemini-3.1-pro": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "grok-4": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "llama-4-scout": {
+          "lean": 2,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "mistral-large-3": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "o1": {
+          "lean": 4,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "lean"
+        }
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Rewrite this query 5 ways to improve retrieval recall in a vector search system:\n\nOriginal query: [QUERY]",
+          "token_estimate": 22
+        },
+        "balanced": {
+          "prompt": "Optimize the following query for a RAG retrieval system:\n\nOriginal query: [QUERY]\nDocument corpus: [DESCRIPTION OF YOUR DATA]\nRetrieval method: [VECTOR / BM25 / HYBRID]\n\nGenerate:\n1. 3 semantic rewrites (different phrasing, same intent)\n2. 3 sub-queries (decompose into smaller retrievable facts)\n3. 5 keyword expansions (synonyms, related terms, abbreviations)\n4. 1 HyDE variant (a hypothetical answer that would appear in a relevant document)",
+          "token_estimate": 95
+        },
+        "max_quality": {
+          "prompt": "You are a retrieval engineer optimizing queries for a production RAG system.\n\nOriginal user query: [QUERY]\nCorpus description: [WHAT YOUR DOCUMENTS CONTAIN]\nRetrieval stack: [EMBEDDING MODEL / BM25 / HYBRID]\nKnown retrieval gaps: [QUERY TYPES THAT UNDERPERFORM]\n\n## Query Analysis\n- Intent: (informational / navigational / comparative / procedural)\n- Ambiguities: (what could be interpreted multiple ways?)\n- Missing context: (what does the user assume you know?)\n\n## Rewritten Queries\n### Semantic Rewrites (5)\nDifferent phrasings with the same intent — cover formal/informal register, synonyms, and domain jargon.\n\n### Sub-Query Decomposition (3-5)\nBreak the query into atomic facts that can be retrieved independently. Combine their results for the final answer.\n\n### HyDE Variants (2)\nWrite hypothetical document snippets that a relevant source would contain. Use these as retrieval queries.\n\n### Keyword Expansion\n- Synonyms: []\n- Abbreviations/acronyms: []\n- Related entities: []\n- Negative terms to filter: []\n\n## Retrieval Strategy Recommendation\nGiven the query type and corpus, recommend: vector-only / BM25-only / hybrid, and explain why.\n\n## Expected Hard Cases\nList 2 documents that might be incorrectly retrieved (false positives) and suggest a re-ranking signal to down-weight them.",
+          "token_estimate": 235
+        }
+      }
+    },
+    {
+      "id": "ai-product-feature-spec",
+      "title": "AI Feature Product Spec",
+      "category": "AI / ML",
+      "tags": [
+        "product spec",
+        "AI features",
+        "LLM integration",
+        "PRD",
+        "product management"
+      ],
+      "featured": false,
+      "description": "Write a product requirements document for an AI-powered feature. Covers model selection, latency/cost tradeoffs, evals, and fallback design.",
+      "model_notes": {
+        "gpt-5.4": "Balanced produces thorough, well-structured PRDs. Strong at articulating success metrics for AI features.",
+        "claude-sonnet-4-6": "Excellent for this — naturally writes in clear product language with actionable acceptance criteria.",
+        "claude-opus-4-6": "Max quality surfaces subtle edge cases and safety considerations often missed in early specs.",
+        "gemini-3.1-pro": "Balanced works well. Good at connecting AI feature specs to business outcomes.",
+        "grok-4": "Balanced recommended. Tends to write specs that are direct and opinionated — useful for early-stage.",
+        "llama-4-scout": "Balanced recommended. Lean misses eval and fallback sections.",
+        "mistral-large-3": "Balanced produces clean structured output. Reliable for standard feature specs.",
+        "o1": "Max quality is the right call — writing specs for AI features is a reasoning task where o1 catches gaps."
+      },
+      "benchmarks": {
+        "gpt-5.4": {
+          "lean": 3,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "balanced"
+        },
+        "claude-sonnet-4-6": {
+          "lean": 4,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "balanced"
+        },
+        "claude-opus-4-6": {
+          "lean": 3,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "max_quality"
+        },
+        "gemini-3.1-pro": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 5,
+          "best": "balanced"
+        },
+        "grok-4": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "llama-4-scout": {
+          "lean": 2,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "mistral-large-3": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "o1": {
+          "lean": 3,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "max_quality"
+        }
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Write a brief product spec for this AI feature: [FEATURE]. Cover: problem, solution, model choice, success metric, and risks.",
+          "token_estimate": 24
+        },
+        "balanced": {
+          "prompt": "Write a product requirements document for the following AI feature:\n\nFeature: [FEATURE NAME AND DESCRIPTION]\nTarget users: [WHO USES THIS]\nBusiness goal: [WHAT WE'RE TRYING TO ACHIEVE]\n\nCover:\n- Problem statement and user pain\n- Proposed solution and user flow\n- Model/approach recommendation with rationale\n- Latency and cost targets\n- Evaluation criteria (how we know it's working)\n- Failure modes and fallback behavior\n- Out of scope (what this does NOT do)",
+          "token_estimate": 104
+        },
+        "max_quality": {
+          "prompt": "You are a senior PM and AI engineer writing a production feature spec.\n\nFeature: [FEATURE NAME]\nDescription: [WHAT IT DOES]\nTarget users: [PERSONA]\nBusiness goal: [OKR OR METRIC THIS SUPPORTS]\nTechnical constraints: [STACK / BUDGET / LATENCY REQUIREMENTS]\n\n## Problem Statement\nUser pain, frequency, current workaround, and cost of status quo.\n\n## Proposed Solution\n- User-facing behavior (UX narrative, not implementation)\n- Example interaction (input → output)\n- Edge cases the user will encounter\n\n## AI/ML Design\n- Recommended model and prompt strategy\n- Why this model over alternatives (cost/quality/latency tradeoff)\n- Context window requirements\n- Estimated cost per call and per user/month\n- P50 / P95 latency targets\n\n## Evaluation Plan\n- What does \"good\" output look like? (rubric or examples)\n- Offline eval dataset: how to build it\n- Online eval: metric to instrument in production\n- Regression threshold: when to roll back\n\n## Failure Modes & Mitigations\nFor each: probability, impact, mitigation strategy.\n\n## Fallback Design\nWhat happens when the model is unavailable or returns bad output?\n\n## Launch Criteria\nCheckboxes the team must pass before GA.\n\n## Open Questions\nUnresolved decisions that must be made before building.",
+          "token_estimate": 268
+        }
+      }
+    },
+    {
+      "id": "model-selection-advisor",
+      "title": "Model Selection Advisor",
+      "category": "AI / ML",
+      "tags": [
+        "model selection",
+        "LLM",
+        "benchmarks",
+        "cost",
+        "tradeoffs"
+      ],
+      "featured": false,
+      "description": "Get a structured recommendation for which AI model to use for a specific task, balancing capability, cost, latency, and context requirements.",
+      "model_notes": {
+        "gpt-5.4": "Excellent self-aware model comparison. Balanced produces well-reasoned tradeoff analysis.",
+        "claude-sonnet-4-6": "Strong at structured comparison and nuanced tradeoff reasoning. All variants perform well.",
+        "claude-opus-4-6": "Max quality recommended — Opus reasons carefully about subtle task-capability fits.",
+        "gemini-3.1-pro": "Balanced works well. Particularly good at comparing models for long-context tasks.",
+        "grok-4": "Balanced recommended. Useful when real-time data or web access is part of the task requirements.",
+        "llama-4-scout": "Balanced recommended. Good at open-source model comparisons.",
+        "mistral-large-3": "Balanced produces clean structured comparisons. Good for cost-sensitive analysis.",
+        "o1": "Max quality is the right call — model selection involves multi-factor reasoning where o1 excels."
+      },
+      "benchmarks": {
+        "gpt-5.4": {
+          "lean": 3,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "balanced"
+        },
+        "claude-sonnet-4-6": {
+          "lean": 4,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "balanced"
+        },
+        "claude-opus-4-6": {
+          "lean": 3,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "max_quality"
+        },
+        "gemini-3.1-pro": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 5,
+          "best": "balanced"
+        },
+        "grok-4": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "llama-4-scout": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "mistral-large-3": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "o1": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 5,
+          "best": "max_quality"
+        }
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Which AI model should I use for [TASK]? I need [COST / SPEED / QUALITY] priority. Give a top recommendation and one runner-up.",
+          "token_estimate": 26
+        },
+        "balanced": {
+          "prompt": "Help me choose the right AI model for my use case:\n\nTask: [WHAT YOU'RE BUILDING OR DOING]\nPriority: [COST / LATENCY / OUTPUT QUALITY — rank these]\nContext length needed: [APPROXIMATE INPUT SIZE]\nBudget: [COST CONSTRAINT IF ANY]\nDeployment: [API / SELF-HOSTED / EDGE]\n\nCompare the top 3 candidates across: capability fit, cost, latency, and context window. Give a clear recommendation with one-line rationale.",
+          "token_estimate": 88
+        },
+        "max_quality": {
+          "prompt": "You are an AI infrastructure consultant. Help me select the optimal model for production use.\n\nTask description: [DETAILED TASK DESCRIPTION]\nExample inputs: [2-3 SAMPLE INPUTS]\nExpected output format: [JSON / PROSE / CODE / OTHER]\nContext window needed (tokens): [INPUT + OUTPUT ESTIMATE]\nMonthly call volume: [ESTIMATED REQUESTS/MONTH]\nBudget ceiling ($/month): [MAX BUDGET]\nLatency requirement: [P50 TARGET IN SECONDS]\nDeployment environment: [CLOUD API / SELF-HOSTED / EDGE / MOBILE]\nCompliance constraints: [DATA RESIDENCY / PII HANDLING / GDPR]\n\n## Capability Analysis\nFor each of the top 4 candidate models:\n- **Capability fit**: How well does it handle this task type? (score 1-5 with rationale)\n- **Context fit**: Does the context window match requirements?\n- **Cost**: Estimated $/month at stated volume\n- **Latency**: Expected P50/P95 for this task\n- **Risks**: What could go wrong with this model for this task?\n\n## Recommendation\n- **Primary choice**: model + tier + rationale\n- **Runner-up**: when to switch to this\n- **Avoid**: models that seem obvious but don't fit, and why\n\n## Optimization Tips\nHow to reduce cost or improve quality regardless of model choice (prompt compression, caching, batching).\n\n## Monitoring Signals\nWhat to track in production to know if the choice is working.",
+          "token_estimate": 262
+        }
+      }
+    },
+    {
+      "id": "game-narrative-designer",
+      "title": "Game Narrative Designer",
+      "category": "Entertainment & Creative",
+      "tags": [
+        "game design",
+        "narrative",
+        "branching story",
+        "dialogue",
+        "worldbuilding"
+      ],
+      "featured": true,
+      "description": "Design branching narrative structures, character dialogue, and story beats for games. Outputs can be used directly in game engines or as design documents.",
+      "model_notes": {
+        "gpt-5.4": "Max quality produces richly layered narrative with strong consequence tracking. Excellent at branching logic.",
+        "claude-sonnet-4-6": "Top pick for game narrative — writes immersive dialogue and consistent character voice. Balanced is the sweet spot.",
+        "claude-opus-4-6": "Max quality with extended thinking creates deeply interconnected narrative systems. Best for complex branching.",
+        "gemini-3.1-pro": "Balanced produces solid narrative structure. Large context handles full game scripts without truncation.",
+        "grok-4": "Balanced works well. Lean tends toward trope-heavy output — push for originality explicitly.",
+        "llama-4-scout": "Balanced recommended. Good for initial worldbuilding and dialogue drafts.",
+        "mistral-large-3": "Balanced produces structured narrative documents efficiently. Good for high-volume content pipelines.",
+        "o1": "Balanced is sufficient — o1 naturally reasons through narrative consistency and consequence logic."
+      },
+      "benchmarks": {
+        "gpt-5.4": {
+          "lean": 3,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "max_quality"
+        },
+        "claude-sonnet-4-6": {
+          "lean": 4,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "balanced"
+        },
+        "claude-opus-4-6": {
+          "lean": 3,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "max_quality"
+        },
+        "gemini-3.1-pro": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "grok-4": {
+          "lean": 2,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "llama-4-scout": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "mistral-large-3": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "o1": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 5,
+          "best": "balanced"
+        }
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Write a branching dialogue scene for a game. Setting: [SETTING]. Character: [NPC NAME AND ROLE]. Player goal: [WHAT PLAYER WANTS]. Give 3 player choices with distinct outcomes.",
+          "token_estimate": 28
+        },
+        "balanced": {
+          "prompt": "Design a narrative scene for a game:\n\nGame genre: [RPG / ADVENTURE / VISUAL NOVEL / OTHER]\nSetting: [WHERE AND WHEN]\nNPC: [NAME, ROLE, PERSONALITY]\nPlayer character: [WHO THE PLAYER IS]\nScene goal: [WHAT MUST BE RESOLVED]\nTone: [DARK / HOPEFUL / COMEDIC / TENSE]\n\nProvide:\n- Scene setup (2 sentences)\n- NPC opening line\n- 3 player dialogue choices with distinct moral/strategic angles\n- Outcomes for each choice (immediate + longer-term consequence)\n- A secret the NPC is hiding that the player can uncover",
+          "token_estimate": 108
+        },
+        "max_quality": {
+          "prompt": "You are a senior narrative designer at a game studio. Design a fully realized story beat.\n\nGame genre & tone: [GENRE / TONE]\nSetting: [DETAILED SETTING DESCRIPTION]\nNPC: [NAME / ROLE / BACKSTORY / MOTIVATION / FLAW]\nPlayer character role: [WHO THE PLAYER IS IN THIS WORLD]\nScene purpose in the larger story: [WHY THIS SCENE EXISTS NARRATIVELY]\nPlayer's current knowledge: [WHAT THEY KNOW SO FAR]\nDesired emotional arc: [WHAT THE PLAYER SHOULD FEEL]\n\n## Scene Architecture\n- Opening: how the scene begins (environmental storytelling)\n- Inciting moment: what forces a decision\n- Three decision branches: each with a distinct moral valence (not just good/neutral/evil)\n\n## Dialogue\nFor each branch, write full dialogue lines for the NPC:\n- Initial exchange (3-4 lines)\n- Player choice option text (player sees this in the UI)\n- NPC reaction\n- Scene resolution\n\n## Consequences\nFor each branch:\n- Immediate consequence (in this scene)\n- Delayed consequence (later in the game)\n- Effect on the world state or relationships\n\n## Hidden Depth\n- A piece of lore the player can discover through a specific dialogue path\n- An environmental detail that hints at the NPC's secret\n\n## Notes for Implementation\n- Variables to set/check\n- Voice direction for NPC (pacing, emotion, subtext)",
+          "token_estimate": 270
+        }
+      }
+    },
+    {
+      "id": "worldbuilding-assistant",
+      "title": "Worldbuilding Assistant",
+      "category": "Entertainment & Creative",
+      "tags": [
+        "worldbuilding",
+        "fiction",
+        "fantasy",
+        "sci-fi",
+        "lore",
+        "setting design"
+      ],
+      "featured": false,
+      "description": "Build out a rich, internally consistent fictional world. Covers geography, culture, history, power structures, and magic/technology systems.",
+      "model_notes": {
+        "gpt-5.4": "Max quality produces deeply interconnected world systems. Excellent at maintaining internal consistency.",
+        "claude-sonnet-4-6": "Highly capable — generates vivid, original worlds with surprising cultural details. Balanced is ideal.",
+        "claude-opus-4-6": "Max quality with extended thinking creates multi-layered worlds where history and politics feel earned.",
+        "gemini-3.1-pro": "Balanced works well. Large context is useful for building a world incrementally across sessions.",
+        "grok-4": "Balanced recommended. Can pull from real-world historical and cultural analogues naturally.",
+        "llama-4-scout": "Balanced recommended. Lean output tends to be generic — push for specificity with concrete constraints.",
+        "mistral-large-3": "Balanced produces organized lore documents. Good for efficient first-draft worldbuilding.",
+        "o1": "Balanced is sufficient — o1 naturally checks internal consistency of rules and history."
+      },
+      "benchmarks": {
+        "gpt-5.4": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 5,
+          "best": "max_quality"
+        },
+        "claude-sonnet-4-6": {
+          "lean": 4,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "balanced"
+        },
+        "claude-opus-4-6": {
+          "lean": 3,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "max_quality"
+        },
+        "gemini-3.1-pro": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "grok-4": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "llama-4-scout": {
+          "lean": 2,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "mistral-large-3": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "o1": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        }
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Describe a fictional world for [GENRE]. Cover: geography, dominant culture, power structure, and one unique rule that shapes daily life.",
+          "token_estimate": 24
+        },
+        "balanced": {
+          "prompt": "Help me build a fictional world for my [GENRE] story:\n\nCore concept: [ONE-SENTENCE PREMISE]\nTone: [DARK / HOPEFUL / GRITTY / WHIMSICAL]\nSetting era: [PRE-INDUSTRIAL / MODERN / FUTURISTIC / OTHER]\nKey constraint: [ONE UNIQUE RULE OR LIMITATION IN THIS WORLD]\n\nDevelop:\n- Geography and climate (major regions and what they produce)\n- Dominant culture(s) and social structure\n- Power: who holds it and how they keep it\n- Magic or technology system (rules, costs, limitations)\n- A historical event that shaped the present\n- A central conflict that a story could explore",
+          "token_estimate": 118
+        },
+        "max_quality": {
+          "prompt": "You are a worldbuilding consultant helping develop a richly detailed, internally consistent fictional setting.\n\nGenre: [FANTASY / SCI-FI / ALTERNATE HISTORY / OTHER]\nCore premise: [THE CENTRAL WHAT-IF OR UNIQUE PREMISE]\nTone: [DESCRIBE THE EMOTIONAL REGISTER]\nStory focus: [WHAT KIND OF CHARACTERS AND STORIES WILL LIVE HERE]\nExisting ideas: [ANY ELEMENTS YOU ALREADY HAVE]\nElements to avoid: [CLICHÉS OR IDEAS YOU DON'T WANT]\n\n## Physical World\n- Geography: major regions, climate, natural resources (and which groups control them)\n- A map description (no actual image — describe what a map would show)\n\n## Peoples & Cultures\nFor 2-3 distinct cultures:\n- Origin and history\n- Values, taboos, and social structure\n- Relationship to other cultures (trade, conflict, coexistence)\n- A unique cultural practice that reveals their worldview\n\n## Power & Conflict\n- Current political landscape\n- Who holds power and by what mechanism (force / law / religion / magic / economics)\n- The primary tension that drives current events\n- Factions: what they want, what they fear\n\n## Magic / Technology System\n- What it can do\n- What it cannot do (the rules that create drama)\n- Cost or toll on the user\n- How access to it is distributed (who has it, who is denied)\n\n## History\n- 3 pivotal historical events that shaped the present\n- A secret that history has forgotten (or suppressed)\n\n## Story Hooks\n5 specific conflicts or mysteries that a protagonist could pursue in this world.",
+          "token_estimate": 295
+        }
+      }
+    },
+    {
+      "id": "screenplay-scene-writer",
+      "title": "Screenplay Scene Writer",
+      "category": "Entertainment & Creative",
+      "tags": [
+        "screenplay",
+        "script",
+        "film",
+        "dialogue",
+        "scene writing"
+      ],
+      "featured": false,
+      "description": "Write a properly formatted screenplay scene with action lines, character dialogue, and subtext. Follows industry-standard formatting conventions.",
+      "model_notes": {
+        "gpt-5.4": "Excellent screenplay formatting and subtext. Balanced produces scene-ready drafts.",
+        "claude-sonnet-4-6": "Top pick — writes naturalistic dialogue with strong subtext. Balanced is the best mode.",
+        "claude-opus-4-6": "Max quality creates scenes with multiple interpretive layers. Best for emotionally complex moments.",
+        "gemini-3.1-pro": "Balanced works well. Large context useful for multi-scene sequences.",
+        "grok-4": "Balanced recommended. Can write punchy, high-energy action scenes effectively.",
+        "llama-4-scout": "Balanced recommended. Lean produces dialogue that can feel on-the-nose — use balanced for subtext.",
+        "mistral-large-3": "Balanced produces clean formatting. Good for rapid scene drafting.",
+        "o1": "Balanced is sufficient — naturally avoids on-the-nose dialogue and finds subtext."
+      },
+      "benchmarks": {
+        "gpt-5.4": {
+          "lean": 3,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "balanced"
+        },
+        "claude-sonnet-4-6": {
+          "lean": 4,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "balanced"
+        },
+        "claude-opus-4-6": {
+          "lean": 3,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "max_quality"
+        },
+        "gemini-3.1-pro": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "grok-4": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "llama-4-scout": {
+          "lean": 2,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "mistral-large-3": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "o1": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        }
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Write a short screenplay scene. Setting: [LOCATION]. Characters: [CHARACTER A] and [CHARACTER B]. What happens: [CONFLICT OR BEAT]. Keep it under 1 page.",
+          "token_estimate": 26
+        },
+        "balanced": {
+          "prompt": "Write a screenplay scene in industry-standard format:\n\nSetting: [INT./EXT. LOCATION — DAY/NIGHT]\nCharacters: [NAME, one-line description each]\nScene purpose: [WHAT THIS SCENE MUST ACCOMPLISH IN THE STORY]\nEmotional subtext: [WHAT THE CHARACTERS REALLY FEEL BUT WON'T SAY]\nTone: [DRAMATIC / COMEDIC / TENSE / TENDER]\nLength: [1-2 PAGES]\n\nUse proper format: scene heading, action lines, and character cues. The dialogue should carry subtext — characters should rarely say exactly what they mean.",
+          "token_estimate": 100
+        },
+        "max_quality": {
+          "prompt": "You are a professional screenwriter. Write a polished, production-ready scene.\n\nScript context: [WHAT HAS HAPPENED IN THE STORY SO FAR]\nScene location: [INT./EXT. LOCATION — DAY/NIGHT]\nCharacter A: [NAME / WANT / FEAR / WHAT THEY WON'T SAY]\nCharacter B: [NAME / WANT / FEAR / WHAT THEY WON'T SAY]\nScene goal: [WHAT MUST CHANGE BY THE END OF THIS SCENE]\nEmotional subtext: [THE REAL CONVERSATION BENEATH THE SURFACE]\nTone: [DESCRIBE THE REGISTER]\nTarget length: [PAGES]\n\n## The Scene\nWrite the full scene in proper screenplay format:\n- Scene heading (slugline)\n- Action lines (visual, active, present tense — no camera directions)\n- Dialogue with parentheticals used sparingly\n- A visual moment at the top that establishes mood\n- A turn or reveal that shifts the power dynamic\n- A final image or line that pays off the scene's theme\n\n## Scene Notes\nAfter the scene, briefly note:\n- The subtext running beneath the dialogue\n- What each character wants vs. what they get\n- One rewrite suggestion if the tone needs adjustment",
+          "token_estimate": 230
+        }
+      }
+    },
+    {
+      "id": "trivia-question-generator",
+      "title": "Trivia Question Generator",
+      "category": "Entertainment & Creative",
+      "tags": [
+        "trivia",
+        "quiz",
+        "games",
+        "education",
+        "fun"
+      ],
+      "featured": false,
+      "description": "Generate engaging, well-calibrated trivia questions on any topic. Includes answer explanations and difficulty ratings.",
+      "model_notes": {
+        "gpt-5.4": "Max quality generates accurate, well-sourced trivia with clear difficulty calibration.",
+        "claude-sonnet-4-6": "Excellent factual accuracy and interesting question framing. Lean works great for quick generation.",
+        "claude-opus-4-6": "Balanced is sufficient. Max quality is useful for specialist topics requiring deep accuracy.",
+        "gemini-3.1-pro": "Balanced recommended. Strong on STEM and science trivia. Verify recent facts.",
+        "grok-4": "Balanced works well. Real-time knowledge access is valuable for current events categories.",
+        "llama-4-scout": "Balanced recommended. Always verify answers — occasional factual errors on niche topics.",
+        "mistral-large-3": "Balanced produces clean formatted question sets efficiently. Good for bulk generation.",
+        "o1": "Lean is often sufficient — o1 naturally calibrates difficulty and avoids ambiguous phrasing."
+      },
+      "benchmarks": {
+        "gpt-5.4": {
+          "lean": 4,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "balanced"
+        },
+        "claude-sonnet-4-6": {
+          "lean": 5,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "lean"
+        },
+        "claude-opus-4-6": {
+          "lean": 4,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "balanced"
+        },
+        "gemini-3.1-pro": {
+          "lean": 4,
+          "balanced": 5,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "grok-4": {
+          "lean": 4,
+          "balanced": 5,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "llama-4-scout": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "mistral-large-3": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "o1": {
+          "lean": 4,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "lean"
+        }
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Generate 10 trivia questions about [TOPIC]. Mix easy (3), medium (5), and hard (2). Include answers.",
+          "token_estimate": 18
+        },
+        "balanced": {
+          "prompt": "Generate a trivia question set:\n\nTopic: [TOPIC OR CATEGORY]\nAudience: [CASUAL / ENTHUSIAST / EXPERT]\nCount: [NUMBER OF QUESTIONS]\nDifficulty mix: [e.g., 30% easy, 50% medium, 20% hard]\nFormat: [MULTIPLE CHOICE / OPEN ANSWER / TRUE-FALSE]\n\nFor each question:\n- Question text\n- Correct answer\n- 3 plausible wrong answers (if multiple choice)\n- Difficulty: easy/medium/hard\n- A one-sentence explanation of why the answer is correct",
+          "token_estimate": 92
+        },
+        "max_quality": {
+          "prompt": "You are a professional trivia writer creating questions for a quiz night or trivia app.\n\nTopic/category: [TOPIC]\nAudience knowledge level: [CASUAL / ENTHUSIAST / EXPERT]\nTotal questions: [NUMBER]\nDifficulty distribution: [e.g., 30% easy / 50% medium / 20% hard]\nFormat: [MULTIPLE CHOICE / OPEN ANSWER / MIXED]\nStyle: [PUB TRIVIA / ACADEMIC BOWL / FAMILY-FRIENDLY / SPECIALIST]\n\nFor each question:\n- **Question**: Clear, unambiguous phrasing\n- **Correct answer**: The definitive answer\n- **Wrong answers** (if multiple choice): Plausible distractors — avoid obviously wrong options\n- **Difficulty**: easy / medium / hard\n- **Explanation**: 1-2 sentences explaining the answer and why it's interesting\n- **Source hint**: The domain or era to help players understand where to focus\n\nQuality guidelines:\n- Avoid questions with multiple defensible answers\n- Avoid questions that hinge on very recent events (unless explicitly requested)\n- Make hard questions specific, not just obscure — they should reward deep knowledge\n- Easy questions should feel satisfying, not trivial\n\nAfter the set, flag any questions you're less than 95% confident about.",
+          "token_estimate": 215
+        }
+      }
+    },
+    {
+      "id": "comedy-sketch-writer",
+      "title": "Comedy Sketch Writer",
+      "category": "Entertainment & Creative",
+      "tags": [
+        "comedy",
+        "sketch",
+        "humor",
+        "script",
+        "creative writing"
+      ],
+      "featured": false,
+      "description": "Write a short comedy sketch with a clear premise, escalating absurdity, and a strong button. Suitable for video, stage, or podcast.",
+      "model_notes": {
+        "gpt-5.4": "Balanced produces tight, funny sketches with good button endings. Max quality can over-explain jokes.",
+        "claude-sonnet-4-6": "Excellent comedic timing and subversion. Lean works surprisingly well for quick premise sketches.",
+        "claude-opus-4-6": "Max quality creates sketches with layered comedic logic. Best for character-driven pieces.",
+        "gemini-3.1-pro": "Balanced works well. Good at physical comedy descriptions and visual gags.",
+        "grok-4": "Lean to balanced works well. Tends toward dry, absurdist humor — redirect for other styles.",
+        "llama-4-scout": "Balanced recommended. Lean can produce predictable punchlines — push for subversion.",
+        "mistral-large-3": "Balanced produces serviceable drafts. Best used as a starting point for human revision.",
+        "o1": "Balanced is sufficient — naturally finds the most efficient comedic path to the joke."
+      },
+      "benchmarks": {
+        "gpt-5.4": {
+          "lean": 3,
+          "balanced": 5,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "claude-sonnet-4-6": {
+          "lean": 4,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "balanced"
+        },
+        "claude-opus-4-6": {
+          "lean": 3,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "max_quality"
+        },
+        "gemini-3.1-pro": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "grok-4": {
+          "lean": 4,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "lean"
+        },
+        "llama-4-scout": {
+          "lean": 2,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "mistral-large-3": {
+          "lean": 3,
+          "balanced": 3,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "o1": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        }
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Write a 1-page comedy sketch about [PREMISE]. Use escalating absurdity and end with a strong button.",
+          "token_estimate": 16
+        },
+        "balanced": {
+          "prompt": "Write a short comedy sketch:\n\nPremise: [THE CORE COMIC IDEA]\nStyle: [ABSURDIST / DEADPAN / PARODY / CHARACTER-DRIVEN / SITUATIONAL]\nCharacters: [WHO IS IN THE SKETCH]\nSetting: [WHERE AND WHEN]\nLength: [1-3 MINUTES WHEN PERFORMED]\n\nStructure it with:\n- An opening that establishes the premise quickly\n- An escalation that pushes the logic further\n- A reversal or twist\n- A strong button (the final joke that closes the sketch cleanly)",
+          "token_estimate": 90
+        },
+        "max_quality": {
+          "prompt": "You are a comedy writer with sketch experience. Write a polished, production-ready sketch.\n\nPremise: [THE CORE COMIC IDEA]\nComedy style: [ABSURDIST / PARODY / DEADPAN / SATIRE / PHYSICAL]\nTarget audience: [DEMOGRAPHIC / PLATFORM]\nCharacters: [NAME, one-line description, comedic function for each]\nSetting: [PHYSICAL AND SITUATIONAL CONTEXT]\nTone: [DARK / LIGHT / DRY / SILLY]\nLength: [APPROX. PERFORMANCE TIME]\n\n## Premise Analysis\nBefore writing: what is the ONE comic idea at the core? What makes it funny? What's the most unexpected direction it could go?\n\n## The Sketch\nWrite the full sketch with:\n- Scene heading\n- Action/direction lines (brief and visual)\n- Dialogue with character names in caps\n- Clear escalation points marked with [BEAT] notes\n- A button that lands the premise cleanly\n\n## Revision Notes\n- The funniest line and why it works\n- The weakest moment and how to fix it\n- One alternate button if the current one doesn't land\n- Suggestions for physical business or visual gags",
+          "token_estimate": 225
+        }
+      }
+    },
+    {
+      "id": "boundary-setting-script",
+      "title": "Boundary-Setting Script",
+      "category": "Safety & Crisis Support",
+      "tags": [
+        "boundaries",
+        "communication",
+        "relationships",
+        "assertiveness",
+        "self-advocacy"
+      ],
+      "featured": false,
+      "description": "Draft compassionate but clear language for setting a difficult personal or professional boundary. Not a substitute for professional support.",
+      "model_notes": {
+        "gpt-5.4": "Balanced produces warm, assertive scripts. Review tone — can occasionally be too formal for close relationships.",
+        "claude-sonnet-4-6": "Best everyday choice — naturally balances warmth with clarity. Respects emotional complexity.",
+        "claude-opus-4-6": "Max quality navigates nuanced relational dynamics thoughtfully. Best for high-stakes situations.",
+        "gemini-3.1-pro": "Balanced works well. Clear and structured. Verify cultural tone-fit for the specific relationship.",
+        "grok-4": "Balanced recommended. Can be more direct than needed — soften explicitly if the relationship requires it.",
+        "llama-4-scout": "Balanced recommended. Always review output for emotional resonance before using.",
+        "mistral-large-3": "Balanced produces serviceable scripts. May need human adjustment for emotional authenticity.",
+        "o1": "Balanced is sufficient — reasons carefully about relational consequences before drafting language."
+      },
+      "benchmarks": {
+        "gpt-5.4": {
+          "lean": 3,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "balanced"
+        },
+        "claude-sonnet-4-6": {
+          "lean": 4,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "balanced"
+        },
+        "claude-opus-4-6": {
+          "lean": 3,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "max_quality"
+        },
+        "gemini-3.1-pro": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "grok-4": {
+          "lean": 2,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "llama-4-scout": {
+          "lean": 2,
+          "balanced": 3,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "mistral-large-3": {
+          "lean": 2,
+          "balanced": 3,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "o1": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 5,
+          "best": "balanced"
+        }
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Help me set this boundary: [DESCRIBE THE SITUATION AND WHAT YOU NEED]. Write 2-3 sentences I can say out loud.",
+          "token_estimate": 20
+        },
+        "balanced": {
+          "prompt": "Help me set a boundary in this situation:\n\nSituation: [WHAT IS HAPPENING]\nRelationship: [WHO THIS IS WITH — FAMILY / FRIEND / COLLEAGUE / PARTNER]\nWhat I need: [THE BOUNDARY YOU WANT TO SET]\nMy concern: [WHAT I'M AFRAID WILL HAPPEN IF I SAY THIS]\nTone I want: [FIRM / GENTLE / DIRECT / WARM]\n\nWrite:\n1. What to say (2-4 sentences I can actually use)\n2. How to respond if they push back\n3. One thing to remember if I feel guilty afterward",
+          "token_estimate": 95
+        },
+        "max_quality": {
+          "prompt": "You are a compassionate communication coach helping someone set a difficult but necessary boundary. This is NOT a substitute for professional therapy or counseling — recommend professional support where appropriate.\n\nSituation: [DESCRIBE IN DETAIL WHAT IS HAPPENING]\nRelationship context: [TYPE OF RELATIONSHIP, HISTORY, POWER DYNAMICS]\nThe boundary needed: [WHAT SPECIFICALLY NEEDS TO CHANGE OR STOP]\nPrevious attempts: [HAVE THEY TRIED TO ADDRESS THIS BEFORE?]\nFears: [WHAT THEY WORRY WILL HAPPEN]\nDesired outcome: [WHAT THEY HOPE FOR AFTER SETTING THE BOUNDARY]\nTone: [HOW THEY WANT TO COME ACROSS]\n\n## Understanding the Situation\nBriefly reflect back what you're hearing about why this boundary matters and what's made it hard to set.\n\n## What to Say\nProvide 2 versions — one warmer, one more direct:\n\n**Version A (warm)**: ...\n**Version B (direct)**: ...\n\n## If They Push Back\nScript responses for the 3 most likely resistance patterns:\n- Minimizing (\"You're overreacting\")\n- Guilt-shifting (\"I can't believe you'd do this to me\")\n- Ignoring (acting as if you said nothing)\n\n## Holding the Boundary\n- What to say if the boundary is repeatedly crossed\n- One grounding reminder for after a difficult conversation\n\n## When to Seek More Support\nFlag situations where professional help (therapist, HR, legal) may be the better path.",
+          "token_estimate": 268
+        }
+      }
+    },
+    {
+      "id": "safety-plan-builder",
+      "title": "Personal Safety Plan Builder",
+      "category": "Safety & Crisis Support",
+      "tags": [
+        "safety plan",
+        "mental health",
+        "crisis prevention",
+        "self-care",
+        "support network"
+      ],
+      "featured": false,
+      "description": "Guide someone through building a personalized safety plan for difficult mental health moments. Includes warning signs, coping strategies, and support contacts. Always refer to professional help.",
+      "model_notes": {
+        "gpt-5.4": "Balanced produces warm, thorough plans. Always review output — never use without human oversight in real crisis contexts.",
+        "claude-sonnet-4-6": "Most reliable for this sensitive task — compassionate tone with consistent referrals to professional support.",
+        "claude-opus-4-6": "Max quality creates deeply personalized plans with nuanced coping strategies. Best for complex situations.",
+        "gemini-3.1-pro": "Balanced works. Always verify that crisis resource numbers are current and region-appropriate.",
+        "grok-4": "Balanced only. Review all output carefully — lean is not appropriate for this use case.",
+        "llama-4-scout": "Balanced or max_quality only. Never use lean for safety planning. Always review before sharing.",
+        "mistral-large-3": "Balanced produces structured plans. Tone may be less warm than Claude — review for emotional authenticity.",
+        "o1": "Balanced recommended — reasons carefully about escalation paths and resource appropriateness."
+      },
+      "benchmarks": {
+        "gpt-5.4": {
+          "lean": 1,
+          "balanced": 4,
+          "max_quality": 5,
+          "best": "balanced"
+        },
+        "claude-sonnet-4-6": {
+          "lean": 2,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "balanced"
+        },
+        "claude-opus-4-6": {
+          "lean": 1,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "max_quality"
+        },
+        "gemini-3.1-pro": {
+          "lean": 1,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "grok-4": {
+          "lean": 1,
+          "balanced": 3,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "llama-4-scout": {
+          "lean": 1,
+          "balanced": 3,
+          "max_quality": 4,
+          "best": "max_quality"
+        },
+        "mistral-large-3": {
+          "lean": 1,
+          "balanced": 3,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "o1": {
+          "lean": 1,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        }
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Help me outline a basic safety plan. I want to identify: my warning signs, 3 coping strategies, 2 people I can call, and crisis resources.\n\nMy situation: [BRIEF CONTEXT]",
+          "token_estimate": 35
+        },
+        "balanced": {
+          "prompt": "Help me build a personal safety plan for difficult moments.\n\nContext (optional): [WHAT YOU'RE MANAGING]\nPeople I trust: [UP TO 3 NAMES OR ROLES]\nThings that help me feel grounded: [ANY ACTIVITIES, PLACES, OR OBJECTS]\nThings that make things worse: [TRIGGERS TO AVOID]\n\nPlease create a plan that includes:\n1. Early warning signs to watch for\n2. Internal coping strategies (things I can do alone)\n3. Social strategies (people and places that help)\n4. Professional and crisis contacts\n5. What to do if the plan isn't working\n\nNote: This is a support tool, not a substitute for professional care.",
+          "token_estimate": 115
+        },
+        "max_quality": {
+          "prompt": "You are a compassionate mental health support guide helping someone build a personal safety plan. This is NOT a substitute for professional mental health care. If there is immediate risk to life, direct the person to emergency services (911 in the US) or a crisis line (988 Suicide & Crisis Lifeline in the US) immediately.\n\nContext: [WHAT THE PERSON IS MANAGING OR GOING THROUGH]\nCurrent support: [THERAPIST / DOCTOR / SUPPORT GROUP — IF ANY]\nTrusted people: [UP TO 3 NAMES, RELATIONSHIP, AVAILABILITY]\nHelpful activities: [THINGS THAT GROUND OR CALM THEM]\nKnown triggers: [SITUATIONS, THOUGHTS, OR EVENTS TO WATCH FOR]\n\n## Safety Plan\n\n### Step 1 — Warning Signs\nPersonal signs that a crisis may be building: (thoughts, feelings, behaviors, physical sensations)\n\n### Step 2 — Internal Coping Strategies\nThings to do alone to manage distress without contacting others:\n- [3-5 specific, actionable strategies based on what they said helps]\n\n### Step 3 — Social Distractions\nPeople and places that provide distraction without needing to discuss the crisis:\n\n### Step 4 — People to Ask for Help\nFor each trusted person: name, how to reach them, what to ask for\n\n### Step 5 — Professional Resources\n- Primary mental health provider and contact\n- Crisis line: 988 (US) / [regional equivalent]\n- Emergency services: 911 / local equivalent\n- Nearest emergency room\n\n### Step 6 — Making the Environment Safer\nSteps to reduce access to means during a high-risk period.\n\n### Step 7 — Reasons for Living\nPersonal, specific reasons to keep going — in the person's own words where possible.\n\n## Important Note\nEncourage the person to review this plan with a therapist or counselor and update it regularly.",
+          "token_estimate": 310
+        }
+      }
+    },
+    {
+      "id": "de-escalation-guide",
+      "title": "Conflict De-escalation Guide",
+      "category": "Safety & Crisis Support",
+      "tags": [
+        "de-escalation",
+        "conflict",
+        "communication",
+        "crisis",
+        "safety"
+      ],
+      "featured": false,
+      "description": "Get practical language and strategies for de-escalating a tense interpersonal or group situation. Covers both in-the-moment responses and follow-up.",
+      "model_notes": {
+        "gpt-5.4": "Balanced produces practical, situation-aware scripts. Tone check recommended for high-stakes situations.",
+        "claude-sonnet-4-6": "Best choice — writes de-escalation language that is calm, specific, and not condescending.",
+        "claude-opus-4-6": "Max quality handles complex multi-party or high-stakes conflicts with nuanced role-specific guidance.",
+        "gemini-3.1-pro": "Balanced works well. Clear and direct advice with good step-by-step structure.",
+        "grok-4": "Balanced recommended. Review for tone — can occasionally be too direct in emotionally charged contexts.",
+        "llama-4-scout": "Balanced recommended. Lean responses can be too generic for real situations.",
+        "mistral-large-3": "Balanced produces solid structured guidance. Good for lower-stakes professional conflicts.",
+        "o1": "Balanced is sufficient — reasons carefully about what escalates vs. calms before suggesting language."
+      },
+      "benchmarks": {
+        "gpt-5.4": {
+          "lean": 3,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "balanced"
+        },
+        "claude-sonnet-4-6": {
+          "lean": 3,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "balanced"
+        },
+        "claude-opus-4-6": {
+          "lean": 2,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "max_quality"
+        },
+        "gemini-3.1-pro": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "grok-4": {
+          "lean": 2,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "llama-4-scout": {
+          "lean": 2,
+          "balanced": 3,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "mistral-large-3": {
+          "lean": 2,
+          "balanced": 3,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "o1": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        }
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Give me 3 things to say right now to de-escalate this situation: [BRIEF DESCRIPTION OF WHAT'S HAPPENING].",
+          "token_estimate": 18
+        },
+        "balanced": {
+          "prompt": "Help me de-escalate this situation:\n\nWhat's happening: [DESCRIBE THE CONFLICT OR TENSION]\nMy role: [PARTICIPANT / BYSTANDER / MEDIATOR]\nThe other person(s): [WHO IS INVOLVED AND THEIR STATE]\nWhat's been said or done: [RECENT TRIGGER]\nMy goal: [STOP THE ESCALATION / RESOLVE THE ISSUE / JUST CREATE DISTANCE]\n\nProvide:\n1. What to do in the next 60 seconds\n2. Specific things to say (and avoid saying)\n3. How to follow up once things are calmer",
+          "token_estimate": 95
+        },
+        "max_quality": {
+          "prompt": "You are a conflict resolution specialist. Help me navigate this situation safely and constructively.\n\nSituation: [DETAILED DESCRIPTION OF WHAT IS HAPPENING]\nContext: [WORKPLACE / FAMILY / PUBLIC / ONLINE]\nMy role: [PARTICIPANT / BYSTANDER / MEDIATOR / MANAGER]\nPeople involved: [WHO, THEIR EMOTIONAL STATE, RELATIONSHIP TO EACH OTHER]\nWhat triggered this: [IMMEDIATE CAUSE]\nUnderlying tension: [LONGER-TERM ISSUES IF KNOWN]\nMy goal: [IMMEDIATE SAFETY / RESOLUTION / JUST REDUCE HEAT]\nConstraints: [POWER DYNAMICS, AUDIENCE, LIMITATIONS ON WHAT I CAN DO]\n\n## Immediate Response (next 60 seconds)\n- Specific language to use right now\n- Body language and positioning\n- What NOT to say (common mistakes that backfire)\n\n## Short-term De-escalation (next 10-30 minutes)\n- How to create space without abandonment\n- Validating language that doesn't mean agreeing\n- If the person is in distress: what they need to hear\n- If the situation is unsafe: how to exit\n\n## Follow-up Conversation\nOnce things are calmer — how to address the underlying issue without re-igniting it.\n\n## When to Stop and Get Help\nSigns that this is beyond de-escalation and requires external intervention (security, HR, mental health crisis support, emergency services).\n\nNote: If there is immediate physical danger, prioritize personal safety and contact emergency services.",
+          "token_estimate": 270
+        }
+      }
+    },
+    {
+      "id": "literature-review-outline",
+      "title": "Literature Review Outliner",
+      "category": "Research",
+      "tags": [
+        "literature review",
+        "academic",
+        "research",
+        "outline",
+        "synthesis"
+      ],
+      "featured": false,
+      "description": "Create a structured outline for a literature review or systematic review section, organized thematically with synthesis guidance.",
+      "model_notes": {
+        "gpt-5.4": "Max quality builds comprehensive, well-organized review structures. Strong at thematic clustering.",
+        "claude-sonnet-4-6": "Top pick — strong at thematic synthesis and identifying gaps. Balanced is the sweet spot.",
+        "claude-opus-4-6": "Max quality with extended thinking finds non-obvious thematic connections. Best for complex interdisciplinary reviews.",
+        "gemini-3.1-pro": "Balanced recommended. Large context window lets you paste many abstracts at once.",
+        "grok-4": "Balanced works well. Real-time access useful for identifying the most recent work in a field.",
+        "llama-4-scout": "Balanced recommended. 10M token context is useful for long lists of papers.",
+        "mistral-large-3": "Balanced produces clean structured outlines efficiently.",
+        "o1": "Max quality is worth it — literature structuring is a reasoning task where o1 finds thematic patterns."
+      },
+      "benchmarks": {
+        "gpt-5.4": {
+          "lean": 3,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "balanced"
+        },
+        "claude-sonnet-4-6": {
+          "lean": 4,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "balanced"
+        },
+        "claude-opus-4-6": {
+          "lean": 3,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "max_quality"
+        },
+        "gemini-3.1-pro": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "grok-4": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "llama-4-scout": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "mistral-large-3": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "o1": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 5,
+          "best": "max_quality"
+        }
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Create a thematic outline for a literature review on [TOPIC]. Identify 4-6 major themes and 2-3 key debates in each.",
+          "token_estimate": 22
+        },
+        "balanced": {
+          "prompt": "Create a structured outline for a literature review:\n\nTopic: [YOUR RESEARCH TOPIC]\nScope: [TIME RANGE / DISCIPLINES COVERED]\nKey papers or authors (optional): [LIST ANY YOU KNOW OF]\nReview type: [NARRATIVE / SYSTEMATIC / SCOPING]\nLength target: [APPROXIMATE WORD COUNT]\n\nOrganize by themes (not chronology). For each theme:\n- Theme heading\n- Key claims and who makes them\n- Points of consensus\n- Active debates or contradictions\n- Gap that your work addresses",
+          "token_estimate": 98
+        },
+        "max_quality": {
+          "prompt": "You are a research methodologist helping structure a rigorous literature review.\n\nTopic: [RESEARCH TOPIC]\nResearch question: [THE QUESTION YOUR REVIEW SERVES]\nScope: [DISCIPLINES / TIME RANGE / GEOGRAPHIC SCOPE]\nKnown papers/authors: [PASTE TITLES OR ABSTRACTS IF AVAILABLE]\nReview type: [NARRATIVE / SYSTEMATIC / META-ANALYSIS / SCOPING]\nYour position: [ARE YOU SYNTHESIZING OR ARGUING A SPECIFIC THESIS?]\n\n## Thematic Architecture\nIdentify 4-7 major themes that organize the literature. For each:\n- **Theme name and definition**\n- **Core claims**: what the consensus says\n- **Key debates**: unresolved tensions with representative citations\n- **Evolution**: how thinking on this theme has changed over time\n- **Methodological patterns**: dominant methods used in this thread\n\n## Synthesis Map\n- Where do different themes intersect or contradict?\n- Which debates have been resolved, and how?\n- What assumptions most of the literature shares (and shouldn't)\n\n## Gap Analysis\nFor each gap:\n- What is missing\n- Why it matters\n- How your work (or the field) could address it\n\n## Suggested Structure\nPropose section headings and word-count targets for a review of [LENGTH].\n\n## Search Strategy Hints\nKey terms, databases, and Boolean queries to find literature you may have missed.",
+          "token_estimate": 255
+        }
+      }
+    },
+    {
+      "id": "sql-query-optimizer",
+      "title": "SQL Query Optimizer",
+      "category": "Data",
+      "tags": [
+        "SQL",
+        "optimization",
+        "database",
+        "performance",
+        "query tuning"
+      ],
+      "featured": false,
+      "description": "Analyze and rewrite a slow or complex SQL query for better performance. Identifies index opportunities, join order issues, and anti-patterns.",
+      "model_notes": {
+        "gpt-5.4": "Max quality produces well-reasoned query rewrites with clear explanations of each change.",
+        "claude-sonnet-4-6": "Top pick — strong at SQL reasoning. Lean works for straightforward queries; use balanced for complex ones.",
+        "claude-opus-4-6": "Max quality with extended thinking catches subtle optimizer hints and edge cases. Best for production-critical queries.",
+        "gemini-3.1-pro": "Balanced recommended. Good at multi-join optimization and subquery refactoring.",
+        "grok-4": "Balanced works well. Tends to be opinionated about best practices — useful for getting a second opinion.",
+        "llama-4-scout": "Balanced recommended. Lean can miss index recommendations on complex queries.",
+        "mistral-large-3": "Balanced produces clean, efficient SQL. Good for standard optimization patterns.",
+        "o1": "Max quality is the right call — query optimization is a multi-step reasoning task where o1 works through all paths."
+      },
+      "benchmarks": {
+        "gpt-5.4": {
+          "lean": 3,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "balanced"
+        },
+        "claude-sonnet-4-6": {
+          "lean": 4,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "lean"
+        },
+        "claude-opus-4-6": {
+          "lean": 3,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "max_quality"
+        },
+        "gemini-3.1-pro": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "grok-4": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "llama-4-scout": {
+          "lean": 2,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "mistral-large-3": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "o1": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 5,
+          "best": "max_quality"
+        }
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Optimize this SQL query for performance and explain what you changed:\n\n[YOUR SQL QUERY]",
+          "token_estimate": 12
+        },
+        "balanced": {
+          "prompt": "Optimize the following SQL query:\n\nDatabase: [PostgreSQL / MySQL / SQLite / BigQuery / other]\nQuery: [YOUR SQL QUERY]\nTable sizes: [APPROXIMATE ROW COUNTS FOR MAIN TABLES]\nCurrent runtime: [HOW LONG IT TAKES]\nExisting indexes: [LIST RELEVANT INDEXES IF KNOWN]\n\nProvide:\n1. Rewritten query with comments explaining each change\n2. Index recommendations (table, column, type)\n3. Anti-patterns found in the original\n4. Expected performance improvement",
+          "token_estimate": 88
+        },
+        "max_quality": {
+          "prompt": "You are a database performance engineer. Analyze and rewrite this query for production performance.\n\nDatabase engine and version: [e.g., PostgreSQL 16]\nQuery: [PASTE FULL QUERY]\nSchema (relevant tables): [PASTE CREATE TABLE statements or describe columns + types]\nTable sizes: [ROW COUNTS PER TABLE]\nCurrent EXPLAIN output (if available): [PASTE EXPLAIN ANALYZE OUTPUT]\nCurrent runtime: [SECONDS / MINUTES]\nFrequency: [HOW OFTEN THIS QUERY RUNS]\nWorkload context: [OLTP / ANALYTICS / MIXED]\n\n## Root Cause Analysis\nIdentify and explain each performance problem:\n- Sequential scans that should be index scans\n- Inefficient join order or type (nested loop / hash / merge)\n- Subquery anti-patterns (correlated subqueries, unnecessary CTEs)\n- Aggregate / window function issues\n- Data type mismatches causing implicit casts\n- Over-fetching (SELECT * where only some columns are needed)\n\n## Rewritten Query\nProvide the optimized query with inline comments explaining each structural change.\n\n## Index Recommendations\nFor each recommended index:\n- Table and columns\n- Index type (B-tree / GIN / BRIN / partial)\n- Why this index helps\n- Estimated write overhead (trade-off)\n\n## Query Plan Comparison\nDescribe what the EXPLAIN plan should look like after your changes.\n\n## Caveats\nNote any assumptions made due to missing schema or statistics information.",
+          "token_estimate": 275
+        }
+      }
+    },
+    {
+      "id": "cover-letter-writer",
+      "title": "Tailored Cover Letter Writer",
+      "category": "Career & Professional Growth",
+      "tags": [
+        "cover letter",
+        "job application",
+        "career",
+        "writing",
+        "job search"
+      ],
+      "featured": false,
+      "description": "Write a compelling, tailored cover letter that connects your experience directly to a specific role and company. Avoids generic filler.",
+      "model_notes": {
+        "gpt-5.4": "Balanced produces polished, engaging letters. Max quality can over-engineer — balanced hits the sweet spot.",
+        "claude-sonnet-4-6": "Excellent at writing natural, confident cover letters that don't sound AI-generated. Lean is solid for quick drafts.",
+        "claude-opus-4-6": "Max quality creates letters that make genuine connections between experience and role. Best for senior positions.",
+        "gemini-3.1-pro": "Balanced works well. Good at emphasizing measurable impact in experience.",
+        "grok-4": "Balanced recommended. Tends to write confident, direct letters — adjust tone for more formal industries.",
+        "llama-4-scout": "Balanced recommended. Lean can produce generic openings — push for specific hooks.",
+        "mistral-large-3": "Balanced produces clean, professional letters efficiently.",
+        "o1": "Lean is often sufficient — o1 naturally finds the strongest connection between experience and job requirements."
+      },
+      "benchmarks": {
+        "gpt-5.4": {
+          "lean": 3,
+          "balanced": 5,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "claude-sonnet-4-6": {
+          "lean": 4,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "balanced"
+        },
+        "claude-opus-4-6": {
+          "lean": 3,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "max_quality"
+        },
+        "gemini-3.1-pro": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "grok-4": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "llama-4-scout": {
+          "lean": 2,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "mistral-large-3": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "o1": {
+          "lean": 4,
+          "balanced": 5,
+          "max_quality": 4,
+          "best": "lean"
+        }
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Write a cover letter for this job. My background: [YOUR EXPERIENCE]. Job title and key requirements: [JOB DETAILS]. Keep it under 300 words.",
+          "token_estimate": 24
+        },
+        "balanced": {
+          "prompt": "Write a tailored cover letter for this job application:\n\nJob title: [TITLE]\nCompany: [COMPANY NAME]\nKey requirements from the job posting: [3-5 REQUIREMENTS]\nMy relevant experience: [YOUR BACKGROUND]\nOne specific achievement to highlight: [QUANTIFIED WIN IF POSSIBLE]\nTone: [FORMAL / CONVERSATIONAL / ENTHUSIASTIC]\n\nAvoid: clichés like \"I am writing to apply\", \"passion for\", or generic enthusiasm. Start with a specific hook. Keep it under 350 words.",
+          "token_estimate": 95
+        },
+        "max_quality": {
+          "prompt": "You are a career coach and professional writer. Write a cover letter that stands out in a competitive applicant pool.\n\nRole: [JOB TITLE]\nCompany: [COMPANY NAME]\nWhat the company does: [BRIEF DESCRIPTION]\nJob posting key requirements: [PASTE OR SUMMARIZE]\nMy experience summary: [YOUR BACKGROUND IN 3-5 SENTENCES]\nStrongest relevant achievement: [SPECIFIC, QUANTIFIED IF POSSIBLE]\nWhy this company specifically: [GENUINE REASON — NOT GENERIC]\nAny gap to address: [CAREER CHANGE / MISSING REQUIREMENT / OTHER]\nTone: [FORMAL / CONVERSATIONAL / ENTHUSIASTIC]\n\n## Letter\nWrite a 3-4 paragraph cover letter that:\n- Opens with a specific hook (not \"I am writing to apply\")\n- Paragraph 2: connects your top experience directly to their top requirement\n- Paragraph 3: shows you understand the company's specific context (not generic praise)\n- Close: confident ask, not \"I hope to hear from you\"\n\nKeep it under 400 words.\n\n## Coaching Notes\nAfter the letter, note:\n- The strongest line and why it works\n- The weakest line that should be personalized further\n- How to adapt this letter if applying to similar roles at other companies",
+          "token_estimate": 230
+        }
+      }
+    },
+    {
+      "id": "flashcard-generator",
+      "title": "Flashcard Generator",
+      "category": "Education & Tutoring",
+      "tags": [
+        "flashcards",
+        "study",
+        "spaced repetition",
+        "memorization",
+        "learning"
+      ],
+      "featured": false,
+      "description": "Generate high-quality flashcards optimized for spaced repetition learning. Covers concept definitions, application questions, and common misconceptions.",
+      "model_notes": {
+        "gpt-5.4": "Max quality produces well-calibrated cards with strong distractors and misconception coverage.",
+        "claude-sonnet-4-6": "Top pick — writes clear, testable cards with excellent balance of difficulty. Lean works great for quick sets.",
+        "claude-opus-4-6": "Max quality creates cards that test deep understanding, not just surface recall. Best for technical subjects.",
+        "gemini-3.1-pro": "Balanced recommended. Particularly strong for STEM concepts with mathematical notation.",
+        "grok-4": "Balanced works well. Real-time access useful for keeping cards current on fast-moving topics.",
+        "llama-4-scout": "Balanced recommended. Lean can produce cards that test trivia rather than understanding.",
+        "mistral-large-3": "Balanced produces clean formatted card sets efficiently. Good for bulk generation.",
+        "o1": "Lean is often sufficient — o1 naturally creates cards that test understanding rather than rote recall."
+      },
+      "benchmarks": {
+        "gpt-5.4": {
+          "lean": 4,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "balanced"
+        },
+        "claude-sonnet-4-6": {
+          "lean": 5,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "lean"
+        },
+        "claude-opus-4-6": {
+          "lean": 4,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "max_quality"
+        },
+        "gemini-3.1-pro": {
+          "lean": 4,
+          "balanced": 5,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "grok-4": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "llama-4-scout": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "mistral-large-3": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "o1": {
+          "lean": 4,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "lean"
+        }
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Generate 15 flashcards for studying [TOPIC]. Format each as Q: [question] / A: [answer]. Mix definitions, applications, and examples.",
+          "token_estimate": 22
+        },
+        "balanced": {
+          "prompt": "Create a flashcard set for studying [TOPIC]:\n\nLevel: [BEGINNER / INTERMEDIATE / ADVANCED]\nPurpose: [EXAM PREP / DEEP LEARNING / QUICK REFERENCE]\nCount: [NUMBER OF CARDS]\n\nInclude:\n- 30% definition cards (what is X?)\n- 40% application cards (how/when/why is X used?)\n- 20% comparison cards (X vs. Y — what's the difference?)\n- 10% misconception cards (common wrong belief + correction)\n\nFormat each card as:\nFront: [question]\nBack: [concise answer, 1-3 sentences max]",
+          "token_estimate": 92
+        },
+        "max_quality": {
+          "prompt": "You are an instructional designer creating flashcards optimized for spaced repetition (Anki-style).\n\nSubject: [TOPIC]\nLevel: [BEGINNER / INTERMEDIATE / ADVANCED]\nLearner background: [WHAT THEY ALREADY KNOW]\nLearning goal: [WHAT THEY SHOULD BE ABLE TO DO AFTER STUDYING THESE CARDS]\nCount: [NUMBER]\nPurpose: [EXAM / CERTIFICATION / PERSONAL MASTERY]\n\n## Card Design Principles\nBefore generating, briefly note:\n- The 5 most important concepts to test\n- The 3 most common misconceptions in this topic\n- The hardest concept that most learners struggle with\n\n## Flashcard Set\nFor each card:\n- **ID**: Card number\n- **Type**: definition / application / comparison / misconception / example\n- **Difficulty**: easy / medium / hard\n- **Front**: The question (atomic — one concept per card)\n- **Back**: Concise answer (1-3 sentences, the minimum needed to answer correctly)\n- **Memory hook** (optional for hard cards): A mnemonic, analogy, or visual image\n\nDistribution: ~25% easy, ~50% medium, ~25% hard.\n\n## Deck Notes\n- Study order recommendation (which cards to learn first)\n- Tags for grouping related cards\n- Any prerequisite knowledge needed before starting this deck",
+          "token_estimate": 228
+        }
+      }
+    },
+    {
+      "id": "api-documentation-writer",
+      "title": "API Documentation Writer",
+      "category": "Engineering",
+      "tags": [
+        "API",
+        "documentation",
+        "REST",
+        "OpenAPI",
+        "developer experience"
+      ],
+      "featured": false,
+      "description": "Write clear, complete API documentation for an endpoint or collection of endpoints. Covers parameters, responses, errors, and code examples.",
+      "model_notes": {
+        "gpt-5.4": "Max quality produces thorough docs with excellent code examples across multiple languages.",
+        "claude-sonnet-4-6": "Top pick for API docs — clear, precise language with realistic code examples. Balanced is ideal.",
+        "claude-opus-4-6": "Max quality covers edge cases, security considerations, and rate-limiting patterns thoroughly.",
+        "gemini-3.1-pro": "Balanced works well. Good at generating OpenAPI / Swagger spec alongside prose docs.",
+        "grok-4": "Balanced recommended. Can generate examples that reflect real-world API usage patterns.",
+        "llama-4-scout": "Balanced recommended. Lean can skip error response documentation.",
+        "mistral-large-3": "Balanced produces clean structured docs efficiently. Good for standard REST endpoints.",
+        "o1": "Lean is surprisingly strong — o1 reasons through all states and edge cases before writing."
+      },
+      "benchmarks": {
+        "gpt-5.4": {
+          "lean": 3,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "balanced"
+        },
+        "claude-sonnet-4-6": {
+          "lean": 4,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "balanced"
+        },
+        "claude-opus-4-6": {
+          "lean": 3,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "max_quality"
+        },
+        "gemini-3.1-pro": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "grok-4": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "llama-4-scout": {
+          "lean": 2,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "mistral-large-3": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "o1": {
+          "lean": 4,
+          "balanced": 4,
+          "max_quality": 5,
+          "best": "lean"
+        }
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Write API documentation for this endpoint:\n\n[PASTE ENDPOINT CODE OR DESCRIBE IT]\n\nInclude: description, parameters, request/response examples, and common errors.",
+          "token_estimate": 22
+        },
+        "balanced": {
+          "prompt": "Write documentation for the following API endpoint:\n\nMethod and path: [GET/POST/PUT/DELETE /path]\nPurpose: [WHAT IT DOES]\nAuthentication: [API KEY / BEARER TOKEN / NONE]\nRequest parameters: [LIST QUERY / PATH / BODY PARAMS]\nResponse: [DESCRIBE THE RESPONSE OBJECT]\nExample code: [LANGUAGE PREFERENCE]\n\nDocument:\n- Overview (1-2 sentences)\n- Parameters table (name, type, required, description)\n- Request example\n- Success response (200) with example JSON\n- Error responses (4xx/5xx) with example messages\n- Code example in [LANGUAGE]",
+          "token_estimate": 108
+        },
+        "max_quality": {
+          "prompt": "You are a technical writer specializing in developer documentation. Write production-quality API docs.\n\nAPI name / product: [NAME]\nEndpoint(s): [METHOD PATH — one or multiple]\nPurpose: [WHAT THE ENDPOINT DOES AND WHEN TO USE IT]\nAuthentication scheme: [API KEY / OAUTH2 / JWT / OTHER]\nRequest details: [HEADERS, PATH PARAMS, QUERY PARAMS, BODY SCHEMA]\nResponse details: [SUCCESS RESPONSE SCHEMA]\nRate limits: [IF APPLICABLE]\nCode sample preference: [LANGUAGE(S)]\n\n## Documentation\n\n### Overview\nWhat this endpoint does, when to use it, and what it returns (2-3 sentences for developer scanning).\n\n### Authentication\nHow to authenticate, where to put the credential, and what happens if it's missing or invalid.\n\n### Request\n**Endpoint**: `METHOD /path`\n\n**Headers**:\n| Header | Required | Description |\n\n**Path Parameters**:\n| Parameter | Type | Required | Description |\n\n**Query Parameters**:\n| Parameter | Type | Required | Default | Description |\n\n**Request Body** (if applicable): JSON schema with field descriptions.\n\n**Example request** (curl + [PREFERRED LANGUAGE]):\n\n### Response\n**Success (200)**:\nJSON schema with field descriptions and example response.\n\n**Error Responses**:\n| Status | Error Code | Meaning | Resolution |\n\n### Code Examples\nFull working examples in [LANGUAGES].\n\n### Rate Limits & Quotas\nLimits, headers to watch, and what to do when rate-limited.\n\n### Changelog\nNote any recent breaking changes to this endpoint.",
+          "token_estimate": 290
+        }
+      }
+    },
+    {
+      "id": "daily-reflection-coach",
+      "title": "Daily Reflection Coach",
+      "category": "Well-being & Mental Health",
+      "tags": [
+        "journaling",
+        "reflection",
+        "mindfulness",
+        "self-awareness",
+        "daily practice"
+      ],
+      "featured": false,
+      "description": "Generate personalized daily reflection prompts and a structured journaling framework to build self-awareness and emotional clarity.",
+      "model_notes": {
+        "gpt-5.4": "Balanced produces thoughtful, varied prompts. Avoids generic questions well.",
+        "claude-sonnet-4-6": "Top pick — naturally warm and non-judgmental. Writes prompts that invite genuine reflection without pressure.",
+        "claude-opus-4-6": "Max quality creates deeply personalized reflection frameworks. Best for someone going through a significant transition.",
+        "gemini-3.1-pro": "Balanced works well. Clear and structured with good variety across emotional domains.",
+        "grok-4": "Balanced recommended. Can be more probing than needed — gentle tone guidance helps.",
+        "llama-4-scout": "Balanced recommended. Lean prompts can feel generic — use balanced for personal resonance.",
+        "mistral-large-3": "Balanced produces clean, structured prompts. Good for habit-building frameworks.",
+        "o1": "Balanced is sufficient — produces thoughtful prompts that build on each other logically."
+      },
+      "benchmarks": {
+        "gpt-5.4": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 5,
+          "best": "balanced"
+        },
+        "claude-sonnet-4-6": {
+          "lean": 4,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "balanced"
+        },
+        "claude-opus-4-6": {
+          "lean": 3,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "max_quality"
+        },
+        "gemini-3.1-pro": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "grok-4": {
+          "lean": 2,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "llama-4-scout": {
+          "lean": 2,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "mistral-large-3": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "o1": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        }
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Give me 5 reflection questions for today. My focus: [WHAT YOU'RE WORKING THROUGH OR THINKING ABOUT]. Make them open-ended and thought-provoking.",
+          "token_estimate": 22
+        },
+        "balanced": {
+          "prompt": "Create a personalized daily reflection practice:\n\nCurrent focus: [WHAT YOU'RE WORKING THROUGH — CAREER / RELATIONSHIP / HABIT / TRANSITION / OTHER]\nTime available: [5 / 10 / 20 MINUTES]\nJournaling experience: [BEGINNER / EXPERIENCED]\nPreferred depth: [LIGHT DAILY CHECK-IN / DEEPER WEEKLY REVIEW]\n\nProvide:\n- 3 morning intention prompts\n- 3 evening reflection prompts\n- One longer 'weekly review' question to explore on weekends\n- A simple 1-5 rating for mood, energy, and progress to track daily",
+          "token_estimate": 100
+        },
+        "max_quality": {
+          "prompt": "You are a mindfulness coach and journaling guide. Design a personalized reflection practice.\n\nCurrent life context: [WHAT'S HAPPENING IN YOUR LIFE — TRANSITIONS, CHALLENGES, GOALS]\nWhat you want more of: [E.G., CLARITY / CALM / MOTIVATION / SELF-COMPASSION]\nWhat you want less of: [E.G., RUMINATION / REACTIVITY / AVOIDANCE]\nTime available daily: [MINUTES]\nPast practices (if any): [WHAT HAS OR HASN'T WORKED]\nPreferred style: [FREE-WRITING / STRUCTURED QUESTIONS / BULLET POINTS / MIXED]\n\n## Your Daily Reflection Framework\n\n### Morning (5 minutes)\nIntention-setting prompts that start the day with clarity and purpose. (3 questions)\n\n### Midday Check-in (2 minutes, optional)\nA single grounding question for when the day feels overwhelming.\n\n### Evening (5-10 minutes)\nReflection prompts that close the day with learning rather than judgment. (3 questions)\n\n### Daily Tracker\nA simple rating system (1-5) for: energy / mood / alignment with values / one custom metric\n\n### Weekly Review (20 minutes, once per week)\nDeeper questions to notice patterns and recalibrate.\n\n## Getting Started\n- One sentence for when you don't feel like journaling\n- How to know if this practice is working (observable signs after 2 weeks)\n- How to adjust these prompts as your focus shifts",
+          "token_estimate": 255
+        }
+      }
+    },
+    {
+      "id": "problem-reframing",
+      "title": "Problem Reframing Toolkit",
+      "category": "General Purpose",
+      "tags": [
+        "problem solving",
+        "reframing",
+        "critical thinking",
+        "creativity",
+        "perspective"
+      ],
+      "featured": false,
+      "description": "Reframe a problem from multiple angles to unlock new solutions. Uses classic frameworks like inversion, abstraction, and first-principles thinking.",
+      "model_notes": {
+        "gpt-5.4": "Max quality applies frameworks with precision and generates genuinely novel reframes.",
+        "claude-sonnet-4-6": "Excellent at creative and analytical reframing. Lean works for quick perspective shifts; balanced for depth.",
+        "claude-opus-4-6": "Max quality with extended thinking surfaces non-obvious reframes. Best for complex, stuck problems.",
+        "gemini-3.1-pro": "Balanced recommended. Strong at applying structured frameworks like inversion and analogy.",
+        "grok-4": "Balanced works well. Tends toward contrarian reframes — useful for challenging assumptions.",
+        "llama-4-scout": "Balanced recommended. Lean can produce surface-level reframes that miss the core tension.",
+        "mistral-large-3": "Balanced produces well-structured multi-framework analysis efficiently.",
+        "o1": "Lean is surprisingly strong — o1 naturally applies multiple reasoning modes before settling on reframes."
+      },
+      "benchmarks": {
+        "gpt-5.4": {
+          "lean": 3,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "balanced"
+        },
+        "claude-sonnet-4-6": {
+          "lean": 4,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "balanced"
+        },
+        "claude-opus-4-6": {
+          "lean": 3,
+          "balanced": 5,
+          "max_quality": 5,
+          "best": "max_quality"
+        },
+        "gemini-3.1-pro": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "grok-4": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "llama-4-scout": {
+          "lean": 2,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "mistral-large-3": {
+          "lean": 3,
+          "balanced": 4,
+          "max_quality": 4,
+          "best": "balanced"
+        },
+        "o1": {
+          "lean": 4,
+          "balanced": 4,
+          "max_quality": 5,
+          "best": "lean"
+        }
+      },
+      "variants": {
+        "lean": {
+          "prompt": "Reframe this problem 5 different ways to reveal new solutions:\n\nProblem: [YOUR PROBLEM]",
+          "token_estimate": 14
+        },
+        "balanced": {
+          "prompt": "Help me see this problem differently:\n\nProblem: [DESCRIBE YOUR PROBLEM OR CHALLENGE]\nWhat I've already tried: [APPROACHES THAT HAVEN'T WORKED]\nGoal: [WHAT A SOLUTION WOULD ACHIEVE]\n\nApply 4 reframing lenses:\n1. **Inversion** — What if I tried to make the problem worse? What does that reveal?\n2. **Abstraction** — What is the higher-level problem this is a symptom of?\n3. **Who else has solved this?** — What analogous problem in another domain has been solved?\n4. **Remove the constraint** — What if the hardest constraint didn't exist? What would you do then?",
+          "token_estimate": 108
+        },
+        "max_quality": {
+          "prompt": "You are a strategic thinking coach specializing in problem reframing. Help me break out of stuck thinking.\n\nProblem: [DETAILED DESCRIPTION]\nContext: [RELEVANT BACKGROUND — ORGANIZATION, STAKES, CONSTRAINTS]\nWhat I've tried: [APPROACHES ALREADY ATTEMPTED AND WHY THEY FAILED]\nAssumptions I'm making: [YOUR BEST GUESS AT YOUR OWN ASSUMPTIONS]\nWhat success looks like: [THE OUTCOME YOU WANT]\n\n## Step 1 — Assumption Audit\nList the assumptions embedded in how I've framed this problem. For each: is this assumption necessary, or could it be relaxed?\n\n## Step 2 — Reframing Lenses\nApply each lens and generate 1-2 new framings per lens:\n\n**Inversion**: What would make this problem dramatically worse? What does that reveal about the real levers?\n\n**Abstraction**: What is the higher-level problem this is a symptom of? What is the root cause?\n\n**Constraint removal**: If your hardest constraint disappeared, what would you do? Can any version of that work within constraints?\n\n**Perspective shift**: How would [a customer / a competitor / a child / an outsider / a regulator] frame this problem?\n\n**Analogy**: What domain has solved a structurally similar problem? What can you borrow?\n\n**First principles**: Strip away all convention. What are the irreducible facts? What solution would you build from scratch?\n\n## Step 3 — Most Promising Reframe\nWhich single reframe opens the most new solution space? Why?\n\n## Step 4 — Next Action\nOne concrete experiment to test the most promising reframe — small, fast, and falsifiable.",
+          "token_estimate": 278
+        }
+      }
     }
   ],
   "categories": [
