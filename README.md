@@ -8,7 +8,7 @@ Every prompt ships with Lean, Balanced, and Max Quality variants.
 [![Live Site](https://img.shields.io/badge/Live%20Site-kishormorol.github.io%2Fpromptlean-7c3aed?style=for-the-badge&logo=github-pages&logoColor=white)](https://kishormorol.github.io/promptlean/)
 [![License](https://img.shields.io/badge/License-MIT-22c55e?style=for-the-badge)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-3b82f6?style=for-the-badge&logo=github)](https://github.com/kishormorol/promptlean/blob/main/contribute.html)
-[![Prompts](https://img.shields.io/badge/Prompts-100-f59e0b?style=for-the-badge)](https://kishormorol.github.io/promptlean/browse.html)
+[![Prompts](https://img.shields.io/badge/Prompts-120-f59e0b?style=for-the-badge)](https://kishormorol.github.io/promptlean/browse.html)
 [![Categories](https://img.shields.io/badge/Categories-14-ec4899?style=for-the-badge)](https://kishormorol.github.io/promptlean/browse.html)
 
 </div>
@@ -17,7 +17,7 @@ Every prompt ships with Lean, Balanced, and Max Quality variants.
 
 ## What is PromptLean?
 
-PromptLean is a curated, open-source library of 100 prompts across 14 categories — from code review and SQL optimization to creative writing, journaling, interview prep, and emotional support.
+PromptLean is a curated, open-source library of 120 prompts across 14 categories — from code review and SQL optimization to creative writing, journaling, interview prep, and emotional support.
 
 The key idea: **most prompts are overengineered**. You don't need 200 tokens of preamble for a code review. But sometimes you do need the full rubric. PromptLean gives you the right prompt for the right moment.
 
@@ -72,20 +72,20 @@ CORS is open (`access-control-allow-origin: *`). Full docs on the [About page](h
 
 ## What's New
 
-**30 new prompts** added in the latest expansion (70 → 100):
+**20 new prompts** added in the latest expansion (100 → 120):
 
 | Category | New Prompts |
 |----------|------------|
-| Code | Git Commit Message Generator · Code Documentation Generator · Dependency Audit · Deep Code Explainer |
-| Writing | Email Newsletter Writer · SEO Content Optimizer · Press Release Writer · FAQ Generator · Speech Writer |
-| Engineering | REST API Endpoint Designer · Changelog Writer · Security Threat Model · Terraform / IaC Reviewer |
-| Research | User Persona Creator · Competitive Analysis · A/B Test Designer · Research Hypothesis Generator |
-| Productivity | OKR Writer · Sprint Retrospective Facilitator · Product Launch Plan · Meeting Agenda Builder |
-| Education & Tutoring | Learning Roadmap Creator · Book Club Discussion Guide · Mental Model Explainer |
-| AI / ML | Prompt Optimizer · System Prompt Debugger |
-| Data | Data Storytelling · CSV Data Analyzer |
-| Career & Professional Growth | Negotiation Coach |
-| General Purpose | Travel Itinerary Planner |
+| AI / ML | Fine-Tuning Dataset Designer · Prompt Chain Architect · RAG Query Optimizer · AI Feature Product Spec · Model Selection Advisor |
+| Entertainment & Creative | Game Narrative Designer · Worldbuilding Assistant · Screenplay Scene Writer · Trivia Question Generator · Comedy Sketch Writer |
+| Safety & Crisis Support | Boundary-Setting Script · Personal Safety Plan Builder · Conflict De-escalation Guide |
+| Research | Literature Review Outliner |
+| Data | SQL Query Optimizer |
+| Career & Professional Growth | Tailored Cover Letter Writer |
+| Education & Tutoring | Flashcard Generator |
+| Engineering | API Documentation Writer |
+| Well-being & Mental Health | Daily Reflection Coach |
+| General Purpose | Problem Reframing Toolkit |
 
 → **[Browse all new prompts](https://kishormorol.github.io/promptlean/browse.html)**
 
@@ -93,23 +93,23 @@ CORS is open (`access-control-allow-origin: *`). Full docs on the [About page](h
 
 ## Prompts
 
-100 prompts across 14 categories:
+120 prompts across 14 categories:
 
 | Category | Count | Prompts |
 |----------|-------|---------|
-| Code | 14 | Code Review · Explain Code to a Junior Dev · Write Unit Tests · Debug & Fix a Bug · Refactor Code · Write Code Documentation · Generate a Regular Expression · Translate Code to Another Language · Developer Relations Consultant · Cybersecurity Strategy Advisor · Git Commit Message Generator · Code Documentation Generator · Dependency Audit · Deep Code Explainer |
-| Data | 10 | Optimize a SQL Query · Data Cleaning Plan · Exploratory Data Analysis Plan · Statistical Analysis Advisor · Annual Report Analyst (10-K) · Excel Formula Specialist · Unstructured Text to JSON · Data Visualization Advisor · Data Storytelling · CSV Data Analyzer |
-| Writing | 11 | Write a Technical Blog Post · Write API Documentation · Write a Cold Email · Write an Executive Summary · Ad Copy Generator · Social Media Post Optimizer · Email Newsletter Writer · SEO Content Optimizer · Press Release Writer · FAQ Generator · Speech Writer |
-| Productivity | 11 | Meeting Notes → Action Items · Weekly Planner & Prioritization · Draft a Professional Email Reply · Decision Framework · Startup Idea Generator · Personal Finance Advisor · Legal Contract Reviewer · OKR Writer · Sprint Retrospective Facilitator · Product Launch Plan · Meeting Agenda Builder |
-| Engineering | 11 | System Design Review · Write a Product Requirements Document · Incident Postmortem · Architecture Decision Record (ADR) · IT Solution Architect · UX/UI Design Reviewer · Software Project Planner · REST API Endpoint Designer · Changelog Writer · Security Threat Model · Terraform / IaC Reviewer |
-| Research | 8 | Summarize a Research Paper · Literature Review Synthesis · Debate Both Sides · Venture Capital Analyst · User Persona Creator · Competitive Analysis · A/B Test Designer · Research Hypothesis Generator |
-| Education & Tutoring | 9 | Explain Any Concept · Socratic Tutoring Session · Generate Practice Questions · Lesson Plan Generator · Study Guide Creator · Word Etymology Explorer · Learning Roadmap Creator · Book Club Discussion Guide · Mental Model Explainer |
-| Career & Professional Growth | 7 | Resume Review · Interview Preparation Coach · Write a Cover Letter · Write a LinkedIn Post · Salary Negotiation Script · Performance Review Self-Assessment · Negotiation Coach |
-| General Purpose | 7 | Summarize Any Text · Brainstorm Ideas · Explain Like I'm 5 (ELI5) · Give Constructive Feedback · Fallacy Finder · Product Critique & Feedback · Travel Itinerary Planner |
-| AI / ML | 4 | LLM Evaluation Rubric · Write a System Prompt · Prompt Optimizer · System Prompt Debugger |
-| Well-being & Mental Health | 3 | Daily Reflection & Journaling Guide · Stress Relief & Reframing · Goal Setting & Action Plan |
-| Entertainment & Creative | 3 | Short Story Generator · Poem Generator · Character Creator |
-| Safety & Crisis Support | 1 | Compassionate Crisis Response |
+| Code | 10 | Code Review · Explain Code to a Junior Dev · Write Unit Tests · Debug & Fix a Bug · Refactor Code · Write Code Documentation · Generate a Regular Expression · Translate Code to Another Language · Developer Relations Consultant · Cybersecurity Strategy Advisor |
+| Data | 9 | Optimize a SQL Query · Data Cleaning Plan · Exploratory Data Analysis Plan · Statistical Analysis Advisor · Annual Report Analyst (10-K) · Excel Formula Specialist · Unstructured Text to JSON · Data Visualization Advisor · SQL Query Optimizer |
+| Writing | 6 | Write a Technical Blog Post · Write a Cold Email · Write an Executive Summary · Ad Copy Generator · Social Media Post Optimizer · FAQ Generator |
+| Productivity | 7 | Meeting Notes → Action Items · Weekly Planner & Prioritization · Draft a Professional Email Reply · Decision Framework · Startup Idea Generator · Personal Finance Advisor · Legal Contract Reviewer |
+| Engineering | 8 | System Design Review · Write a Product Requirements Document · Incident Postmortem · Architecture Decision Record (ADR) · IT Solution Architect · UX/UI Design Reviewer · Software Project Planner · API Documentation Writer |
+| Research | 5 | Summarize a Research Paper · Literature Review Synthesis · Debate Both Sides · Venture Capital Analyst · Literature Review Outliner |
+| Education & Tutoring | 7 | Explain Any Concept · Socratic Tutoring Session · Generate Practice Questions · Lesson Plan Generator · Study Guide Creator · Word Etymology Explorer · Flashcard Generator |
+| Career & Professional Growth | 7 | Resume Review · Interview Preparation Coach · Write a LinkedIn Post · Salary Negotiation Script · Performance Review Self-Assessment · Negotiation Coach · Tailored Cover Letter Writer |
+| General Purpose | 7 | Summarize Any Text · Brainstorm Ideas · Explain Like I'm 5 (ELI5) · Give Constructive Feedback · Fallacy Finder · Product Critique & Feedback · Problem Reframing Toolkit |
+| AI / ML | 7 | LLM Evaluation Rubric · Write a System Prompt · Prompt Optimizer · System Prompt Debugger · Fine-Tuning Dataset Designer · Prompt Chain Architect · RAG Query Optimizer · AI Feature Product Spec · Model Selection Advisor |
+| Well-being & Mental Health | 4 | Daily Reflection & Journaling Guide · Stress Relief & Reframing · Goal Setting & Action Plan · Daily Reflection Coach |
+| Entertainment & Creative | 8 | Short Story Generator · Poem Generator · Character Creator · Game Narrative Designer · Worldbuilding Assistant · Screenplay Scene Writer · Trivia Question Generator · Comedy Sketch Writer |
+| Safety & Crisis Support | 4 | Compassionate Crisis Response · Boundary-Setting Script · Personal Safety Plan Builder · Conflict De-escalation Guide |
 | Supportive Conversation | 1 | Active Listening & Emotional Support |
 
 → **[Browse all prompts](https://kishormorol.github.io/promptlean/browse.html)**

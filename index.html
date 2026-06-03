@@ -7,7 +7,7 @@
   <title>PromptLean — Token-Efficient Prompt Library for LLMs</title>
 
   <!-- Primary SEO -->
-  <meta name="description" content="PromptLean is a free, open-source library of 31 token-efficient prompts across 14 categories. Every prompt ships with Lean, Balanced, and Max Quality variants — plus model notes and quality benchmarks for GPT-5.4, Claude, Gemini, Grok, Llama, and more." />
+  <meta name="description" content="PromptLean is a free, open-source library of 120 token-efficient prompts across 14 categories. Every prompt ships with Lean, Balanced, and Max Quality variants — plus model notes and quality benchmarks for GPT-5.4, Claude, Gemini, Grok, Llama, and more." />
   <meta name="keywords" content="prompt engineering, prompt library, LLM prompts, ChatGPT prompts, Claude prompts, Gemini prompts, token optimization, prompt templates, AI prompts, open source prompts, code review prompt, resume prompt, creative writing prompt, interview prep prompt, prompt engineering guide" />
   <meta name="author" content="Md Kishor Morol" />
   <link rel="canonical" href="https://kishormorol.github.io/promptlean/" />
@@ -16,14 +16,14 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://kishormorol.github.io/promptlean/" />
   <meta property="og:title" content="PromptLean — Token-Efficient Prompt Library for LLMs" />
-  <meta property="og:description" content="31 prompts, 14 categories, 3 variants each. Every prompt is benchmarked across GPT-5.4, Claude, Gemini, Grok, Llama, and Mistral. Free and open source." />
+  <meta property="og:description" content="120 prompts, 14 categories, 3 variants each. Every prompt is benchmarked across GPT-5.4, Claude, Gemini, Grok, Llama, and Mistral. Free and open source." />
   <meta property="og:image" content="https://kishormorol.github.io/promptlean/assets/img/og.png" />
   <meta property="og:site_name" content="PromptLean" />
 
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="PromptLean — Token-Efficient Prompt Library for LLMs" />
-  <meta name="twitter:description" content="31 prompts, 14 categories, 3 variants each. Benchmarked across 8 frontier models. Free and open source." />
+  <meta name="twitter:description" content="120 prompts, 14 categories, 3 variants each. Benchmarked across 8 frontier models. Free and open source." />
   <meta name="twitter:image" content="https://kishormorol.github.io/promptlean/assets/img/og.png" />
 
   <!-- JSON-LD structured data -->
@@ -33,7 +33,7 @@
     "@type": "SoftwareApplication",
     "name": "PromptLean",
     "url": "https://kishormorol.github.io/promptlean/",
-    "description": "Open-source library of token-efficient prompts for LLMs. 31 prompts across 14 categories — code, research, creative writing, career, education, mental health, and more. Every prompt has Lean, Balanced, and Max Quality variants with benchmarks across 8 frontier models.",
+    "description": "Open-source library of token-efficient prompts for LLMs. 120 prompts across 14 categories — code, research, creative writing, career, education, mental health, and more. Every prompt has Lean, Balanced, and Max Quality variants with benchmarks across 8 frontier models.",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Web",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -41,7 +41,7 @@
     "sourceCode": "https://github.com/kishormorol/promptlean",
     "keywords": "prompt engineering, LLM prompts, ChatGPT prompts, Claude prompts, token optimization, prompt library, prompt templates",
     "featureList": [
-      "31 prompts across 14 categories",
+      "120 prompts across 14 categories",
       "3 variants per prompt: Lean (18-40 tokens), Balanced (50-110 tokens), Max Quality (85-230 tokens)",
       "Model notes and quality benchmarks for GPT-5.4, Claude Sonnet/Opus 4.6, Gemini 3.1 Pro, Grok 4, Llama 4 Scout, Mistral Large 3, o1",
       "Model × Variant comparison table on every prompt page",
@@ -131,11 +131,11 @@
     <!-- What's New -->
     <div class="section-header mb-6">
       <h2 class="section-title">🆕 What's New</h2>
-      <span style="font-size:0.85rem;color:var(--text-3);">30 new prompts added — library expanded to 100</span>
+      <span style="font-size:0.85rem;color:var(--text-3);">20 new prompts added — library expanded to 120</span>
     </div>
     <div id="whats-new-grid" style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:2rem;"></div>
     <div style="text-align:center;margin-bottom:2rem;">
-      <a href="browse.html" class="btn btn-ghost btn-sm">Browse all 100 prompts →</a>
+      <a href="browse.html" class="btn btn-ghost btn-sm">Browse all 120 prompts →</a>
     </div>
 
     <div class="divider"></div>
@@ -225,15 +225,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // What's New chips
     const newIds = [
-      'git-commit-message','code-documentation-generator','dependency-audit','code-explainer-deep',
-      'newsletter-writer','seo-optimizer','press-release','faq-generator','speech-writer',
-      'api-endpoint-designer','changelog-writer','security-threat-model','terraform-reviewer',
-      'user-persona','competitive-analysis','a-b-test-designer','hypothesis-generator',
-      'okr-writer','retrospective-facilitator','product-launch-plan','meeting-agenda-builder',
-      'learning-roadmap','book-club-guide','mental-model-explainer',
-      'prompt-optimizer','system-prompt-debugger',
-      'data-storytelling','csv-data-analyzer',
-      'negotiation-coach','travel-planner'
+      'fine-tuning-dataset-designer','prompt-chain-architect','rag-query-optimizer',
+      'ai-product-feature-spec','model-selection-advisor',
+      'game-narrative-designer','worldbuilding-assistant','screenplay-scene-writer',
+      'trivia-question-generator','comedy-sketch-writer',
+      'boundary-setting-script','safety-plan-builder','de-escalation-guide',
+      'literature-review-outline','sql-query-optimizer','cover-letter-writer',
+      'flashcard-generator','api-documentation-writer','daily-reflection-coach','problem-reframing'
     ];
     const newPrompts = newIds.map(id => prompts.find(p => p.id === id)).filter(Boolean);
     const catColors = {
