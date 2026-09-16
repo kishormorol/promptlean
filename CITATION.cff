@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "PromptLean"
+abstract: "A curated library of token-efficient prompts, each shipping in Lean, Balanced, and Max Quality variants."
+authors:
+  - family-names: Morol
+    given-names: Md Kishor
+repository-code: "https://github.com/kishormorol/promptlean"
+url: "https://kishormorol.github.io/promptlean/"
+license: MIT
+keywords:
+  - ai-tools
+  - chatgpt
+  - claude
+  - developer-tools
+  - gemini
+  - llm
+  - prompt-engineering
+  - prompt-library
+  - prompts
+  - token-optimization
