@@ -13,6 +13,8 @@ Every prompt ships with Lean, Balanced, and Max Quality variants.
 
 </div>
 
+![PromptLean home page: 120 prompts across 14 categories with three variants each and 86% average token savings](docs/screenshot.jpg)
+
 ---
 
 ## What is PromptLean?
