@@ -11,6 +11,7 @@ Every prompt ships with Lean, Balanced, and Max Quality variants.
 [![Prompts](https://img.shields.io/badge/Prompts-120-f59e0b?style=for-the-badge)](https://kishormorol.github.io/promptlean/browse.html)
 [![Categories](https://img.shields.io/badge/Categories-14-ec4899?style=for-the-badge)](https://kishormorol.github.io/promptlean/browse.html)
 [![HF Dataset](https://img.shields.io/badge/%F0%9F%A4%97%20Dataset-promptlean--prompts-FFD21E?style=for-the-badge)](https://huggingface.co/datasets/kishormorol/promptlean-prompts)
+[![HF Space](https://img.shields.io/badge/%F0%9F%A4%97%20Space-live%20demo-FFD21E?style=for-the-badge)](https://huggingface.co/spaces/kishormorol/promptlean)
 
 </div>
 
