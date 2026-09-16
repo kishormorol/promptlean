@@ -6,6 +6,7 @@ abstract: "A curated library of token-efficient prompts, each shipping in Lean, 
 authors:
   - family-names: Morol
     given-names: Md Kishor
+    orcid: "https://orcid.org/0000-0002-4468-8260"
 repository-code: "https://github.com/kishormorol/promptlean"
 url: "https://kishormorol.github.io/promptlean/"
 license: MIT
